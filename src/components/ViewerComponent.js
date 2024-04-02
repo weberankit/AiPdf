@@ -22,7 +22,7 @@ export default function ViewerComponent(props) {
 		})();
 
 		return () => PSPDFKit && PSPDFKit.unload(container);
-	}, []);
+	}, [props.document]);
 
 	return (
 		<div

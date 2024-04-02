@@ -77,11 +77,11 @@ function handleDelete(path){
         <>
         {
 slectfileMeta && slectfileMeta.map((item)=>{
-  console.log(item,item._location.path )
+//  console.log(item,item._location.path )
   const fileName=item._location.path.split("/").pop()
   const textFileidentify=item._location.path.split(".").pop()
   //textFileidentify==="txt"?setTextBtn()
-  console.log(textFileidentify)
+ // console.log(textFileidentify)
   return(
   <>
   <div className="p-4 bg-gray-500">
