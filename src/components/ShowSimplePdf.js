@@ -19,6 +19,7 @@ const ShowSimplePdf=({data})=>{
           console.log(pageNo,numPages)
         }
       }
+      console.log(data)
 return(
     <>
     

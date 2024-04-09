@@ -1,7 +1,9 @@
 import {onAuthStateChanged ,getAuth} from "firebase/auth"
 import {ref,listAll ,getStorage ,uploadBytes,uploadBytesResumable} from "firebase/storage"
-export function callUserInfoOnRefresh(navigate,selectUsrDetail,setUserInfo){
+
+export function callUserInfoOnRefresh(navigate,selectUsrDetail,dispatch,infoUser){
     const auth = getAuth();
+ 
         onAuthStateChanged(auth, (user) => {
           if (!user) {
             navigate("/");
@@ -10,9 +12,10 @@ export function callUserInfoOnRefresh(navigate,selectUsrDetail,setUserInfo){
         
     
           if(!selectUsrDetail){
-            
-             setUserInfo(user.uid)
-           
+             console.log(user,"USER")
+             const {uid ,email,displayName}= user;
+             console.log(uid,email)
+             dispatch(infoUser({uid:uid ,email:email,displayName:displayName}))
         }
     
         });

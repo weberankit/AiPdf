@@ -3,7 +3,7 @@ import {  useDispatch } from "react-redux";
 
 //import { selectedText } from "./userFiles";
 import { SetselectedText } from "./userFiles";
-const SelectionWord=()=>{
+const SelectionWord=(setSideBarShow)=>{
 
 const dispatch=useDispatch()
 
@@ -19,6 +19,7 @@ const handleSelectionChange = () => {
         let selectedText = selection.toString();
         // Dispatch an action with the selected text
         dispatch(SetselectedText(selectedText));
+        setSideBarShow(true)
     }
 
     })

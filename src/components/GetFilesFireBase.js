@@ -74,7 +74,7 @@ function handleDelete(path){
 
 
     return(
-        <>
+        <div   > 
         {
 slectfileMeta && slectfileMeta.map((item)=>{
 //  console.log(item,item._location.path )
@@ -84,7 +84,7 @@ slectfileMeta && slectfileMeta.map((item)=>{
  // console.log(textFileidentify)
   return(
   <>
-  <div className="p-4 bg-gray-500">
+  <div key={textFileidentify+Date.now()+9} className="p-4 bg-gray-500">
     <div>
     {fileName}</div>
                 <div className="bg-white" >
@@ -109,7 +109,7 @@ slectfileMeta && slectfileMeta.map((item)=>{
   </>)
 })
 }
-</>      
+</div>      
     )
 }
 export default GetFilesFireBase
