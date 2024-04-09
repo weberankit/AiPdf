@@ -26,6 +26,7 @@ signOut(auth).then(() => {
     <button onClick={logout}>Logout</button>
 </div>
 <Link to={"/cart"}><div>FilesCart</div></Link>
+<Link to={"/setting"}>Setting</Link>
         </>
     )
 }

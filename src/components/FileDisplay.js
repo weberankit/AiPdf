@@ -14,6 +14,7 @@ import ShowPdf from "./ShowPdf";
 import ShowSimplePdf from "./ShowSimplePdf";
 import GetFilesFireBase from "./GetFilesFireBase";
 import { textFile } from "../utils/userSlice";
+import AiComponents from "./AiComponents";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
@@ -29,18 +30,19 @@ const [url,setUrl]=useState("")
 const [proUrl,setProUrl]=useState("") 
 const storage = getStorage();
 const [msg,SetMsg] =useState(null)
-
+const [sideBarShow , setSideBarShow]=useState(null)
 
 //to grab words from pdf while selecting
 
 
-SelectionWord()
-
+SelectionWord(setSideBarShow)
+console.log(sideBarShow,"sidebar")
 
 
 
     return(
         <div className="flex flex-col ">
+            <div>{sideBarShow&& <AiComponents/>}</div>
 {msg&&<p>{msg}</p>}
         <div>
       {url &&  <button onClick={()=>setUrl(null)}>Close</button>}
