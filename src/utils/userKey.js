@@ -5,7 +5,8 @@ const userKey=  createSlice({
     initialState:{
         keyGPT:null,
         KeyDICT:null,
-        KeyLANG:null
+        KeyLANG:null,
+        toggleToCallApi:false
     },
     reducers:{
         KEYGPT:(state,action)=>{
@@ -18,8 +19,11 @@ const userKey=  createSlice({
        
        KEYLANG:(state,action)=>{
             state.KeyLANG=action.payload
+       },
+       toggleForApi:(state)=>{
+        state.toggleToCallApi=!state.toggleToCallApi
        }
     }
 })
 export default userKey.reducer
-export const {KEYGPT,KEYDICT,KEYLANG} = userKey.actions
+export const {KEYGPT,KEYDICT,KEYLANG,toggleForApi} = userKey.actions

@@ -8,6 +8,7 @@ import { callUserInfoOnRefresh } from "../utils/hooksHelper";
 import useKeyUpdate from "../utils/useKeyUpdate";
 import { readToggle } from "../utils/aiManagment";
 import { KEYDICT,KEYGPT,KEYLANG } from "../utils/userKey";
+import useStatusCheck from "../utils/useStatusCheck";
 const Setting=()=>{
      const navigate=useNavigate() 
      const dispatch=useDispatch()
@@ -30,11 +31,9 @@ useKeyUpdate(selectUsrDetail?.uid,readDataToggle)
 //using it for showing beolw the key status
 const selectingAllkeyVaues=useSelector((store)=>store.userskey)
 
-//if no value is used then pass default key value
-if(!selectingAllkeyVaues.keyGPT)dispatch(KEYGPT({gpt:"default",msg:"using default key"}));
-if(!selectingAllkeyVaues.KeyDICT)dispatch(KEYDICT({dict:"default",msg:"using default key"}));
-if(!selectingAllkeyVaues.KeyLANG)dispatch(KEYLANG({trans:"default",msg:"using default key"})); 
-
+//if no value is used then passing default key value
+//calling it again so when user directly visit page http://.../setting then it invoke also to sheck status
+useStatusCheck() 
       // Call the functions to write the keys to the database
       function handlekeyUpdation(userId,fireBasekeyName,UserKeyInputValue){
         // console.log(userId," ", fireBasekeyName," " , UserKeyInputValue)
