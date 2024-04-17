@@ -63,33 +63,7 @@ console.log(sourceLang,"sourcelang")
     
       const data = JSON.parse(result);
       setData(data)
- /*
- // Get the translations
- const translations = data[0]["translations"];
- 
- // Find the translation with the highest confidence for "displayTarget"
- const highestConfidenceTranslation = translations.reduce((acc, translation) =>
-   translation.confidence > acc.confidence ? translation : acc, translations[0]);
- 
- // Extract the displayTarget from the translation with the highest confidence
- const displayTarget = highestConfidenceTranslation["displayTarget"];
- 
- // Print the displayTarget
- console.log(displayTarget)
-         // Printing the displayTarget values
-       //  console.log(displayTargets);
-     */
-       console.log(data)
-       const translations = data[0]["translations"];
- 
- // Find the first translation with "displayTarget" (assuming unique highest confidence)
- const targetTranslation = translations.find(translation => translation.hasOwnProperty("displayTarget"));
- 
- // Extract the displayTarget
- const displayTarget = targetTranslation["displayTarget"];
- 
- // Print the displayTarget
- console.log(displayTarget);
+
    } catch (error) {
      console.error(error);
    }
@@ -117,8 +91,8 @@ const arrayResponse= textWords.map((item)=>callingFreeApi(item))
  useEffect(()=>{
  if(selectKeyDict){
      console.log("jj")
-    callingApi()
-   callingExampleApi()
+ //  callingApi()
+   //callingExampleApi()
  }
  },[selectToggleforApi])
  

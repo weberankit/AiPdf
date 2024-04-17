@@ -24,7 +24,7 @@ const selectToogleEg=useSelector((store)=>store.aiRespond?.toggleExample)
             <button className="bg-blue-800 p-1 m-1 rounded-md" onClick={()=>dispatch(toggleEg())}>{selectToogleEg===true ?"hide examples":"click for examples & def"}</button>
 
 {selectToogleEg &&
-  selectRespDict.map((wordObj,index) =>{ 
+  selectRespDict?.map((wordObj,index) =>{ 
     console.log(wordObj,"this is obk",index)
     return(
    

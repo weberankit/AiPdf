@@ -36,21 +36,26 @@ const selectingAllkeyVaues=useSelector((store)=>store.userskey)
 useStatusCheck() 
       // Call the functions to write the keys to the database
       function handlekeyUpdation(userId,fireBasekeyName,UserKeyInputValue){
-        // console.log(userId," ", fireBasekeyName," " , UserKeyInputValue)
-       
+        // console.log(userId," ", fireBasekeyName," " , UserKeyInputValue.length)
+      
+       if (!UserKeyInputValue?.trim()) {
+        
+        alert("Please provide input");
+        return;
+      }else{
             const db = getDatabase();
            // console.log(db)
         const a=    set(ref(db, `${userId}/${fireBasekeyName}`), {
          /*     gpt: gptKey,
               dict:dictiKey,
               trans:translateKey*/
-              [fireBasekeyName]: UserKeyInputValue 
+              [fireBasekeyName]: UserKeyInputValue?.trim() 
             });
     
         //   console.log(a,"kk")
           
          dispatch(readToggle())
-
+          }
       }
     
     return(
@@ -59,25 +64,29 @@ useStatusCheck()
        {selectUsrDetail?.uid && <div>
     
         <form onSubmit={(e)=>{e.preventDefault(); console.log(e.target.value)}}> 
-        <input  placeholder="Gpt Key" value={gpts} onChange={(e)=>setgpts(e.target.value)} ></input>
+        <input  placeholder="Gpt Key" value={gpts} onChange={(e)=>setgpts(e.target.value)} required></input>
         <button onClick={()=>{ handlekeyUpdation(selectUsrDetail?.uid,"gpt",gpts) ;  setgpts("") }}>save</button>
-      
-        
-       
-       <input placeholder="dictionary key" value={dicts} onChange={(e)=>setdicts(e.target.value)}></input>
-       <button  onClick={(e)=>{handlekeyUpdation(selectUsrDetail?.uid,"dict",dicts) ; setdicts("")}}>save</button>
-
-        
-       <input placeholder="Translate key"  value={trans} onChange={(e)=>settrans(e.target.value)} ></input>
-       <button onClick={(e)=>{handlekeyUpdation(selectUsrDetail?.uid,"trans",trans) ; settrans("")}}>save</button>
        </form>
+        
+       <form onSubmit={(e)=>{e.preventDefault(); console.log(e.target.value)}}> 
+       <input placeholder="dictionary key" value={dicts} onChange={(e)=>setdicts(e.target.value)}required ></input>
+       <button  onClick={(e)=>{handlekeyUpdation(selectUsrDetail?.uid,"dict",dicts) ; setdicts("")}}>save</button>
+       </form>
+       <form onSubmit={(e)=>{e.preventDefault(); console.log(e.target.value)}}> 
+        <div className="relative">
+        <div className="parent cursor-pointer"><em className="hover:text-blue-950"> not allowed to update translate key</em> <p className="element absolute top-[-15px] bg-gray-700 ">we are using free api so not allow but further we might be</p></div>
+       <input className="hover:cursor-not-allowed" placeholder="Translate key"  value={trans} onChange={(e)=>settrans(e.target.value)} r></input>
+       <button className="hover:cursor-not-allowed" onClick={(e)=>{/*handlekeyUpdation(selectUsrDetail?.uid,"trans",trans) ; settrans("")*/}}>{/*save*/}</button>
+       </div>
+ </form>
+      
 
 <div>
 
 {/*selectDICTValues?.dict  ?"using default":"thudd"*/}
 
 
-<button>clcik</button>
+
 </div>
 
 
@@ -89,10 +98,10 @@ useStatusCheck()
        {(selectingAllkeyVaues?.keyGPT?.msg) ?  "using Default key"  : `using Your GPT Key ${selectingAllkeyVaues?.keyGPT?.gpt}` }
 </p>
 <p>
-{(selectingAllkeyVaues?.KeyDICT?.msg) ? "using Default key"  : `using Your GPT Key ${selectingAllkeyVaues?.KeyDICT?.dict}`}
+{(selectingAllkeyVaues?.KeyDICT?.msg) ? "using Default key"  : `using Your Dictionary Key ${selectingAllkeyVaues?.KeyDICT?.dict}`}
 </p>
 <p>
-{(selectingAllkeyVaues?.KeyLANG?.msg) ? "using Default key"  : `using Your GPT Key ${selectingAllkeyVaues?.KeyLANG?.trans}`}
+{(selectingAllkeyVaues?.KeyLANG?.msg) ? "using Default key"  : `not using Key ${selectingAllkeyVaues?.KeyLANG?.trans}`}
   </p>
        </div>
         </>
