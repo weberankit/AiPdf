@@ -12,7 +12,7 @@ body {
 
   border: 1px solid #ccc;
   padding: 20px;
-  overflow-x: auto;
+ /* overflow-x: auto;*/
   white-space: pre-wrap;
   text-align: justify
 }

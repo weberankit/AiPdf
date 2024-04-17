@@ -1,4 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit"
+import { translate } from "pdf-lib"
 
 const aiResponse = createSlice({
     name:"aiResponse",
@@ -6,7 +7,8 @@ const aiResponse = createSlice({
      
     
      dataDictRes:null,
-     toggleExample:false
+     toggleExample:false,
+     translResponse:null
     },
     reducers:{
     aiRes:(state,action)=>{
@@ -14,6 +16,9 @@ const aiResponse = createSlice({
     },
     toggleEg:(state)=>{
         state.toggleExample=!state.toggleExample
+    },
+    translateApi:(state,action)=>{
+        state.translResponse=action.payload
     }
      
 
@@ -21,4 +26,4 @@ const aiResponse = createSlice({
 })
 
 export default aiResponse.reducer 
-export const{aiRes,toggleEg} = aiResponse.actions
+export const{aiRes,toggleEg,translateApi} = aiResponse.actions

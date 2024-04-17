@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const DictLangSetting=({closeProp})=>{
+const DictLangSetting=({closeProp,localSource,localTarget})=>{
     const [inValue,setInValue]=useState(null)
     const supportedLanguages = [
         { language: "Arabic", code: "ar" },
@@ -21,10 +21,10 @@ const DictLangSetting=({closeProp})=>{
         // Add more languages here if needed
     ];
 function handleLang(lang){
-localStorage.setItem("sourceLangDict",lang)
+localStorage.setItem(localSource,lang)
 }
 function handTargetLang(lang){
-    localStorage.setItem("TargetLangDict",lang)
+    localStorage.setItem(localTarget,lang)
     }
 
 
