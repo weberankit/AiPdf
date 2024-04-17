@@ -65,7 +65,7 @@ const AiComponents=()=>{
      width: `${width}%`,
    // height: `${height}px`,
 
-       ["max-width"] : "97%" ,
+       ["maxWidth"] : "97%" ,
      backgroundColor: 'lightblue',
      fontSize:`${fontValue.current}px`,
      transition: 'all 0.3s ease'

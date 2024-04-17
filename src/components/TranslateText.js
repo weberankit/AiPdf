@@ -4,6 +4,7 @@ import useTranslate from "../utils/useTranslate"
 import DictLangSetting from "./DictLangSetting"
 import { useState } from "react"
 import TranslateResponse from "./TranslateResponse"
+import {Link} from "react-router-dom"
 const TranslateText=({styles})=>{
 const dispatch=useDispatch()
 
@@ -13,11 +14,15 @@ const dispatch=useDispatch()
   const [toogleLang ,setToogleLang]=useState(false)
  let sourceLang= localStorage.getItem("sourceLangTrans")
  let targetLang=localStorage.getItem("TargetLangTrans")
-
+ //const selectingTrankeyVaues=useSelector((store)=>store.userskey?.KeyLANG?.msg)
 useTranslate(selectTrans,sourceLang,targetLang)
 
     return(
+
         <>
+         {/*(selectingTrankeyVaues) ?  <div className="bg-red-600 p-1">please use  your own  translate key api might be 
+  expired ,just follow the step provided in setting very easy step as your api is accessible by you not by other users
+    click  <Link to={"/setting"} >setting</Link> </div> : "" */}
         <div className="bg-black text-white  fixed right-0 z-45" style={styles}>
  <div className="overflow-scroll  h-72">
         <p>Translatefiles</p>
