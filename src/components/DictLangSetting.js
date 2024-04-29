@@ -30,7 +30,7 @@ function handTargetLang(lang){
 
     return(
 <>
-<div className="fixed bg-black text-white overflow-y-scroll top-0 h-[600px] w-full z-50 ">
+<div className="fixed bg-black text-white overflow-y-scroll top-0 h-[600px] w-full z-[55] ">
    <button onClick={()=>closeProp()}>close</button>
    <div className="">
 here is some languges support

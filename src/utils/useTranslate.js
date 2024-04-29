@@ -47,7 +47,7 @@ async function callingTransApi(){
 
  useEffect(()=>{
 if(selectKeyTrans){
-//callingTransApi()
+callingTransApi()
 console.log("kk")
 }
  },[selectToggleforApi])

@@ -74,12 +74,12 @@ const AiComponents=()=>{
 
     return(
 <>
-<div className="flex flex-col  top-10 bg-red-950 z-50 fixed" >
+<div className="flex flex-col  top-15 bg-orange-500 text-white rounded-xl z-50 fixed ml-1 p-2" >
 
 
-    <button onClick={()=>{forDispatch(dicitValue,false,translateValue,false) ; dispatch(gptValue(true)); }}>GpT</button>
-    <button onClick={()=>{forDispatch(gptValue,false,translateValue,false);dispatch(dicitValue(true))}}>Dictionary</button>
-    <button onClick={()=>{forDispatch(gptValue,false,dicitValue,false);dispatch(translateValue(true))}}>Tranlate</button>
+    <button className="hover:bg-black hover:text-white rounded-sm" onClick={()=>{forDispatch(dicitValue,false,translateValue,false) ; dispatch(gptValue(true)); }}>Ai</button>
+    <button className="hover:bg-black hover:text-white p-1 rounded-sm" onClick={()=>{forDispatch(gptValue,false,translateValue,false);dispatch(dicitValue(true))}}>Dictionary</button>
+    <button className="hover:bg-black hover:text-white p-1 rounded-sm" onClick={()=>{forDispatch(gptValue,false,dicitValue,false);dispatch(translateValue(true))}}>Tranlate</button>
 </div>
 
 

@@ -91,8 +91,8 @@ const arrayResponse= textWords.map((item)=>callingFreeApi(item))
  useEffect(()=>{
  if(selectKeyDict){
      console.log("jj")
- //  callingApi()
-   //callingExampleApi()
+   callingApi()
+   callingExampleApi()
  }
  },[selectToggleforApi])
  

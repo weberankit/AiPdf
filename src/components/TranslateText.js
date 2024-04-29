@@ -23,7 +23,7 @@ useTranslate(selectTrans,sourceLang,targetLang)
          {/*(selectingTrankeyVaues) ?  <div className="bg-red-600 p-1">please use  your own  translate key api might be 
   expired ,just follow the step provided in setting very easy step as your api is accessible by you not by other users
     click  <Link to={"/setting"} >setting</Link> </div> : "" */}
-        <div className="bg-black text-white  fixed right-0 z-45" style={styles}>
+        <div className="bg-black text-white  fixed right-0 z-50 pt-2" style={styles}>
  <div className="overflow-scroll  h-72">
         <p>Translatefiles</p>
 

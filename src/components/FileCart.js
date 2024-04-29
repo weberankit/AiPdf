@@ -2,7 +2,7 @@ import {getStorage ,ref,listAll,getMetadata } from "firebase/storage"
 import {useEffect, useState} from "react"
 import {useDispatch, useSelector} from "react-redux"
 import Header from "./Header"
-import { useNavigate } from "react-router-dom"
+import { useNavigate ,useLocation} from "react-router-dom"
 import {onAuthStateChanged ,getAuth} from "firebase/auth"
 import FileDisplay from "./FileDisplay"
 import { UseDispatch } from "react-redux"
@@ -65,11 +65,11 @@ call(storage,directoryPath,dispatch,addFile , SetMsg)
     return(
         <>
         <Header/>
-        lion is kingh
+        
 
         <FileDisplay />
 
-        {msg && msg}
+      <div >  {msg && <div className="bg-black text-white p-3 text-center w-1/2 m-auto ">{msg }</div> }</div>
         </>
     ) 
 }

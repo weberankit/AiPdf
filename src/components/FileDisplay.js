@@ -43,25 +43,29 @@ console.log(sideBarShow,"sidebar")
     return(
         <div className="flex flex-col ">
             <div>{sideBarShow&& <AiComponents/>}</div>
-{msg&&<p>{msg}</p>}
-        <div>
-      {url &&  <button onClick={()=>setUrl(null)}>Close</button>}
+{msg&&<p >{msg}</p>}
+
+
+        <div className="w-1/2 m-auto pt-2 ">
+      {url &&  <button className="bg-black font-semibold text-white p-1 rounded-lg" onClick={()=>setUrl(null)}>Close pdf</button>}
      {url&& <ShowSimplePdf data={url}/>}
 </div>
 
 
 
 
-<div>
- {proUrl&& <button onClick={()=>setProUrl(null)}>close</button>}
+<div className="text-center">
+ {proUrl&& <button className="bg-red-600 text-white p-2 rounded-sm text-center" onClick={()=>setProUrl(null)}>close file</button>}
 {
 proUrl &&  <ShowPdf data={proUrl}/>
 }
 </div>
 
-<div className="bg-sky-300">
-{textShow && <button onClick={()=>dispatch(textFile(null))}>close</button>}
-   { textShow && <div className="bg-sky-300"> {textShow}</div> }
+<div className=" w-3/2 p-2 ">
+{/*textShow && <button className="w-44 m-auto" onClick={()=>dispatch(textFile(null))}>close</button>*/}
+   { textShow && <>   <div className=" w-1/2 m-auto text-sm "> 
+   <div><button className="bg-black text-white hover:bg-gray-600 p-2 rounded-lg" onClick={()=>dispatch(textFile(null))}>close</button></div>
+    {textShow}</div> </>}
 
 </div>
 

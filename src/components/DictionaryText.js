@@ -56,10 +56,12 @@ console.log(dataApi)
  
     return(
         <>
- {(selectingDictkeyVaues) ?  <div className="bg-red-600 p-1">please use your own Dictionay key api might be 
-  expired ,just follow the step provided in setting very easy step as your api is accessible by you not by other users
-   click  <Link to={"/setting"} >setting</Link> </div> : "" }
-        <div className="bg-black text-white  fixed  right-0 z-45 " style={styles} >
+        <div className="mt-1">
+ {(selectingDictkeyVaues) ?  <div className="bg-red-600 p-1 text-white text-center text-xs font-semibold m-auto mt-auto  w-1/2 ">Request: use your own Dictionary  api key , it  might be 
+  expired ,for more details visit,
+  you can use all api for free visit <Link className="text-blue-800" to={"/setting"} >setting</Link> </div> : "" }
+  </div>
+        <div className="bg-black text-white  fixed  right-0 z-50" style={styles} >
 <div className="overflow-scroll  h-96" >
              <button className="bg-gray-600" onClick={()=>{dispatch(dicitValue(false))}}>close</button>
         <p>dictionary file</p>

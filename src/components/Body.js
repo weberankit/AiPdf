@@ -46,20 +46,22 @@ useEffect(()=>{
     return(
         <>
     <div className="bg-red-700">{selectLoadingValue===true?"logging start":""}</div>
-        <div>
+        <div className="">
       
 <div><Header /></div>
 
 
     <div>
-      
+    {
+      //here in classname hiding sign 
+    }  
    {
    selector == null ?<div className="visible"><Sign/></div>  :<div className="hidden"><Sign/></div>
    }    
     </div>
 
 
-    <div>
+    <div className="pt-48 " >
       {
        selector !== null ? <><UploadFiles/></>:""
       }
