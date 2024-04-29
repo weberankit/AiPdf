@@ -5,11 +5,12 @@ const dispatch=useDispatch()
 const selectRespDict=useSelector((store)=>store.aiRespond?.dataDictRes)
 //console.log(selectRespDict)
 const selectToogleEg=useSelector((store)=>store.aiRespond?.toggleExample)
+console.log(data)
 
     return(
         <>
-        {
-            data&& data.map((item)=>{
+        {data?.message ? <div className="p-2">{data?.message}</div>:
+            data && data?.map((item)=>{
                 return(
                    <div className="p-2">
                   <p>  {item?.normalizedSource} : {item?.translations[0]?.displayTarget},{item?.translations[1]?.displayTarget},{item?.translations[2]?.displayTarget}

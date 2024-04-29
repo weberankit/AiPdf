@@ -3,6 +3,7 @@ import { useSelector } from "react-redux"
 import { toggleForApi } from "./userKey"
 import { useDispatch } from "react-redux"
 import { translateApi } from "./aiResponseSlice"
+
 const useTranslate=(selectTrans,sourceLang,targetLang)=>{
     const dispatch=useDispatch()
 console.log(selectTrans)
@@ -50,6 +51,7 @@ if(selectKeyTrans){
 callingTransApi()
 console.log("kk")
 }
+
  },[selectToggleforApi])
  
 }

@@ -9,10 +9,16 @@ import useKeyUpdate from "../utils/useKeyUpdate";
 import { readToggle } from "../utils/aiManagment";
 import { KEYDICT,KEYGPT,KEYLANG } from "../utils/userKey";
 import useStatusCheck from "../utils/useStatusCheck";
+import { translateValue,dicitValue,gptValue } from "../utils/aiManagment";
 const Setting=()=>{
      const navigate=useNavigate() 
      const dispatch=useDispatch()
      const selectUsrDetail=useSelector(store=>store?.userInformation?.value)
+     //preventing from nwanted call of api when user reuses any 3 features
+     //so basically closing component when user move to other page
+     dispatch(translateValue(false))
+     dispatch(dicitValue(false))
+     dispatch(gptValue(false))
 //for refreshing user credintals
 useEffect(()=>{
     callUserInfoOnRefresh(navigate,selectUsrDetail,dispatch,infoUser)

@@ -1,12 +1,21 @@
 import { getStorage, ref, uploadBytes, uploadBytesResumable} from "firebase/storage";
 import ShimmerEffect from "./ShimmerEffect";
-import {  useSelector } from "react-redux";
+import {  useSelector ,useDispatch} from "react-redux";
 import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import {uploadFile} from "../utils/hooksHelper"
+import { gptValue,dicitValue,translateValue } from "../utils/aiManagment";
+
 const UploadFiles=()=>{
   const navigate=useNavigate()
+  const dispatch=useDispatch()
+   //preventing from nwanted call of api when user reuses any 3 features
+     //so basically closing component when user move to other page
+     dispatch(translateValue(false))
+     dispatch(dicitValue(false))
+     dispatch(gptValue(false))
+    
   const [filePath,setFilePath]=useState("")
   const[uploadProgress,setUploadProgress]=useState(null)
 const selectUsrDetail=useSelector(store=>store?.userInformation?.value)

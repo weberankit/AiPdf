@@ -1,7 +1,6 @@
 import {useSelector ,useDispatch} from "react-redux"
 import { useEffect } from "react"
 import { aiRes } from "./aiResponseSlice"
-
 const useDictionary=(componValue,setData,sourceLang,targetLang)=>{
   if(!sourceLang){
     sourceLang='en'
@@ -94,6 +93,8 @@ const arrayResponse= textWords.map((item)=>callingFreeApi(item))
    callingApi()
    callingExampleApi()
  }
+
+
  },[selectToggleforApi])
  
 
