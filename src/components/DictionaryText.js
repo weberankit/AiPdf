@@ -56,28 +56,32 @@ console.log(dataApi)
  
     return(
         <>
-        <div className="mt-1">
- {(selectingDictkeyVaues) ?  <div className="bg-red-600 p-1 text-white text-center text-xs font-semibold m-auto mt-auto  w-1/2 ">Request: use your own Dictionary  api key , it  might be 
-  expired ,for more details visit,
-  you can use all api for free visit <Link className="text-blue-800" to={"/setting"} >setting</Link> </div> : "" }
+        <div className="mt-1 ">
+ {(selectingDictkeyVaues) ?  <div className="bg-red-600 p-1 text-white text-center text-xs font-semibold m-auto mt-auto  w-1/2 ">Request:just visit here a very important info as api key can be expired <Link className="text-blue-800" to={"/setting"} >setting</Link> </div> : "" }
   </div>
-        <div className="bg-black text-white  fixed  right-0 z-50" style={styles} >
+        <div className="bg-black text-white  fixed  right-0 z-50 p-1" style={styles} >
 <div className="overflow-scroll  h-96" >
-             <button className="bg-gray-600" onClick={()=>{dispatch(dicitValue(false))}}>close</button>
-        <p>dictionary file</p>
-      
+  <div className="flex flex-row ">
+             <button className="bg-black font-bold text-sm text-white p-1 rounded-lg m-1" onClick={()=>{dispatch(dicitValue(false))}}>close</button>
+        <p className="font-semibold text-sm p-1 rounded-lg m-1 text-black">Dictionary file</p>
+      </div>
 
     
+<div className="flex flex-row border-b-black border pb-1">
+        <div className="parent cursor-pointer font-semibold text-sm p-1 m-1 text-black">s-{ sourceLang?sourceLang:"english"} <p className="element absolute top-0 bg-gray-700 p-1 z-[60]">your pdf languges</p></div>
+       
+       <div className="parent cursor-pointer p-1 m-1 font-semibold text-sm  text-black">R-{targetLang?targetLang:"hindi"} <p className="element absolute top-0 bg-gray-700 left-1 p-1 w-2/3"> you want response in this languages</p></div>
+ <button className="bg-black text-xs hover:bg-yellow-500 text-white p-1 mt-2 px-2 rounded-lg" onClick={()=>setToogleLang(!toogleLang)}>{toogleLang===true?"close lang setting":'language'}</button>
+      
+</div>
 
-        <div className="parent cursor-pointer">s-{ sourceLang?sourceLang:"english"} <p className="element absolute top-0 bg-gray-700 ">this is pdf languges</p></div>
-       <div className="parent cursor-pointer">R-{targetLang?targetLang:"hindi"} <p className="element absolute top-0 bg-gray-700">this is pdf response languages</p></div>
 
 
 {<DictiResponseApi data={dataApi} /> }
 
 
 
-<button className="bg-red-400" onClick={()=>setToogleLang(!toogleLang)}>{toogleLang===true?"close lang setting":'change lang'}</button>
+
 
 </div>
      </div>    

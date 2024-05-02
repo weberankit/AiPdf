@@ -27,18 +27,20 @@ console.log(sourceLang,"sourcelang")
  const textWords=SplitText(textGrab)
  console.log(textWords)
  let data
- if(textWords.length>=5){
+ //enable user to get 5 words meaning at smae time
+
+ if(textWords?.length>=5){
  data= [{ Text: textWords[0] },{Text:textWords[1]},{ Text: textWords[2] },{Text:textWords[3]},{ Text: textWords[4] }];
- }else if(textWords.length>=4){
+ }else if(textWords?.length>=4){
      data= [{ Text: textWords[0] },{Text:textWords[1]},{ Text: textWords[2] },{Text:textWords[3]}];
- }else if(textWords.length>=3){
+ }else if(textWords?.length>=3){
      data= [{ Text: textWords[0] },{Text:textWords[1]},{ Text: textWords[2] }];
- }else if(textWords.length>=2){
+ }else if(textWords?.length>=2){
      data= [{ Text: textWords[0] },{Text:textWords[1]}];
  }else{
      data= [{ Text: textWords[0] }];
  }
- 
+
  async function callingApi() {
      // using compoValue so that when user mount on other component it does not call api of dicitionary unnecssary
  if(componValue === true){
@@ -64,7 +66,7 @@ console.log(sourceLang,"sourcelang")
       setData(data)
 
    } catch (error) {
-     console.error(error);
+     console.log(error);
    }
  
  }

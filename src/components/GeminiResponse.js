@@ -47,9 +47,9 @@ return(
     <div id="lastOne">
     {selectgeminiResponse.length &&
      <div className="relative" >
-          <div className="parent cursor-pointer">to know more  <p className=" text-sm element absolute top-0 bg-gray-700 ">type your question and for more better result select paragraph in pdf for context</p></div>
-    <textarea className="text-black " required placeholder="to ask type here and ask" value={userInput} onChange={(e)=>setuser(e.target.value)} ></textarea>
-    <button onClick={()=> handleClick()}>save</button>
+          <div className="parent cursor-pointer">to know more  <p className=" text-sm element absolute top-[-30px] bg-gray-700 ">type your question and for more better result select paragraph in pdf for context</p></div>
+    <textarea className="text-black w-full" required placeholder="to ask type here and ask" value={userInput} onChange={(e)=>setuser(e.target.value)} ></textarea>
+    <button className="text-center bg-black p-1 rounded-lg text-white font-semibold text-sm" onClick={()=> handleClick()}>Search</button>
 </div>
 }</div>
     </>

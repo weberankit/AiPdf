@@ -25,19 +25,24 @@ useTranslate(selectTrans,sourceLang,targetLang)
     click  <Link to={"/setting"} >setting</Link> </div> : "" */}
         <div className="bg-black text-white  fixed right-0 z-50 pt-2" style={styles}>
  <div className="overflow-scroll  h-72">
-        <p>Translatefiles</p>
+
+<div className="flex flex-row">
+  <button className="bg-black p-1 m-1 rounded-lg text-sm "  onClick={()=>{dispatch(translateValue(false))}}>close</button>
+        <p className="m-1 p-1 text-sm text-black">Translatefiles</p>
+</div>
+
+       
+<div className="flex flex-row border-b-black border pb-1">
+       <div className="parent cursor-pointer p-1 m-1 text-black text-sm">s-{ sourceLang?sourceLang:"english"} <p className="element absolute top-0 bg-gray-700 text-white left-0 ">your pdf languges</p></div>
+ <div className="parent cursor-pointer p-1 m-1 text-black text-sm">R-{targetLang?targetLang:"hindi"} <p className="element absolute top-0 bg-gray-700 text-white left-0 p-1 w-2/3">you want response in this languages</p></div>
+ <button className="bg-black text-xs hover:bg-yellow-500 text-white p-1 mt-2 px-2  rounded-lg" onClick={()=>setToogleLang(!toogleLang)}>{toogleLang===true?"close lang setting":'language'}</button>
+ </div>
 
 
-       <button onClick={()=>{dispatch(translateValue(false))}}>close</button>
 
-       <div className="parent cursor-pointer">s-{ sourceLang?sourceLang:"english"} <p className="element absolute top-0 bg-gray-700 ">this is pdf languges</p></div>
- <div className="parent cursor-pointer">R-{targetLang?targetLang:"hindi"} <p className="element absolute top-0 bg-gray-700">this is pdf response languages</p></div>
- 
-<TranslateResponse/>
-
-<button className="bg-red-400" onClick={()=>setToogleLang(!toogleLang)}>{toogleLang===true?"close lang setting":'change lang'}</button>
-      
-      
+<div className="mt-1">
+     <TranslateResponse/> 
+      </div>
       </div>
       
         </div>

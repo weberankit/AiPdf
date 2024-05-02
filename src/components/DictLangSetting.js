@@ -3,12 +3,13 @@ import { useState } from "react";
 const DictLangSetting=({closeProp,localSource,localTarget})=>{
     const [inValue,setInValue]=useState(null)
     const supportedLanguages = [
+         { language: "English", code: "en" },
+           { language: "Hindi", code: "hi" },
+        { language: "Bhojpuri", code: "bho" },
         { language: "Arabic", code: "ar" },
         { language: "Chinese (Simplified)", code: "zh-Hans" },
         { language: "Chinese (Traditional)", code: "zh-Hant" },
-        { language: "English", code: "en" },
-           { language: "Hindi", code: "hi" },
-        { language: "Bhojpuri", code: "bho" },
+       
         { language: "German", code: "de" },
      
     { language: "Italian", code: "it" },
@@ -30,28 +31,51 @@ function handTargetLang(lang){
 
     return(
 <>
-<div className="fixed bg-black text-white overflow-y-scroll top-0 h-[600px] w-full z-[55] ">
-   <button onClick={()=>closeProp()}>close</button>
-   <div className="">
-here is some languges support
-<input className="text-black" type="text" value={inValue} onChange={(e)=>setInValue(e.target.value)}></input>
-    <button className="bg-blue-500 text-white p-2 rounded-lg ml-2" onClick={()=>handleLang(inValue)}>s</button>
-    <button className="bg-blue-500 ml-3 p-2 rounded-lg" onClick={()=> handTargetLang(inValue)}>R</button>
-<div className="text-white ">if your lang is not in list below then visit link   check the code  and paste code in input value
-     <a className="text-blue-600" href="https://learn.microsoft.com/en-us/azure/ai-services/translator/language-support" target="_blank"  > Visit link</a></div>
-
-click on s for source lang nd click on R for response language
-{supportedLanguages.map((item)=>{
-    return(
-        <div className="">
-            {item.language} <button  className="bg-purple-600 p-2 rounded-lg m-2" onClick={()=>handleLang(item.code)}> s</button>
-            <button className="bg-green-700 p-2 rounded-lg" onClick={()=>handTargetLang(item.code)}>R</button>
-            </div>
-    )
-})}
+<div className="w-5/6 ">
+<div className="fixed bg-white text-black  top-0  w-full z-[160] text-center pb-44 h-[1100px]  overflow-y-scroll">
+   <button className="bg-orange-600 text-white p-2 rounded-lg m-2 float-right" onClick={()=>closeProp()}>close</button>
+   <div className="pt-28">
+<h1 className="p-2 text-sm font-semibold  m-2"> check in the below list if not avail  <a className="text-blue-600" rel="noopener noreferrer" target="_blank" href="https://learn.microsoft.com/en-us/azure/ai-services/translator/language-support" target="_blank"  > Visit link</a> and paste in this input box</h1>
+<div className="mt-4">
+<input className="text-black p-2 rounded-md border border-black m-1" type="text" value={inValue} onChange={(e)=>setInValue(e.target.value.trim())} required placeholder=" type lang code"></input>
+    <button className="bg-purple-500 text-white p-2 rounded-lg ml-2 hover:bg-yellow-500 m-1" onClick={()=>handleLang(inValue)}> set pdf source lang</button>
+    <button className="bg-yellow-600 ml-3 p-2 rounded-lg mb-2 hover:bg-white m-1" onClick={()=> handTargetLang(inValue)}>set response output</button>
 
 </div>
-</div> </>
+  
+<div className="grid grid-cols-1 sm:grid-cols-2 mt-2 place-items-center">
+<div className="w-5/6 p-2 border border-purple-500 mt-1">
+    <p>Select your pdf language </p>
+<select className="px-4 p-2  text-center" onChange={(event) => handleLang(event.target.value)}>
+  {supportedLanguages.map((item) => (
+    <option key={item.code} value={item.code}>
+      {item.language}
+    </option>
+  ))}
+</select>
+</div>
+<div className="w-5/6 p-2 border border-yellow-700 mt-1">
+<p>Select Response language </p>
+<select className="p-2 px-4 text-center"  onChange={(event) => handTargetLang(event.target.value)}>
+  {supportedLanguages.map((item) => (
+    <option key={item.code} value={item.code}>
+      {item.language}
+    </option>
+  ))}
+</select></div>
+
+
+
+
+</div>
+
+
+
+</div>
+</div> 
+</div>
+
+</>
     )
 }
 export default DictLangSetting

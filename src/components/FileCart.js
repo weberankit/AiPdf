@@ -35,7 +35,7 @@ const readDataToggle=useSelector((store)=>store.aiManage?.readDataToggle)
 useEffect(()=>{
 //alert("ll")  
 //-earlier- callUserInfoOnRefresh(navigate,selectUsrDetail,setUserInfo)
-callUserInfoOnRefresh(navigate,selectUsrDetail,dispatch,infoUser)
+callUserInfoOnRefresh(navigate,selectUsrDetail,dispatch,infoUser,SetMsg)
 
 },[])
 //calling for updating api key fromfirebase

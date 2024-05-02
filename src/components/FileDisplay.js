@@ -39,23 +39,24 @@ SelectionWord(setSideBarShow)
 console.log(sideBarShow,"sidebar")
 
 
-
+//sideBarShow&& <AiComponents/>
     return(
         <div className="flex flex-col ">
-            <div>{sideBarShow&& <AiComponents/>}</div>
+            <div>{ sideBarShow&& <AiComponents/>}</div>
 {msg&&<p >{msg}</p>}
 
 
-        <div className="w-1/2 m-auto pt-2 ">
-      {url &&  <button className="bg-black font-semibold text-white p-1 rounded-lg" onClick={()=>setUrl(null)}>Close pdf</button>}
+        <div className="md:w-1/2  md:m-auto pt-2  overflow-x-scroll md:overflow-auto ">
+      {url &&  <button className="bg-black font-semibold text-white p-1 rounded-lg top-[200px] md:top-[100px] text-[11px] md:text-base fixed md:left-[13rem] z-[50]" onClick={()=>setUrl(null)}>Close pdf</button>}
      {url&& <ShowSimplePdf data={url}/>}
 </div>
 
 
 
 
-<div className="text-center">
+<div className="text-center ">
  {proUrl&& <button className="bg-red-600 text-white p-2 rounded-sm text-center" onClick={()=>setProUrl(null)}>close file</button>}
+ {proUrl && <div className="font-semibold text-xs ">if you get session timeout then refresh the page </div>}
 {
 proUrl &&  <ShowPdf data={proUrl}/>
 }

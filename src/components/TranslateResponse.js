@@ -5,7 +5,7 @@ const TranslateResponse=()=>{
     return(
         <>
         <div style={{fontSize:".5em"}} >  {selectTransRespnse?.message}</div> 
-        <div className="text-black" style={{fontSize:".5em"}} >     {selectTransRespnse&&selectTransRespnse}</div> 
+        <div className="text-black" style={{fontSize:".8em"}} >     {selectTransRespnse&&selectTransRespnse}</div> 
         </>
     )
 }

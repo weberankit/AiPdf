@@ -20,6 +20,7 @@ const AiComponents=()=>{
          dispatch(toggleForApi())
      }
      let fontValue=useRef(18)
+     let valueToHideText=""
   // State variables for width, height, and text
   let widthSet=20;
   //when user open on phone but move to desktopmode or move back desktop to phone mode
@@ -29,18 +30,22 @@ const AiComponents=()=>{
         
         setWidth(20)
         fontValue.current=18 
+            valueToHideText=""
     }
     //
     if(window.innerWidth<500){
         setWidth(50)
         fontValue.current=18 
+        valueToHideText="hidden"
     }
     
  })
+
     //when user dirctly open on phone o set width
  if(window.innerWidth<500){
      //   console.log(window.innerWidth)
        widthSet=50
+       valueToHideText="hidden"
     }
   const [width, setWidth] = useState(widthSet); 
   //const [height, setHeight] = useState(300);
@@ -66,7 +71,7 @@ const AiComponents=()=>{
    // height: `${height}px`,
 
        ["maxWidth"] : "97%" ,
-     backgroundColor: 'lightblue',
+     backgroundColor: '#FFC72C',
      fontSize:`${fontValue.current}px`,
      transition: 'all 0.3s ease'
    };
@@ -74,12 +79,12 @@ const AiComponents=()=>{
 
     return(
 <>
-<div className="flex flex-col  top-15 bg-orange-500 text-white rounded-xl z-50 fixed ml-1 p-2" >
+<div className="flex flex-col  top-15 bg-orange-500 text-white rounded-xl z-50 fixed ml-1 p-2 animate-pulse hover:animate-none" >
 
 
     <button className="hover:bg-black hover:text-white rounded-sm" onClick={()=>{forDispatch(dicitValue,false,translateValue,false) ; dispatch(gptValue(true)); }}>Ai</button>
-    <button className="hover:bg-black hover:text-white p-1 rounded-sm" onClick={()=>{forDispatch(gptValue,false,translateValue,false);dispatch(dicitValue(true))}}>Dictionary</button>
-    <button className="hover:bg-black hover:text-white p-1 rounded-sm" onClick={()=>{forDispatch(gptValue,false,dicitValue,false);dispatch(translateValue(true))}}>Tranlate</button>
+    <button className="hover:bg-black hover:text-white p-1 rounded-sm" onClick={()=>{forDispatch(gptValue,false,translateValue,false);dispatch(dicitValue(true))}}>D<span className={valueToHideText}>ictionary</span> </button>
+    <button className="hover:bg-black hover:text-white p-1 rounded-sm" onClick={()=>{forDispatch(gptValue,false,dicitValue,false);dispatch(translateValue(true))}}>T<span className={valueToHideText} >ranlate</span></button>
 </div>
 
 

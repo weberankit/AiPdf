@@ -20,11 +20,12 @@ const Body=()=>{
 useEffect(()=>{
 
   const loginApi= onAuthStateChanged(auth, (user) => {
-        if (user) {
+        if (user?.emailVerified) {
          
          // const uid = user.uid;
           const {uid ,email,displayName,photoURL} = user;
          // console.log(user)
+
          dispatch(infoUser({uid:uid ,email:email,displayName:displayName}))
          setUser(false)
          dispatch(loadingState(null))
@@ -48,7 +49,7 @@ useEffect(()=>{
     <div className="bg-red-700">{selectLoadingValue===true?"logging start":""}</div>
         <div className="">
       
-<div><Header /></div>
+<div className=""><Header /></div>
 
 
     <div>
@@ -61,7 +62,7 @@ useEffect(()=>{
     </div>
 
 
-    <div className="pt-48 " >
+    <div className="pt-36 sm:pt-48 " >
       {
        selector !== null ? <><UploadFiles/></>:""
       }

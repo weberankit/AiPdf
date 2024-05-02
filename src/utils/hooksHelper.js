@@ -1,7 +1,7 @@
 import {onAuthStateChanged ,getAuth} from "firebase/auth"
 import {ref,listAll ,getStorage ,uploadBytes,uploadBytesResumable} from "firebase/storage"
 
-export function callUserInfoOnRefresh(navigate,selectUsrDetail,dispatch,infoUser){
+export function callUserInfoOnRefresh(navigate,selectUsrDetail,dispatch,infoUser,SetMsg){
     const auth = getAuth();
  
         onAuthStateChanged(auth, (user) => {
@@ -16,6 +16,7 @@ export function callUserInfoOnRefresh(navigate,selectUsrDetail,dispatch,infoUser
              const {uid ,email,displayName}= user;
              console.log(uid,email)
              dispatch(infoUser({uid:uid ,email:email,displayName:displayName}))
+             SetMsg(null)
         }
     
         });

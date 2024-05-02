@@ -48,7 +48,7 @@ console.log(userAsk)
 
  useEffect(()=>{
 if(selectKeyGPT){
-  run();
+ run();
 }
 
  },[selectToggleforApi])
