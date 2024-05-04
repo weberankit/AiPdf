@@ -1,7 +1,8 @@
 import {onAuthStateChanged ,getAuth} from "firebase/auth"
 import {ref,listAll ,getStorage ,uploadBytes,uploadBytesResumable} from "firebase/storage"
+//import { fireBaseErr } from "./ErrorSlice";
 
-export function callUserInfoOnRefresh(navigate,selectUsrDetail,dispatch,infoUser,SetMsg){
+export function callUserInfoOnRefresh(navigate,selectUsrDetail,dispatch,infoUser,SetMsg,fireBaseErr){
     const auth = getAuth();
  
         onAuthStateChanged(auth, (user) => {
@@ -17,6 +18,15 @@ export function callUserInfoOnRefresh(navigate,selectUsrDetail,dispatch,infoUser
              console.log(uid,email)
              dispatch(infoUser({uid:uid ,email:email,displayName:displayName}))
              SetMsg(null)
+             //so on seeting page refresh it does not retain firbaseerr  so using inside if
+             //used settimeout as on refersh setting page first this dispatch call and after that dispatch of 
+             //call function call so to prevent it using settimeout
+             //we can use same thing witg setmsg but might be cause infinte rendering so using redux
+             if(fireBaseErr){
+                setTimeout(()=>{dispatch(fireBaseErr(null))},3000) 
+             }
+         
+           //dispatch(fireBaseErr(null))
         }
     
         });
@@ -24,7 +34,7 @@ export function callUserInfoOnRefresh(navigate,selectUsrDetail,dispatch,infoUser
     }
 
 
-export    function call(storage,directoryPath,dispatch,addFile,SetMsg){
+export    function call(storage,directoryPath,dispatch,addFile,SetMsg,fireBaseErr){
         const check= listAll(ref(storage, directoryPath))
             .then((res) => {
               // Filter out only PDF files
@@ -36,12 +46,17 @@ export    function call(storage,directoryPath,dispatch,addFile,SetMsg){
               //setPdfFiles(pdfFiles);
             //  console.log(pdfFiles)
          
-       
-       
+          //  pdfFiles.length===0?dispatch(fireBaseErr("your have not uploaded any file use correct login id")):dispatch(fireBaseErr(null))
+           if(fireBaseErr) { dispatch(fireBaseErr(null))}
             })
             .catch((error) => {
               console.error('Error getting PDF files:', error);
-              SetMsg("sorry not getting your details from firebase")
+            //  SetMsg("sorry not getting your details from firebase")
+            if(fireBaseErr){
+               dispatch(fireBaseErr("sorry not getting your details from firebase"))
+            }
+           
+            
             })
           
        console.log(check,"checking")

@@ -1,5 +1,6 @@
 import { useSelector,useDispatch } from "react-redux"
 import { toggleEg } from "../utils/aiResponseSlice"
+import { sendAllDictData } from "../utils/useStoreDataSlice"
 const DictiResponseApi=({data})=>{
 const dispatch=useDispatch()
 const selectRespDict=useSelector((store)=>store.aiRespond?.dataDictRes)
@@ -20,6 +21,7 @@ if(data?.error?.message){
                    <div className="p-2 text-black">
                   <p>  {item?.normalizedSource} : {item?.translations[0]?.displayTarget},{item?.translations[1]?.displayTarget},{item?.translations[2]?.displayTarget}
                    </p>
+                 
                    </div>
                 )
             })

@@ -64,7 +64,7 @@ window.addEventListener("resize",()=>{
 
     <Link  to={"/cart"}><div  className={userPath.pathname === "/cart" ? "text-black":" " }>FilesCart</div> </Link>
 <Link to={"/setting"}><div className={userPath.pathname === "/setting" ? "text-black":" "}>Setting</div></Link>
-    <p className="">{selector.displayName}</p>
+    <div className="cursor-pointer parent">{selector.displayName} <p className="text-xs absolute element bg-black p-1 rounded-xl">{selector?.email}</p></div>
     <p className="hover:text-white hover:cursor-pointer" onClick={logout}>Logout</p>
 </div>
 

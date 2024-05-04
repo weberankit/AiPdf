@@ -10,6 +10,8 @@ import DictLangSetting from "./DictLangSetting";
 import DictiResponseApi from "./DictiResponseApi";
 import { useRef } from "react";
 import { OperationType } from "firebase/auth";
+import sendData from "../utils/sendData";
+import { sendDataMail } from "../utils/ErrorSlice";
 const DictionaryText=({styles})=>{
     const dispatch=useDispatch()
     const selectingDictkeyVaues=useSelector((store)=>store.userskey?.KeyDICT?.msg)
@@ -28,8 +30,15 @@ const DictionaryText=({styles})=>{
     targetLang='hi'
    }*/
    console.log(sourceLang)
+
    const [toogleLang ,setToogleLang]=useState(false)
-useDictionary(selectDic,setApiData,sourceLang,targetLang)
+   
+   
+
+   const selectSendDataMsg=useSelector((store)=>store.ErrorSliced.sendDataMsg)
+   const selectUserEmail=useSelector((store)=>store.userInformation.value?.email)
+   const selectDictAllDataTosendEmail=useSelector((store)=>store.useDataSlice.dictiDataTosendMail)
+   useDictionary(selectDic,setApiData,sourceLang,targetLang)
 console.log(dataApi)
  // State variables for width, height, and text
  /*
@@ -52,18 +61,23 @@ console.log(dataApi)
     fontSize:`${fontValue.current}px`,
     transition: 'all 0.3s ease'
   };*/
-  
+  function sendDataToUser(){
+   sendData("DictionarySearch-of-all-data-right-now-seesion", selectDictAllDataTosendEmail,selectUserEmail,dispatch,sendDataMail)
+     }
+    
  
     return(
         <>
         <div className="mt-1 ">
  {(selectingDictkeyVaues) ?  <div className="bg-red-600 p-1 text-white text-center text-xs font-semibold m-auto mt-auto  w-1/2 ">Request:just visit here a very important info as api key can be expired <Link className="text-blue-800" to={"/setting"} >setting</Link> </div> : "" }
+ {selectSendDataMsg&&<div className="text-center text-xs">{selectSendDataMsg }</div>}
   </div>
         <div className="bg-black text-white  fixed  right-0 z-50 p-1" style={styles} >
 <div className="overflow-scroll  h-96" >
   <div className="flex flex-row ">
              <button className="bg-black font-bold text-sm text-white p-1 rounded-lg m-1" onClick={()=>{dispatch(dicitValue(false))}}>close</button>
-        <p className="font-semibold text-sm p-1 rounded-lg m-1 text-black">Dictionary file</p>
+       { selectDictAllDataTosendEmail.length && <div onClick={()=>sendDataToUser()} className="hover:cursor-pointer bg-red-700 rounded-lg text-white p-1 m-1 text-sm hover:bg-black parent">send <p className="element absolute top-[-30px]  bg-gray-700 p-2 z-[60] w-[600px]  left-0 text-xs"> send all AiSearch data  to your emailId</p></div>}
+        <p className="font-semibold text-sm p-1 rounded-lg m-1 text-black">Dictionary</p>
       </div>
 
     

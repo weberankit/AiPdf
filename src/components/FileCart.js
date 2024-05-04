@@ -13,6 +13,7 @@ import { infoUser } from "../utils/userSlice"
 import {KEYLANG ,KEYGPT,KEYDICT} from "../utils/userKey"
 import useKeyUpdate from "../utils/useKeyUpdate"
 import useStatusCheck from "../utils/useStatusCheck"
+import { fireBaseErr } from "../utils/ErrorSlice"
 const FileCart=()=>{
   const dispatch=useDispatch()
   const selectToggle=useSelector((store)=>store.fileInformation.toogle)
@@ -21,8 +22,10 @@ const navigate=useNavigate()
 const storage = getStorage();
 const [msg,SetMsg] =useState(null)
 const selectUsrDetail=useSelector(store=>store?.userInformation?.value)
-
-
+//using two state for error check in firebase one is msg and other is selectfirebaseerror
+//beacuse of refresh of page calling another function so there we can use setInterval to setMsg
+//it might be rerender the setMsg many times so using another redux state so it will not rerender the whole component
+const selectErrorFireBase=useSelector((store)=>store.ErrorSliced.firebaseError)
 //using toggle when user click save keys button as to invode readkey for displaying keys
 const readDataToggle=useSelector((store)=>store.aiManage?.readDataToggle)
 
@@ -35,7 +38,7 @@ const readDataToggle=useSelector((store)=>store.aiManage?.readDataToggle)
 useEffect(()=>{
 //alert("ll")  
 //-earlier- callUserInfoOnRefresh(navigate,selectUsrDetail,setUserInfo)
-callUserInfoOnRefresh(navigate,selectUsrDetail,dispatch,infoUser,SetMsg)
+callUserInfoOnRefresh(navigate,selectUsrDetail,dispatch,infoUser,SetMsg,fireBaseErr)
 
 },[])
 //calling for updating api key fromfirebase
@@ -51,14 +54,14 @@ const directoryPath = `path/to/${selectUsrDetail?.uid}`; // Adjust the path acco
 
 useEffect(()=>{
 
-    call(storage,directoryPath,dispatch,addFile ,SetMsg)
+    call(storage,directoryPath,dispatch,addFile ,SetMsg,fireBaseErr)
 },[selectUsrDetail?.uid])
 
 useEffect(()=>{
-call(storage,directoryPath,dispatch,addFile , SetMsg)
+call(storage,directoryPath,dispatch,addFile , SetMsg,fireBaseErr)
 },[selectToggle])
 
-
+console.log(msg,"this is messaging")
 
 
 
@@ -70,6 +73,7 @@ call(storage,directoryPath,dispatch,addFile , SetMsg)
         <FileDisplay />
 
       <div >  {msg && <div className="bg-black text-white p-3 text-center w-1/2 m-auto ">{msg }</div> }</div>
+      <div >  {selectErrorFireBase  && <div className="bg-black text-white p-3 text-center w-1/2 m-auto ">{selectErrorFireBase}</div> }</div>
         </>
     ) 
 }

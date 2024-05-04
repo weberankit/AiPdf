@@ -26,7 +26,18 @@ const [error,setError] = useState("")
     const handleFileChange = (e) => {
     
         const file = e.target.files[0];
-       // console.log(file)
+        let maxSize = 300 * 1024 * 1024; // 300 MB
+
+  if (!['application/pdf', 'text/plain'].includes(file?.type)) {
+    alert('Please select either a PDF or TXT file.');
+    file.value = '';
+    return false;
+  } else if (file?.size > maxSize) {
+    alert('File size exceeds the maximum allowed limit (300MB) please contact me.');
+    file.value = '';
+    return false; 
+  }
+       console.log(file)
     
     // console.log(e.target.files,file)
         // Reset file input value to empty string
@@ -66,10 +77,11 @@ const [error,setError] = useState("")
       <div className="flex flex-col md:flex-row w-full">
         <div className="text-2xl sm:text-3xl md:text-5xl text-black w-1/2 sm:w-3/4 md:w-1/2 ml-2">
           <p>upload pdf files enjoy the power of AiPDF</p>
+          <p className="text-xs m-1 underline"><a target="_blank" rel="noopener noreferrer"  href="https://drive.google.com/file/d/1fQ9mNP22EV2DBjnRM0hncunnQf_W8kU-/view?usp=sharing">click here to know how to use it</a></p>
         </div>
       <div className="  p-6 m-1 rounded-md w-1/2   flex flex-row justify-between">
         <div className="bg-black text-white w-2/3 sm:w-1/2 p-4 rounded-lg block h-44">
-    <input className="text-xs md:text-base" type="file" accept=".pdf , .txt" onChange={handleFileChange} ></input>
+    <input className="text-xs md:text-base" type="file" accept=".pdf , .txt"  onChange={handleFileChange} ></input>
     <p className="mt-2 text-xs md:text-base">pdf and txt mode only</p>
     <p className="text-xs md:text-base">first read Instruction below</p>
     </div>

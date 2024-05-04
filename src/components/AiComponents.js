@@ -17,6 +17,7 @@ const AiComponents=()=>{
      function forDispatch(val,bool ,val2 ,bool2){
          dispatch(val(bool))
          dispatch(val2(bool2))
+         //calling api
          dispatch(toggleForApi())
      }
      let fontValue=useRef(18)

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import {useSelector,useDispatch} from "react-redux"
 import { addUserQuery } from "../utils/geminiResponseSlice"
 import { toggleForApi } from "../utils/userKey"
+
 const GeminiResponse=()=>{
     const dispatch=useDispatch()
 const selectgeminiResponse=useSelector((store)=>store.giminiRes.responseArray)
@@ -28,7 +29,13 @@ element.scrollIntoView({behavior:"smooth"})
 
 
 useEffect(()=>{
-scrollToElement("lastOne")
+    let value="UseForscrolling"
+
+if(selectgeminiResponse){
+    scrollToElement(value)
+}
+
+
 },[selectgeminiResponse?.length])
 
 
@@ -40,11 +47,11 @@ return(
     <>
     {    selectgeminiResponse?.map((item,index)=>{
         return(
-            <div className="text-black mb-1" style={{fontSize:".7em"}}>{index} - {item}</div>
+            <div className="text-black mb-1" style={{fontSize:".7em"}}>{index+1} - {item}</div>
         
         )
     })}
-    <div id="lastOne">
+    <div >
     {selectgeminiResponse.length &&
      <div className="relative" >
           <div className="parent cursor-pointer">to know more  <p className=" text-sm element absolute top-[-30px] bg-gray-700 ">type your question and for more better result select paragraph in pdf for context</p></div>
@@ -52,6 +59,10 @@ return(
     <button className="text-center bg-black p-1 rounded-lg text-white font-semibold text-sm" onClick={()=> handleClick()}>Search</button>
 </div>
 }</div>
+{
+    //using beolw one for scrolling to last<div id="UseForscrolling"></div>
+}
+<div id="UseForscrolling"></div>
     </>
 )
 }

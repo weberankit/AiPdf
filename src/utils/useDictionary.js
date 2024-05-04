@@ -1,13 +1,16 @@
 import {useSelector ,useDispatch} from "react-redux"
 import { useEffect } from "react"
 import { aiRes } from "./aiResponseSlice"
-const useDictionary=(componValue,setData,sourceLang,targetLang)=>{
+import { sendAllDictData } from "./useStoreDataSlice"
+
+const useDictionary=(componValue,setData,sourceLang="en",targetLang="hi")=>{
   if(!sourceLang){
     sourceLang='en'
    }
    if(!targetLang){
     targetLang='hi'
    }
+
    const dispatch=useDispatch()
 console.log(sourceLang,"sourcelang")
     const selectKeyDict=useSelector((store)=>store.userskey?.KeyDICT?.dict)
@@ -42,8 +45,11 @@ console.log(sourceLang,"sourcelang")
  }
 
  async function callingApi() {
+
+
+
      // using compoValue so that when user mount on other component it does not call api of dicitionary unnecssary
- if(componValue === true){
+ if(componValue === true && textGrab){
    const url = `https://microsoft-translator-text.p.rapidapi.com/Dictionary/Lookup?to=${targetLang}&api-version=3.0&from=${sourceLang}`;
    
  
@@ -64,7 +70,8 @@ console.log(sourceLang,"sourcelang")
     
       const data = JSON.parse(result);
       setData(data)
-
+       dispatch(sendAllDictData(data))
+   
    } catch (error) {
      console.log(error);
    }
@@ -93,7 +100,7 @@ const arrayResponse= textWords.map((item)=>callingFreeApi(item))
  if(selectKeyDict){
      console.log("jj")
    callingApi()
-   callingExampleApi()
+  callingExampleApi()
  }
 
 

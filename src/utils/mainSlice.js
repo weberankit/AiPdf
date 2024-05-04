@@ -6,6 +6,7 @@ import userKey from "./userKey"
 import  aiResPonse from "./aiResponseSlice"
 import giminiResText from "./geminiResponseSlice"
 import ErrorSlicing from "./ErrorSlice"
+import useStoreDataSlice from "./useStoreDataSlice"
 const appStore=configureStore({
 reducer:{
 userInformation:userSlice,
@@ -14,7 +15,8 @@ aiManage:aiManagment,
 userskey:userKey,
 aiRespond:aiResPonse,
 giminiRes:giminiResText,
-ErrorSliced:ErrorSlicing
+ErrorSliced:ErrorSlicing,
+useDataSlice:useStoreDataSlice,
 }
 
 })

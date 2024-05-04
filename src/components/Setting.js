@@ -1,6 +1,6 @@
 import { getDatabase, ref, set , onValue } from "firebase/database";
 import Header from "./Header";
-import {useNavigate} from "react-router-dom"
+import {useNavigate,Link} from "react-router-dom"
 import {useSelector,useDispatch} from "react-redux"
 import { infoUser } from "../utils/userSlice";
 import { useEffect ,useState} from "react";
@@ -19,9 +19,11 @@ const Setting=()=>{
      dispatch(translateValue(false))
      dispatch(dicitValue(false))
      dispatch(gptValue(false))
+const [msg,SetMsg]=useState()
+
 //for refreshing user credintals
 useEffect(()=>{
-    callUserInfoOnRefresh(navigate,selectUsrDetail,dispatch,infoUser)
+    callUserInfoOnRefresh(navigate,selectUsrDetail,dispatch,infoUser , SetMsg)
 },[])
 //to get input from key
 const[gpts,setgpts]=useState(null)
@@ -77,11 +79,11 @@ useStatusCheck()
 </div>
 
 <div className="font-semibold p-1"> <em className="  p-1 rounded-md bg-yellow-600">one key you can use it for enough times</em> </div>
-<div className="text-sm m-2  p-2 rounded-md">Go to <button className="font-bold text-sm bg-blue-500 p-2 rounded-lg ml-1 m-2 md:m-1">Learn to create Gemini  key</button>
-<button className="font-bold text-sm bg-blue-500 p-2 rounded-lg ml-1 m-2 md:m-1">Learn to create Dictionary key</button>
+<div className="text-sm m-2  p-2 rounded-md">Go to <Link to={"/aiKey"} ><button className="font-bold text-sm bg-blue-500 p-2 rounded-lg ml-1 m-2 md:m-1">Learn to create Gemini  key</button></Link> 
+<Link to={"/dictKey"}><button className="font-bold text-sm bg-blue-500 p-2 rounded-lg ml-1 m-2 md:m-1">Learn to create Dictionary key</button></Link>
 </div>
 
-<div className="text-sm font-semibold m-1 p-2"> If you face any difficulty for creating key <a href="mailto:codingank@gmail.com" target="_blank" rel="noopener noreferrer"><button className="p-2 rounded-lg bg-black text-white hover:bg-yellow-400 text-xs">contact   </button></a>  
+<div className="text-sm font-semibold m-1 p-2"> If you face any difficulty for creating key <a href="mailto:impmessageweb@gmail.com" target="_blank" rel="noopener noreferrer"><button className="p-2 rounded-lg bg-black text-white hover:bg-yellow-400 text-xs">contact   </button></a>  
        </div>
 
 </div>
@@ -146,7 +148,7 @@ useStatusCheck()
 
 </div>
 
-
+{msg}
 
 
         </>

@@ -27,7 +27,7 @@ export default function ViewerComponent(props) {
 	return (
 		<div
 			ref={containerRef}
-			style={{ width: '100%', height: '100vh' }}
+			style={{ width: '100%', height: '200vh' }}
 		/>
 	);
 }
