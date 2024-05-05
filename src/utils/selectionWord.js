@@ -17,22 +17,23 @@ function copyText(){
         setSideBarShow(true)
     }
 }
-        
+     /*   
 const handleSelectionChange = () => {
 
     document.addEventListener("mouseup",copyText)
     document.addEventListener("touchmove", copyText)
     document.addEventListener("touchstart", copyText)
   document.addEventListener("touchend", copyText)
-};
+};*/
 
 // Add the event listener for selection change
 useEffect(() => {
-    document.addEventListener('selectionchange', handleSelectionChange);
-
+   // document.addEventListener('selectionchange', handleSelectionChange);
+    document.addEventListener('selectionchange', copyText);
     // Cleanup function to remove the event listener when component unmounts
-    return () => {
-        document.removeEventListener('selectionchange', handleSelectionChange);
+   /**/ return () => {
+        //document.removeEventListener('selectionchange', handleSelectionChange);
+        document.removeEventListener('selectionchange', copyText);
     };
 }, []); // Empty dependency array ensures that the effect runs only once
 
