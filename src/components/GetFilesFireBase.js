@@ -105,7 +105,7 @@ slectfileMeta && slectfileMeta.map((item)=>{
                   
      </div>
 
-    <div className="font-semibold hover:cursor-pointer m-1 text-sm">
+    <div className="font-semibold select-none m-1 text-sm">
     {fileName}</div>
 
                

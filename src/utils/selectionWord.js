@@ -21,8 +21,9 @@ function copyText(){
 const handleSelectionChange = () => {
 
     document.addEventListener("mouseup",copyText)
-    document.addEventListener("touchend", copyText)
-  
+    
+    document.addEventListener("touchstart", copyText)
+  document.addEventListener("touchend", copyText)
 };
 
 // Add the event listener for selection change
