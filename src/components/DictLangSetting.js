@@ -33,6 +33,7 @@ function handTargetLang(lang){
 <>
 <div className="w-5/6 ">
 <div className="fixed bg-white text-black  top-0  w-full z-[160] text-center pb-44 h-[1100px]  overflow-y-scroll">
+<button className="bg-orange-600 text-white p-2 rounded-lg m-2 float-left" onClick={()=>closeProp()}>Back</button>
    <button className="bg-orange-600 text-white p-2 rounded-lg m-2 float-right" onClick={()=>closeProp()}>close</button>
    <div className="pt-28">
 <h1 className="p-2 text-sm font-semibold  m-2"> check in the below list if not avail  <a className="text-blue-600" rel="noopener noreferrer" target="_blank" href="https://learn.microsoft.com/en-us/azure/ai-services/translator/language-support" target="_blank"  > Visit link</a> and paste in this input box</h1>

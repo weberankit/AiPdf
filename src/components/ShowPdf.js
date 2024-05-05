@@ -8,11 +8,14 @@ const ShowPdf = ({data}) => {
   useEffect(() => {
     const staticUrl = `${data}` 
     setPdfURL(staticUrl);
+
+
   }, [data]); // Load the PDF URL on component mount
 
   return (
     <div>
       <div className="PDF-viewer">
+      
         {pdfURL && <ViewerComponent document={pdfURL} />}
       </div>
     </div>

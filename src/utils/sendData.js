@@ -17,10 +17,12 @@ const sendData=(para , arrayData,selectUserEmail,dispatch,sendDataMail)=>{
    for sending via a network request.  */
    
    //if clearinterval clear it before executing so to prevent we again using clearinterval
-  dispatch( sendDataMail("data is sent (please authorize formSubmit on your email if already done ignore it)") )
+  dispatch( sendDataMail("all data is sent (please authorize formSubmit on your email if already done ignore it)") )
 
-  setTimeout(()=>{dispatch(sendDataMail(null))},7000)
-    }
+  setTimeout(()=>{
+    
+    dispatch(sendDataMail(null))},7000)
+  } 
     
       data()
     

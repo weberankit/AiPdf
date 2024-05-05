@@ -69,15 +69,15 @@ console.log(dataApi)
     return(
         <>
         <div className="mt-1 ">
- {(selectingDictkeyVaues) ?  <div className="bg-red-600 p-1 select-none text-white text-center text-xs font-semibold m-auto mt-auto  w-1/2 ">Request:just visit here a very important info as api key can be expired <Link className="text-blue-800 font-bold " to={"/setting"} ><div className=" inline-block animate-bounce hover:animate-none">setting</div></Link> </div> : "" }
- {selectSendDataMsg&&<div className="text-center text-xs w-5/6 m-auto select-none">{selectSendDataMsg }</div>}
+ {(selectingDictkeyVaues) ?  <div className="bg-red-600 p-1 select-none text-white  text-center text-xs font-semibold m-auto mt-auto  w-1/2 ">Request:I have used free key which has limited use so for better exprience create your own free key steps-- <Link className="text-blue-800 font-bold " to={"/setting"} ><div className=" inline-block animate-bounce hover:animate-none">setting</div></Link> </div> : "" }
+ {selectSendDataMsg&&<div className="text-center text-md text-green-700 z-[2000] font-bold top-0 fixed  w-full bg-black m-auto select-none">{selectSendDataMsg }</div>}
   </div>
         <div className="bg-black text-white  fixed  right-0 z-50 p-1" style={styles} >
           
 <div className="overflow-scroll  h-96" >
   <div className="flex flex-row ">
              <button className="bg-black font-bold text-sm text-white p-1 rounded-lg m-1" onClick={()=>{dispatch(dicitValue(false))}}>close</button>
-       { selectDictAllDataTosendEmail.length && <div onClick={()=>sendDataToUser()} className="hover:cursor-pointer bg-red-700 rounded-lg text-white p-1 m-1 text-sm hover:bg-black parent">send <p className="element absolute top-[40px]  bg-gray-700 p-2 z-[60] w-[600px]  left-0 text-xs"> send all AiSearch data  to your emailId</p></div>}
+       { selectDictAllDataTosendEmail.length && <div onClick={()=>sendDataToUser()} className="hover:cursor-pointer bg-red-700 rounded-lg text-white p-1 m-1 text-sm hover:bg-black parent">send <p className="element absolute top-[40px]  bg-gray-700 p-2 z-[60] w-[600px]  left-0 text-xs"> send all  data  to your emailId</p></div>}
         <p className="font-semibold text-sm p-1 rounded-lg m-1 text-black">Dictionary</p>
       </div>
 
@@ -85,7 +85,7 @@ console.log(dataApi)
 <div className="flex flex-row border-b-black border pb-1">
         <div className="parent cursor-pointer font-semibold text-xs sm:text-sm p-1 m-1 text-black">s-{ sourceLang?sourceLang:"english"} <p className="element absolute top-0 bg-gray-700 p-1 z-[60]">your pdf languges</p></div>
        
-       <div className="parent cursor-pointer p-1 m-1 font-semibold text-xs sm:text-sm  text-black">R-{targetLang?targetLang:"hindi"} <p className="element absolute top-0 bg-gray-700 left-1 p-1 w-2/3"> you want response in this languages</p></div>
+       <div className="parent cursor-pointer p-1 m-1 font-semibold text-xs sm:text-sm  text-black">R-{targetLang?targetLang:"hindi"} <p className="element absolute top-0 bg-gray-700 left-1 p-1 w-2/3">this will convert in this languages</p></div>
  <button className="bg-black text-xs hover:bg-yellow-500 text-white p-1 mt-2 px-2 rounded-lg" onClick={()=>setToogleLang(!toogleLang)}>{toogleLang===true?"close lang setting":'language'}</button>
       
 </div>

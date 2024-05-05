@@ -7,13 +7,8 @@ const SelectionWord=(setSideBarShow)=>{
 
 const dispatch=useDispatch()
 
-
-        
-const handleSelectionChange = () => {
-
-    document.addEventListener("mouseup",()=>{
-
-  const selection = window.getSelection();
+function copyText(){
+    const selection = window.getSelection();
     // Check if there's a selection and if it's not empty
     if (selection && selection.toString()) {
         let selectedText = selection.toString();
@@ -21,8 +16,12 @@ const handleSelectionChange = () => {
         dispatch(SetselectedText(selectedText));
         setSideBarShow(true)
     }
+}
+        
+const handleSelectionChange = () => {
 
-    })
+    document.addEventListener("mouseup",copyText)
+    document.addEventListener("touchend", copyText)
   
 };
 

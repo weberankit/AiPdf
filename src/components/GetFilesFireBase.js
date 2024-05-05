@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { textFile } from "../utils/userSlice";
 //import { useSelector } from "react-redux"
 const GetFilesFireBase=({slectfileMeta,SetMsg ,setUrl,setProUrl})=>{
-
+const textAlertMsg="Please Download pdf after HighLight and don't refresh/close (as highlight lost) Because USING TRIAL VERSION"
    const dispatch=useDispatch()
    const storage=getStorage()
 
@@ -99,7 +99,7 @@ slectfileMeta && slectfileMeta.map((item)=>{
 
  {
               //to open high level-pdf viewer
-              textFileidentify !== "txt" &&  <button className=" bg-orange-600 hover:bg-yellow-500 text-black p-1 rounded-lg m-1 animate-pulse duration-1000 hover:animate-none text-sm md:text-base"  onClick={()=>{handlePdf(item._location.path,setProUrl) ;
+              textFileidentify !== "txt" &&  <button className=" bg-orange-600 hover:bg-yellow-500 text-black p-1 rounded-lg m-1 animate-pulse duration-1000 hover:animate-none text-sm md:text-base"  onClick={()=>{alert(textAlertMsg);handlePdf(item._location.path,setProUrl) ;
               handleReachTop(0);setUrl(null);  dispatch(textFile(null)) }}> Advance level pdf viewer</button>
             }
                   

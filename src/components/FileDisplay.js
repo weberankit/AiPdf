@@ -56,7 +56,7 @@ console.log(sideBarShow,"sidebar")
 
 <div className="text-center ">
  {proUrl&& <button className="bg-red-600 text-white p-2 rounded-sm text-center" onClick={()=>setProUrl(null)}>close file</button>}
- {proUrl && <div className="font-semibold text-xs select-none">if you get session timeout then refresh the page </div>}
+ {proUrl && <div className="font-semibold text-xs select-none">As this is a free trial version so if you get session timeout then refresh the page  </div>}
 {
 proUrl &&  <ShowPdf data={proUrl}/>
 }
