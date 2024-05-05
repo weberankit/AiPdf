@@ -77,7 +77,7 @@ const [error,setError] = useState("")
       <div className="flex flex-col md:flex-row w-full">
         <div className="text-2xl sm:text-3xl md:text-5xl text-black w-1/2 sm:w-3/4 md:w-1/2 ml-2">
           <p>upload pdf files enjoy the power of AiPDF</p>
-          <p className="text-xs m-1 underline"><a target="_blank" rel="noopener noreferrer"  href="https://drive.google.com/file/d/1fQ9mNP22EV2DBjnRM0hncunnQf_W8kU-/view?usp=sharing">click here to know how to use it</a></p>
+          <p className="text-xs m-1 underline font-semibold animate-bounce hover:animate-none pt-4"><a target="_blank" rel="noopener noreferrer"  href="https://drive.google.com/file/d/1PxR3R5llnmp3yMlWdhFJf0BWsUQoVNdV/view?usp=sharing">click here to know how to use it</a></p>
         </div>
       <div className="  p-6 m-1 rounded-md w-1/2   flex flex-row justify-between">
         <div className="bg-black text-white w-2/3 sm:w-1/2 p-4 rounded-lg block h-44">
