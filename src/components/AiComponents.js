@@ -77,16 +77,27 @@ useEffect(()=>{
    
     valueToHideText="hidden"
 }
-//
+
+function handleAiActions(){
+    forDispatch(dicitValue,false,translateValue,false) ; dispatch(gptValue(true));
+}
+function handleDictActions(){
+    forDispatch(gptValue,false,translateValue,false);dispatch(dicitValue(true))
+}
+function handleTransActions(){
+    forDispatch(gptValue,false,dicitValue,false);dispatch(translateValue(true))
+}
+
+
     return(
 <>
 
     <Draggable>
 <div className="flex flex-col  top-15 bg-black text-white rounded-md  fixed ml-1 p-2 animate-pulse hover:animate-none z-50  md:z-[120]"  >
 
-    <button className="hover:bg-red-600 hover:text-white rounded-sm" onClick={()=>{forDispatch(dicitValue,false,translateValue,false) ; dispatch(gptValue(true)); }}>Ai</button>
-    <button className="hover:bg-red-600 hover:text-white p-1 rounded-sm" onClick={()=>{forDispatch(gptValue,false,translateValue,false);dispatch(dicitValue(true))}}>D<span className={valueToHideText}>ictionary</span> </button>
-    <button className="hover:bg-red-600 hover:text-white p-1 rounded-sm" onClick={()=>{forDispatch(gptValue,false,dicitValue,false);dispatch(translateValue(true))}}>T<span className={valueToHideText} >ranslate</span></button>
+    <button className="hover:bg-red-600 hover:text-white rounded-sm" onTouchStart={() => handleAiActions()} onClick={()=>handleAiActions()}>Ai</button>
+    <button className="hover:bg-red-600 hover:text-white p-1 rounded-sm" onTouchStart={()=>handleDictActions()}    onClick={()=>handleDictActions()}>D<span className={valueToHideText}>ictionary</span> </button>
+    <button className="hover:bg-red-600 hover:text-white p-1 rounded-sm" onTouchStart={()=>handleTransActions()} onClick={()=>handleTransActions()}>T<span className={valueToHideText} >ranslate</span></button>
 
 <div className="bg-white text-[4px] hidden sm:block pr-2  m-1 ml-2 text-black h-7 absolute right-0 rounded-lg cursor-move parent">click<p className="element absolute top-[-40px] w-[135px]  text-sm bg-gray-700  z-[160]">hold and drag it</p> </div>
 
