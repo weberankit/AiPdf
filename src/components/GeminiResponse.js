@@ -47,7 +47,7 @@ return(
     <>
     {    selectgeminiResponse?.map((item,index)=>{
         return(
-            <div className="text-black mb-1" style={{fontSize:".7em"}}>{index+1} - {item}</div>
+            <div className="text-black mb-1 border-b border-black" style={{fontSize:".7em"}}>{index+1} - {item}</div>
         
         )
     })}
@@ -55,7 +55,7 @@ return(
     {selectgeminiResponse.length &&
      <div className="relative" >
           <div className="parent cursor-pointer">to know more  <p className=" text-sm element absolute top-[-30px] bg-gray-700 ">type your question and for more better result select paragraph in pdf for context</p></div>
-    <textarea className="text-black w-full" required placeholder="to ask type here and ask" value={userInput} onChange={(e)=>setuser(e.target.value)} ></textarea>
+    <textarea className="text-black w-full rounded-md" required placeholder="to ask type here and ask" value={userInput} onChange={(e)=>setuser(e.target.value)} ></textarea>
     <button className="text-center bg-black p-1 rounded-lg text-white font-semibold text-sm" onClick={()=> handleClick()}>Search</button>
 </div>
 }</div>

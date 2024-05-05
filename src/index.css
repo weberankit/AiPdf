@@ -17,10 +17,14 @@ body {
   text-align: justify
 }
 div.parent:hover .element{
-display:block
+display:block;
+
+
 }
 .element{
   display: none;
+ 
+  
 }
 .shadow13 {
   color: rgba(167, 221, 60, 1);
@@ -49,6 +53,21 @@ html,.body{
   max-width: "3000px",
   
 
+}
+
+
+::-webkit-scrollbar {
+  width: 10px; /* Adjust the width of the scrollbar */
+ 
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Background color of the scrollbar track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: black; /* Color of the scrollbar thumb */
+  border-radius: 1px; /* Radius of the scrollbar thumb */
 }
 
 @tailwind base;

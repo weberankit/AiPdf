@@ -56,7 +56,7 @@ console.log(sideBarShow,"sidebar")
 
 <div className="text-center ">
  {proUrl&& <button className="bg-red-600 text-white p-2 rounded-sm text-center" onClick={()=>setProUrl(null)}>close file</button>}
- {proUrl && <div className="font-semibold text-xs ">if you get session timeout then refresh the page </div>}
+ {proUrl && <div className="font-semibold text-xs select-none">if you get session timeout then refresh the page </div>}
 {
 proUrl &&  <ShowPdf data={proUrl}/>
 }
@@ -64,7 +64,7 @@ proUrl &&  <ShowPdf data={proUrl}/>
 
 <div className=" w-3/2 p-2 ">
 {/*textShow && <button className="w-44 m-auto" onClick={()=>dispatch(textFile(null))}>close</button>*/}
-   { textShow && <>   <div className=" w-1/2 m-auto text-sm "> 
+   { textShow && <>   <div className=" w-4/5 sm:w-1/2 m-auto text-xs sm:text-sm "> 
    <div><button className="bg-black text-white hover:bg-gray-600 p-2 rounded-lg" onClick={()=>dispatch(textFile(null))}>close</button></div>
     {textShow}</div> </>}
 

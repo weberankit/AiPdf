@@ -73,7 +73,8 @@ console.log(sourceLang,"sourcelang")
        dispatch(sendAllDictData(data))
    
    } catch (error) {
-     console.log(error);
+     console.log("error occored");
+
    }
  
  }

@@ -30,7 +30,8 @@ const appRouter=createBrowserRouter([
 ,
  {
       path:"/cart",
-      element:<FileCart/>
+      element:<FileCart/>,
+     
     }
 
 ,{

@@ -13,7 +13,7 @@ import Validate from "./Validate";
 import { loginMsg } from "../utils/ErrorSlice";
 import { sendEmailVerification} from "firebase/auth";
 
-
+import Footer from "./Footer";
 const Sign=()=>{
 
 
@@ -159,7 +159,7 @@ const fileSlide=['<img src="upload.svg" alt="file image"></img>' ]
 
  return(
 <>
-<div className=" bg-black  border-b-white  mt-0 p-3  w-auto  md:w-full text-sm font-bold fixed  block text-white pb-1">To upload a PDF, it is important to provide your email so that we can save your PDF with your email ID. 
+<div className=" bg-black  border-b-white  mt-0 p-3  w-auto  md:w-full text-sm font-bold fixed  block text-white pb-1 z-50">To upload a PDF, it is important to provide your email so that we can save your PDF with your email ID. 
 This way, you can access it from any device using the same email ID  <button id="signInButton" className={'bg-red-700 text-white hover:bg-black font-bold p-2 rounded-md animate-pulse mt-1 md:mt-0 ' } onClick={()=>scrollToElement("signin")}>signIn ⬇</button></div>
   <div className="">
   <div className="flex flex-col" >
@@ -222,6 +222,7 @@ This way, you can access it from any device using the same email ID  <button id=
 
 </div>
 </div>
+
 </>
 
  )

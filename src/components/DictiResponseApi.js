@@ -18,7 +18,7 @@ if(data?.error?.message){
         {(data?.message) ? <div className="p-2">{data?.message}</div> :
             data && data?.map((item)=>{
                 return(
-                   <div className="p-2 text-black">
+                   <div className="p-1 text-black text-base ">
                   <p>  {item?.normalizedSource} : {item?.translations[0]?.displayTarget},{item?.translations[1]?.displayTarget},{item?.translations[2]?.displayTarget}
                    </p>
                  

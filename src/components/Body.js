@@ -8,6 +8,7 @@ import Header from "./Header";
 import {useSelector} from "react-redux"
 import { useNavigate,Outlet } from "react-router-dom";
 import UploadFiles from "./UploadFiles";
+import Footer from "./Footer";
 
 const Body=()=>{
     const dispatch=useDispatch()
@@ -71,7 +72,7 @@ useEffect(()=>{
 
         </div>
 
-    
+        <Footer/>
         </>
     )
 }

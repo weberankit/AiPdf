@@ -52,7 +52,7 @@ if(compoValue === true && textGrab){
 
  useEffect(()=>{
 if(selectKeyGPT){
- run();
+run();
 }
 
  },[selectToggleforApi])

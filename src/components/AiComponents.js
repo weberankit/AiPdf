@@ -4,8 +4,11 @@ import GptText from "./GptText"
 import DictionaryText from "./DictionaryText"
 import TranslateText from "./TranslateText"
 import { toggleForApi } from "../utils/userKey"
-import { useRef,useState } from "react";
+import { useRef,useState ,useEffect} from "react";
 import BoxSize from "./BoxSize"
+import { widthSetResponseBox } from "../utils/helper"
+
+import Draggable from 'react-draggable';
 const AiComponents=()=>{
    
     const dispatch=useDispatch()
@@ -27,29 +30,22 @@ const AiComponents=()=>{
   //when user open on phone but move to desktopmode or move back desktop to phone mode
   window.addEventListener('resize', () => {
     console.log('Screen width changed:', window.innerWidth);
-    if(window.innerWidth>500){
-        
-        setWidth(20)
-        fontValue.current=18 
-            valueToHideText=""
-    }
-    //
-    if(window.innerWidth<500){
-        setWidth(50)
-        fontValue.current=18 
-        valueToHideText="hidden"
-    }
+ widthSetResponseBox(setWidth,fontValue.current,valueToHideText)
+
     
  })
 
     //when user dirctly open on phone o set width
- if(window.innerWidth<500){
-     //   console.log(window.innerWidth)
-       widthSet=50
-       valueToHideText="hidden"
-    }
-  const [width, setWidth] = useState(widthSet); 
+    
+  //do not change postion of usestate andabove widthSet also
+     const [width, setWidth] = useState(widthSet); 
   //const [height, setHeight] = useState(300);
+
+
+useEffect(()=>{
+     widthSetResponseBox(setWidth,fontValue.current,valueToHideText)
+
+},[])
 
 
   const handleSizeClick = (val,opeartor) => {
@@ -74,20 +70,28 @@ const AiComponents=()=>{
        ["maxWidth"] : "97%" ,
      backgroundColor: '#FFC72C',
      fontSize:`${fontValue.current}px`,
-     transition: 'all 0.3s ease'
+     transition: 'all 0.3s ease',
+     borderRadius:"10px"
    };
+   if(window.innerWidth<500){
    
-
+    valueToHideText="hidden"
+}
+//
     return(
 <>
-<div className="flex flex-col  top-15 bg-orange-500 text-white rounded-xl z-50 fixed ml-1 p-2 animate-pulse hover:animate-none" >
 
+    <Draggable>
+<div className="flex flex-col  top-15 bg-black text-white rounded-md  fixed ml-1 p-2 animate-pulse hover:animate-none z-50  md:z-[120]"  >
 
-    <button className="hover:bg-black hover:text-white rounded-sm" onClick={()=>{forDispatch(dicitValue,false,translateValue,false) ; dispatch(gptValue(true)); }}>Ai</button>
-    <button className="hover:bg-black hover:text-white p-1 rounded-sm" onClick={()=>{forDispatch(gptValue,false,translateValue,false);dispatch(dicitValue(true))}}>D<span className={valueToHideText}>ictionary</span> </button>
-    <button className="hover:bg-black hover:text-white p-1 rounded-sm" onClick={()=>{forDispatch(gptValue,false,dicitValue,false);dispatch(translateValue(true))}}>T<span className={valueToHideText} >ranlate</span></button>
+    <button className="hover:bg-red-600 hover:text-white rounded-sm" onClick={()=>{forDispatch(dicitValue,false,translateValue,false) ; dispatch(gptValue(true)); }}>Ai</button>
+    <button className="hover:bg-red-600 hover:text-white p-1 rounded-sm" onClick={()=>{forDispatch(gptValue,false,translateValue,false);dispatch(dicitValue(true))}}>D<span className={valueToHideText}>ictionary</span> </button>
+    <button className="hover:bg-red-600 hover:text-white p-1 rounded-sm" onClick={()=>{forDispatch(gptValue,false,dicitValue,false);dispatch(translateValue(true))}}>T<span className={valueToHideText} >ranslate</span></button>
+
+<div className="bg-white text-[4px] hidden sm:block pr-2  m-1 ml-2 text-black h-7 absolute right-0 rounded-lg cursor-move parent">click<p className="element absolute top-[-40px] w-[135px]  text-sm bg-gray-700  z-[160]">hold and drag it</p> </div>
+
 </div>
-
+</Draggable>
 
 
      <div >
