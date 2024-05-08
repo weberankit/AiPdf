@@ -3,11 +3,18 @@ import { toggler } from "../utils/userFiles";
 import { useDispatch } from "react-redux";
 import { textFile } from "../utils/userSlice";
 //import { useSelector } from "react-redux"
-const GetFilesFireBase=({slectfileMeta,SetMsg ,setUrl,setProUrl})=>{
-const textAlertMsg="Please Download pdf after HighLight and don't refresh/close (as highlight lost) Because USING TRIAL VERSION"
-   const dispatch=useDispatch()
-   const storage=getStorage()
+import { PDFDownloadLink, Document, Page } from '@react-pdf/renderer';
+import DisplaySimplePdf from "./DisplaySimplePdf"
+import ShowSimplePdf from "./ShowSimplePdf"
+import {useState} from "react"
 
+
+const GetFilesFireBase=({slectfileMeta,SetMsg ,setUrl,setProUrl,myurl,setPrintFileName})=>{
+const textAlertMsg="Please Download pdf after HighLight and don't refresh/close (as highlight lost) Because USING TRIAL VERSION"
+const textMessageAlert="your highlighted text will be saved remains even after refresh in your local browser so use same browser as because of Limited free resources"  
+const dispatch=useDispatch()
+   const storage=getStorage()
+ const [deleteIndication ,setDeleteIndication] = useState(null)
   async function handleText(path) {
     try {
       const url = await getDownloadURL(ref(storage, path));
@@ -42,6 +49,7 @@ const textAlertMsg="Please Download pdf after HighLight and don't refresh/close 
   
   
 function handleDelete(path){
+  setDeleteIndication("Wait Deleting the file")
     const desertRef = ref(storage, path);
   
     // Delete the file
@@ -52,8 +60,11 @@ function handleDelete(path){
       dispatch(textFile(null))
      // setText(null)
       setUrl(null)
+      //indicate
+      setDeleteIndication(null)
     }).catch((error) => {
       // Uh-oh, an error occurred!
+      setDeleteIndication("sorry not able to delete file please check network and retry")
     });
   
   
@@ -69,11 +80,34 @@ function handleDelete(path){
  )
 
   }
-  
 
 
+  function MangeAlertMsgAdvPdf(){
+    let getItem=sessionStorage.getItem("alertAdv") || null
+    console.log(getItem)
+
+    if(!getItem){
+    alert(textAlertMsg)
+    sessionStorage.setItem("alertAdv","done")
+    }
+
+  }
+  function MangeAlertMsgProPdf(){
+    let getItemPro=sessionStorage.getItem("alertPro") || null
+    console.log(getItemPro)
+
+    if(!getItemPro){
+    alert(textMessageAlert)
+    sessionStorage.setItem("alertPro","done")
+    }
+
+  }
+
+console.log("myurl",myurl)
 
     return(
+      <>
+    {deleteIndication &&  <div className="text-center  text-red-600 bg-black w-1/2 m-auto rounded-md  text-sm animate-pulse fixed  left-0 right-0">{deleteIndication}</div>}
         <div  className="w-2/3 m-auto" > 
         {
 slectfileMeta && slectfileMeta.map((item)=>{
@@ -82,6 +116,7 @@ slectfileMeta && slectfileMeta.map((item)=>{
   const textFileidentify=item._location.path.split(".").pop()
   //textFileidentify==="txt"?setTextBtn()
  // console.log(textFileidentify)
+ setPrintFileName(fileName)
   return(
   <>
   <div key={textFileidentify+Date.now()+9} className="p-4 flex flex-row justify-between border  mt-2">
@@ -99,7 +134,7 @@ slectfileMeta && slectfileMeta.map((item)=>{
 
  {
               //to open high level-pdf viewer
-              textFileidentify !== "txt" &&  <button className=" bg-orange-600 hover:bg-yellow-500 text-black p-1 rounded-lg m-1 animate-pulse duration-1000 hover:animate-none text-sm md:text-base"  onClick={()=>{alert(textAlertMsg);handlePdf(item._location.path,setProUrl) ;
+              textFileidentify !== "txt" &&  <button className=" bg-orange-600 hover:bg-yellow-500 text-black p-1 rounded-lg m-1 animate-pulse duration-1000 hover:animate-none text-sm md:text-base"  onClick={()=>{MangeAlertMsgAdvPdf();handlePdf(item._location.path,setProUrl) ;
               handleReachTop(0);setUrl(null);  dispatch(textFile(null)) }}> Advance level pdf viewer</button>
             }
                   
@@ -121,14 +156,14 @@ slectfileMeta && slectfileMeta.map((item)=>{
 
              { 
                    textFileidentify==="txt"?<button className="bg-green-500 text-white rounded-lg m-1 p-1 hover:bg-black text-sm md:text-base" onClick={()=>{handleText(item._location.path);setUrl(null);setProUrl(null);handleReachTop(0)}}>open text file</button> :  
-                   <button className="bg-gray-600 text-white rounded-lg m-1 p-1 hover:bg-black text-sm md:text-base" onClick={()=>{ handlePdf(item._location.path ,setUrl);   handleReachTop(0);setProUrl(null) ;  dispatch(textFile(null))}}>  Simple pdf viewer</button>
+                   <button className="bg-gray-600 text-white rounded-lg m-1 p-1 hover:bg-black text-sm md:text-base animate-pulse" onClick={()=>{ MangeAlertMsgProPdf();handlePdf(item._location.path ,setUrl);   handleReachTop(0);setProUrl(null) ;  dispatch(textFile(null))}}>  Pro pdf viewer</button>
 
                   }
             </div>
 
  
 
-                     <button className="bg-red-600 text-white m-1 p-1 rounded-lg" onClick={()=>handleDelete(item._location.path )}>Delete files</button>
+                     <button className="bg-red-600 text-white m-1 p-1 rounded-lg" onClick={()=>{handleDelete(item._location.path )}}>Delete files</button>
                      </div>
                      </div>
   
@@ -136,7 +171,10 @@ slectfileMeta && slectfileMeta.map((item)=>{
   </>)
 })
 }
-</div>      
+</div>    
+
+
+</>  
     )
 }
 export default GetFilesFireBase

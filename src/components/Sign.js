@@ -5,10 +5,11 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { useDispatch,useSelector } from "react-redux";
 import { infoUser,loadingState } from "../utils/userSlice";
-import {  signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import {  signInWithPopup, GoogleAuthProvider} from "firebase/auth";
 import Validate from "./Validate";
 //import { Link } from "react-router-dom";
 //import {use}
+import ResetEmailPassword from "./ResetEmailPassword"
 
 import { loginMsg } from "../utils/ErrorSlice";
 import { sendEmailVerification} from "firebase/auth";
@@ -26,9 +27,10 @@ const [isLogin, setLogin]=useState(true)
  const [errorMsg, setErrorMsg] = useState("")
 const email=useRef(null)
 const password=useRef(null)
+//const reEnter=useRef(null)
 const fullName=useRef(null)
 const [toogle,setToogle] =useState(false)
-
+const [showForm,setForm]=useState(false)
 const handleSignin=()=>{
     setLogin(!isLogin)
 }
@@ -81,7 +83,7 @@ if(user.emailVerified === true){
     // ...
     dispatch(loadingState(false))
     console.log(error,"this is error")
-    setErrorMsg("Error:please check login credintials")
+    setErrorMsg("Error:please check login credintials"+"  "+error)
   });
  
 
@@ -94,13 +96,13 @@ const errorMessage = error.message;
 //setErrorMsg(error)
 // ..
 dispatch(loadingState(false))
-setErrorMsg("Error:please check login credintials")
+setErrorMsg("Error:please check login credintials"+" "+error)
 
 })
 }).catch((error)=>{
   console.log(error,"email error")
   dispatch(loadingState(false))
-  setErrorMsg("Error:please check signup details already used ")
+  setErrorMsg("Error:please check signup details "+" "+ error )
 })
 
 
@@ -109,7 +111,7 @@ setErrorMsg("Error:please check login credintials")
     signInWithEmailAndPassword(auth, email.current.value, password.current.value)
     .then((userCredential) => {
       // Signed in 
-      const user = userCredential.user;
+      const user = userCredential?.user;
       // ...
       console.log("working")
     })
@@ -117,7 +119,7 @@ setErrorMsg("Error:please check login credintials")
       const errorCode = error.code;
       const errorMessage = error.message;
       dispatch(loadingState(false))
-      setErrorMsg("Error:please check login credintials")
+      setErrorMsg("Error:please check login credintials"+"  "+error)
     });
 }
 
@@ -138,13 +140,13 @@ const handleLoginGoogle=()=>{
   
     }).catch((error) => {
      
-      const errorMessage = error.message;
+     // const errorMessage = error.message;
     
-    setErrorMsg("please check something went wrong")
+    setErrorMsg(error+"please check something went wrong(please check your account in browser / otherwise Use email&password login)")
     });
 }
 
-
+ 
 
 
 function scrollToElement(id){
@@ -153,12 +155,22 @@ function scrollToElement(id){
 
 
 }
+//here we send data for checking email not password as reset password so bypass paswword
 
 
 const fileSlide=['<img src="upload.svg" alt="file image"></img>' ]
+console.log(showForm)
+
+
+
+
+
+
+
 
  return(
 <>
+
 <div className=" bg-black  border-b-white  mt-0 p-3  w-auto  md:w-full text-sm font-bold fixed  block text-white pb-1 z-50">To upload a PDF, it is important to provide your email so that we can save your PDF with your email ID. 
 This way, you can access it from any device using the same email ID  <button id="signInButton" className={'bg-red-700 text-white hover:bg-black font-bold p-2 rounded-md animate-pulse mt-1 md:mt-0 ' } onClick={()=>scrollToElement("signin")}>signIn ⬇</button></div>
   <div className="">
@@ -204,16 +216,28 @@ This way, you can access it from any device using the same email ID  <button id=
 
 {isLogin && <input className="w-64  md:m-2 border border-black rounded-md p-2 m-auto" type="name" ref={fullName} placeholder="name"></input>} 
  <input ref={email} className="w-64 rounded-md mt-1 mb-1 md:m-2 border border-black p-2 m-auto" type="email" placeholder="Email id"></input>
- <input  className="w-64 rounded-md md:m-2 border border-black p-2 m-auto" ref={password} placeholder="password"></input>
+ { <input  className="w-64 rounded-md md:m-2 border border-black p-2 m-auto " ref={password}  placeholder="create password"></input>}
+ { /*isLogin && <input  className="w-64 rounded-md md:m-2 border border-black p-2 m-auto " ref={reEnter}  placeholder="ReEnter password"></input>*/ }
  </div>
  <div className="flex flex-row  justify-center ">
  <button className="m-1 bg-black p-2 rounded-md hover:text-black hover:bg-yellow-500 text-white h-11" onClick={handleForm} >{isLogin?"SignUp":"SignIn"}</button>
  {
-<p className="m-1 bg-black p-2 rounded-md text-white hover:bg-yellow-500 hover:text-black h-11 w-48" onClick={handleSignin}>{!isLogin?"login with Email":"already User"}</p>
+<p className="m-1 bg-black p-2 rounded-md text-white hover:bg-yellow-500 hover:text-black h-11 w-48" onClick={handleSignin}>{!isLogin?"New User":"already User"}</p>
 }
+
 </div>
+{!isLogin&& <p className="text-center p-2 m-1 text-sm underline hover:cursor-pointer" onClick={()=>setForm(true)}>{"Forgot Password"} </p>}
+
+
 </form>
-<div className="bg-red-700 p-2 rounded-md text-white hover:bg-yellow-500 hover:text-black text-sm md:font-normal w-2/3 m-auto md:m-0 md:w-48  md:h-14 mt-7 md:mt-8  md:pt-4  text-center " onClick={handleLoginGoogle}>continue with Google </div>
+<div
+ className="border border-black p-2 rounded-md text-black hover:bg-yellow-500 hover:text-black text-sm md:font-normal w-2/3 m-auto md:m-0 md:w-48  md:h-14 mt-7 md:mt-8  md:pt-4  text-center flex flex-row "
+  onClick={handleLoginGoogle}>
+    <svg xmlns="http://www.w3.org/2000/svg" 
+    viewBox="0 0 48 48" className="w-8" >
+      <path fill="#FFC107"
+       d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z">
+        </path><path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"></path><path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0124 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"></path><path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 01-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"></path></svg> <p className="ml-2 pt-1 text-base sm:text-sm">continue with Google</p> </div>
 
 
 </div>
@@ -222,7 +246,7 @@ This way, you can access it from any device using the same email ID  <button id=
 
 </div>
 </div>
-
+{showForm && <div><ResetEmailPassword auths={auth} setForm={setForm}/></div>}
 </>
 
  )

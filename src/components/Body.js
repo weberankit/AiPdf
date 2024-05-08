@@ -11,6 +11,7 @@ import UploadFiles from "./UploadFiles";
 import Footer from "./Footer";
 
 const Body=()=>{
+
     const dispatch=useDispatch()
    const [user , setUser] = useState(true) 
    const selector=useSelector((store)=>store.userInformation.value)
@@ -42,13 +43,12 @@ useEffect(()=>{
 
 },[])
 
-  
-
 
 
     return(
         <>
-    <div className="bg-red-700">{selectLoadingValue===true?"logging start":""}</div>
+      
+    <div className="bg-red-700 text-xs">{selectLoadingValue===true?"logging will be start... if you used email login must verified first and if you have already done wait..":""}</div>
         <div className="">
       
 <div className=""><Header /></div>

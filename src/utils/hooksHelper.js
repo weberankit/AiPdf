@@ -14,7 +14,9 @@ export function callUserInfoOnRefresh(navigate,selectUsrDetail,dispatch,infoUser
     
           if(!selectUsrDetail){
              console.log(user,"USER")
-             const {uid ,email,displayName}= user;
+             //newly
+             if(!user)return
+             const {uid ,email,displayName}= user ;
              console.log(uid,email)
              dispatch(infoUser({uid:uid ,email:email,displayName:displayName}))
              SetMsg(null)

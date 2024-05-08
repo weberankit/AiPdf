@@ -1,6 +1,6 @@
 
 import { getStorage,   deleteObject} from "firebase/storage";
-import { useState } from "react";
+import { useState ,useRef} from "react";
 import { pdfjs } from 'react-pdf';
 //import {Document ,Page} from 'react-pdf'
 import 'react-pdf/dist/esm/Page/TextLayer.css'
@@ -15,6 +15,10 @@ import ShowSimplePdf from "./ShowSimplePdf";
 import GetFilesFireBase from "./GetFilesFireBase";
 import { textFile } from "../utils/userSlice";
 import AiComponents from "./AiComponents";
+import ReactToPrint from "react-to-print";
+import ToShowSimplePdf from "./ToShowSimplePdf";
+import "../App.css"
+import PrintComponent from "./ToShowSimplePdf";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
@@ -31,7 +35,8 @@ const [proUrl,setProUrl]=useState("")
 const storage = getStorage();
 const [msg,SetMsg] =useState(null)
 const [sideBarShow , setSideBarShow]=useState(null)
-
+//toget name and pass for print function
+const [printFileName ,setPrintFileName] =useState("your highlighted Text")
 //to grab words from pdf while selecting
 
 
@@ -39,16 +44,21 @@ SelectionWord(setSideBarShow)
 console.log(sideBarShow,"sidebar")
 
 
-//sideBarShow&& <AiComponents/>
+
+
+
     return(
         <div className="flex flex-col ">
+
+
             <div>{ sideBarShow&& <AiComponents/>}</div>
 {msg&&<p >{msg}</p>}
 
 
-        <div className="md:w-1/2  md:m-auto pt-2  overflow-x-scroll md:overflow-auto ">
+        <div  >
       {url &&  <button className="bg-black font-semibold text-white p-1 rounded-lg top-[200px] md:top-[100px] text-[11px] md:text-base fixed md:left-[13rem] z-[50]" onClick={()=>setUrl(null)}>Close pdf</button>}
-     {url&& <ShowSimplePdf data={url}/>}
+ <div >   { url&& <ShowSimplePdf data={url} printfileName={printFileName}/>} </div> 
+   
 </div>
 
 
@@ -78,6 +88,8 @@ proUrl &&  <ShowPdf data={proUrl}/>
                                 setUrl={setUrl}
                                 setProUrl={setProUrl}
                                 //setGrab={grab}
+                                myurl={url}
+                                setPrintFileName={setPrintFileName}
               />
           
  

@@ -7,7 +7,7 @@ const SelectionWord=(setSideBarShow)=>{
 
 const dispatch=useDispatch()
 
-function copyText(){
+ function copyText(){
     const selection = window.getSelection();
     // Check if there's a selection and if it's not empty
     if (selection && selection.toString()) {

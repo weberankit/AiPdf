@@ -101,7 +101,7 @@ const arrayResponse= textWords.map((item)=>callingFreeApi(item))
  if(selectKeyDict){
      console.log("jj")
    callingApi()
-  callingExampleApi()
+ callingExampleApi()
  }
 
 

@@ -27,7 +27,7 @@ sendData("AiSearch-of-all-data-right-now-seesion", selectgeminiResponse,selectUs
         <div className="mt-2">
   {selectingGptkeyVaues ?  <div className="bg-red-600 p-1 text-black text-center text-xs font-bold m-auto w-1/2 select-none"> Request:I have used free key which has limited use so for better exprience create your own free key steps-- 
     <Link to={"/setting"} className="text-blue-800 " > <div className=" inline-block animate-bounce hover:animate-none">setting</div></Link> </div> : "" }
-{selectSendDataMsg&&<div className="text-center text-md text-green-700 z-[2000] font-bold bg-[black] top-0  fixed  w-full  inline-block m-auto">{selectSendDataMsg}</div>}
+{selectSendDataMsg&&<div className="text-center text-md text-green-700 z-[2000] font-bold bg-[black] top-0  fixed  w-full  inline-block m-auto">{selectSendDataMsg}<button className='bg-white text-black p-2 rounded-md  m-1 text-sm' onClick={()=>dispatch(sendDataMail(null))}>close</button> </div>}
 </div>
      <div className = "bg-black text-white  fixed right-0 z-50  " style={styles}>
       <div className="overflow-scroll  h-96 ">

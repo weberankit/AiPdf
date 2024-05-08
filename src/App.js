@@ -12,10 +12,13 @@ import AiKeyCreateStep from "./components/AiKeyCreateStep";
 import {lazy,Suspense} from "react"
 import DicctKeyStep from "./components/DicctKeyStep";
 import Error from "./components/Error";
+import useCheckOnline from "./utils/useCheckOnline";
 
   const StepsAi=lazy(()=>import("./components/AiKeyCreateStep"))
  const StepDict=lazy(()=>import("./components/DicctKeyStep"))
 const App = () => {
+  const modeNetwork=useCheckOnline()
+  console.log(modeNetwork,"thidddddd")
 const appRouter=createBrowserRouter([
 {
   path:"/",
@@ -52,9 +55,9 @@ element:(  <Suspense fallback={<h1>loading....please wait</h1>}><StepsAi/></Susp
 
 
 
-
     return (
       <>
+      {!modeNetwork && <p className="bg-red-600 text-white p-1 m-1 ">please check your network</p>}
           <Provider store={appStore}>
  <RouterProvider router={appRouter}>
 

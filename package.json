@@ -7,6 +7,7 @@
     "@google/generative-ai": "^0.7.1",
     "@react-pdf-viewer/core": "^3.12.0",
     "@react-pdf-viewer/default-layout": "^3.12.0",
+    "@react-pdf-viewer/get-file": "^3.12.0",
     "@react-pdf/renderer": "^3.4.4",
     "@reduxjs/toolkit": "^2.2.1",
     "@syncfusion/ej2-react-pdfviewer": "^24.2.9",
@@ -16,7 +17,6 @@
     "axios": "^1.6.8",
     "firebase": "^10.9.0",
     "form-data": "^4.0.0",
-    "openai": "^4.36.0",
     "pdf-lib": "^1.17.1",
     "pdfjs-dist": "^2.16.105",
     "pspdfkit": "^2024.2.0",
@@ -25,9 +25,11 @@
     "react-dom": "^18.2.0",
     "react-draggable": "^4.4.6",
     "react-pdf": "^7.7.1",
+    "react-pdf-highlighter": "^6.1.0",
     "react-redux": "^9.1.0",
     "react-router-dom": "^6.22.3",
     "react-scripts": "5.0.1",
+    "react-to-print": "^2.15.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
