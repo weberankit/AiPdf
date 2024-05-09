@@ -16,9 +16,9 @@ import GetFilesFireBase from "./GetFilesFireBase";
 import { textFile } from "../utils/userSlice";
 import AiComponents from "./AiComponents";
 import ReactToPrint from "react-to-print";
-import ToShowSimplePdf from "./ToShowSimplePdf";
+//import ToShowSimplePdf from "./ToShowSimplePdf";
 import "../App.css"
-import PrintComponent from "./ToShowSimplePdf";
+//import PrintComponent from "./ToShowSimplePdf";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 

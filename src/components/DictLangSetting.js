@@ -3,6 +3,7 @@ import { useState } from "react";
 const DictLangSetting=({closeProp,localSource,localTarget})=>{
     const [inValue,setInValue]=useState(null)
     const supportedLanguages = [
+      {language:"select",code:"en"},
          { language: "English", code: "en" },
            { language: "Hindi", code: "hi" },
         { language: "Bhojpuri", code: "bho" },

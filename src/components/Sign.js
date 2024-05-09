@@ -48,7 +48,7 @@ if(!formCheck){
   dispatch(loadingState(true))
 }console.log(errorMsg)
 if(isLogin){
-
+setErrorMsg("login start ...")
 createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
 .then((userCredential) => {
 // Signed up 
@@ -59,7 +59,7 @@ sendEmailVerification(user)
     // Email verification sent!
     // ...
   dispatch(loginMsg())
-
+setErrorMsg("verify on your email")
 
 updateProfile(auth.currentUser, {
    
@@ -75,6 +75,7 @@ if(user.emailVerified === true){
   console.log(user.emailVerified,"inside")
      const {uid ,email,displayName} = auth.currentUser;
    //hide login msg after link click on page refresh 
+   setErrorMsg(null)
      dispatch(loginMsg())
     dispatch(infoUser({uid:uid ,email:email,displayName:displayName}))
   }
@@ -109,10 +110,12 @@ setErrorMsg("Error:please check login credintials"+" "+error)
 
 }else{
     signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+    
     .then((userCredential) => {
       // Signed in 
       const user = userCredential?.user;
       // ...
+     setErrorMsg("wait for a seconds, if you have used email/password login please first verify on email, ignore if already done")
       console.log("working")
     })
     .catch((error) => {
@@ -132,12 +135,13 @@ setErrorMsg("Error:please check login credintials"+" "+error)
 
 
 const handleLoginGoogle=()=>{
+  setErrorMsg("Login Start....")
   const provider = new GoogleAuthProvider();
   signInWithPopup(auth, provider)
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
-  
+    setErrorMsg(null)
     }).catch((error) => {
      
      // const errorMessage = error.message;
@@ -220,9 +224,9 @@ This way, you can access it from any device using the same email ID  <button id=
  { /*isLogin && <input  className="w-64 rounded-md md:m-2 border border-black p-2 m-auto " ref={reEnter}  placeholder="ReEnter password"></input>*/ }
  </div>
  <div className="flex flex-row  justify-center ">
- <button className="m-1 bg-black p-2 rounded-md hover:text-black hover:bg-yellow-500 text-white h-11" onClick={handleForm} >{isLogin?"SignUp":"SignIn"}</button>
+ <button className="m-1 bg-black p-2 rounded-md hover:text-black hover:bg-yellow-500 text-white h-11" onClick={handleForm} >{isLogin?"SignUp":"Login"}</button>
  {
-<p className="m-1 bg-black p-2 rounded-md text-white hover:bg-yellow-500 hover:text-black h-11 w-48" onClick={handleSignin}>{!isLogin?"New User":"already User"}</p>
+<p className="m-1 bg-white p-2 rounded-md text-black border border-black cursor-pointer  h-11 w-48 text-semibold" onClick={handleSignin}>{!isLogin?"New User":"already User"}</p>
 }
 
 </div>
@@ -230,14 +234,17 @@ This way, you can access it from any device using the same email ID  <button id=
 
 
 </form>
+<div className=" w-4 m-auto md:m-0 md:w-12  md:h-14 mt-7 md:mt-8  md:pt-4  text-center flex flex-row font-bold">or</div>
 <div
- className="border border-black p-2 rounded-md text-black hover:bg-yellow-500 hover:text-black text-sm md:font-normal w-2/3 m-auto md:m-0 md:w-48  md:h-14 mt-7 md:mt-8  md:pt-4  text-center flex flex-row "
+ className="border cursor-pointer border-black p-2 rounded-md  bg-black text-white hover:bg-white hover:text-black text-xs sm:text-sm  sm:font-normal w-2/4  sm:w-2/5 m-auto md:m-0 md:w-48  md:h-14 mt-7 md:mt-8  md:pt-4  text-center flex flex-row "
   onClick={handleLoginGoogle}>
-    <svg xmlns="http://www.w3.org/2000/svg" 
-    viewBox="0 0 48 48" className="w-8" >
+    
+    <svg xmlns="http://www.w3.org/2000/svg"
+     
+    viewBox="0 0 48 48" className="w-8 " >
       <path fill="#FFC107"
        d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z">
-        </path><path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"></path><path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0124 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"></path><path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 01-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"></path></svg> <p className="ml-2 pt-1 text-base sm:text-sm">continue with Google</p> </div>
+        </path><path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"></path><path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0124 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"></path><path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 01-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"></path></svg> <p className="ml-2 pt-1 text-sm sm:text-sm">continue with Google</p> </div>
 
 
 </div>

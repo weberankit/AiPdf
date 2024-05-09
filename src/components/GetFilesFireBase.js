@@ -11,7 +11,7 @@ import {useState} from "react"
 
 const GetFilesFireBase=({slectfileMeta,SetMsg ,setUrl,setProUrl,myurl,setPrintFileName})=>{
 const textAlertMsg="Please Download pdf after HighLight and don't refresh/close (as highlight lost) Because USING TRIAL VERSION"
-const textMessageAlert="your highlighted text will be saved remains even after refresh in your local browser so use same browser as because of Limited free resources"  
+const textMessageAlert="your highlighted text will be saved remains even after refresh in your same browser so use same browser ( because using free resources)"  
 const dispatch=useDispatch()
    const storage=getStorage()
  const [deleteIndication ,setDeleteIndication] = useState(null)

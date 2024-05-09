@@ -58,6 +58,7 @@ export function handlePrint( keyForStoringHighlight,printfileName) {
         printWindow.document.close();
       } else {
         console.log("No data found in local storage.");
+        alert("you have not highlighted any text, first highlight in pdf")
       }
     } catch (error) {
       console.error("An error occurred while parsing or accessing local storage:", error);

@@ -82,7 +82,7 @@ const handleLocalStorageError = (error) => {
   const [highlights, setHighlights] = useState(highlightsFromStorage || []);
 
   const pdfHighlighter = useRef(null);
-  let timer= setTimeout(()=>{setDownloaShow(true)},7000)
+  let timer= setTimeout(()=>{setDownloaShow(true)},9000)
 
   useEffect(() => {
     

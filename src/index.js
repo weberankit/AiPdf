@@ -25,7 +25,7 @@ document.onkeydown = (e) => {
     return false; // Prevent default action for these key combinations
 };
 }
-
+toDisableInspect()
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
