@@ -3,6 +3,8 @@ import { toggleEg } from "../utils/aiResponseSlice"
 import { sendAllDictData } from "../utils/useStoreDataSlice"
 const DictiResponseApi=({data})=>{
 const dispatch=useDispatch()
+const selectSearchMsg=useSelector((store)=>store.ErrorSliced.searchMsg)
+
 const selectRespDict=useSelector((store)=>store.aiRespond?.dataDictRes)
 //console.log(selectRespDict)
 const selectToogleEg=useSelector((store)=>store.aiRespond?.toggleExample)
@@ -15,6 +17,7 @@ if(data?.error?.message){
 
     return(
         <>
+          {selectSearchMsg&& <div className="bg-black text-center text-sm p-1 m-1 fixed text-white rounded-md"> {selectSearchMsg}</div>}
         {(data?.message) ? <div className="p-2">{data?.message}</div> :
             data && data?.map((item)=>{
                 return(

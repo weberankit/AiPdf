@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 import { toggleForApi } from "./userKey"
 import { useDispatch } from "react-redux"
 import { translateApi } from "./aiResponseSlice"
-
+import { addSearchMsg } from "./ErrorSlice"
 const useTranslate=(selectTrans,sourceLang,targetLang)=>{
     const dispatch=useDispatch()
 console.log(selectTrans)
@@ -22,6 +22,8 @@ if(!sourceLang){
 async function callingTransApi(){
     if(selectTrans){
         //
+        dispatch(addSearchMsg("searching start..."))
+
         console.log(selectTrans)
         console.log("bk")
         const url = `https://api.mymemory.translated.net/get?q=${textGrab}&langpair=${sourceLang}|${targetLang}`
@@ -34,9 +36,12 @@ async function callingTransApi(){
             console.log(result);
             const res=result?.responseData?.translatedText
            console.log(res)
+           dispatch(addSearchMsg(null))
 
          dispatch(translateApi(res))
         } catch (error) {
+            dispatch(addSearchMsg(null))
+
             console.error(error);
             console.log(error,"error")
         }

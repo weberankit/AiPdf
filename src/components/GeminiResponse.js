@@ -5,6 +5,8 @@ import { toggleForApi } from "../utils/userKey"
 
 const GeminiResponse=()=>{
     const dispatch=useDispatch()
+    const selectSearchMsg=useSelector((store)=>store.ErrorSliced.searchMsg)
+
 const selectgeminiResponse=useSelector((store)=>store.giminiRes.responseArray)
 console.log(selectgeminiResponse)
 const selectGeminiError=useSelector((store)=>store.ErrorSliced?.gptResponseError)
@@ -45,6 +47,7 @@ if(selectGeminiError){
 }
 return(
     <>
+    {selectSearchMsg&& <div className="bg-black text-center text-sm p-1 m-1 fixed text-white rounded-md"> {selectSearchMsg}</div>}
     {    selectgeminiResponse?.map((item,index)=>{
         return(
             <div className="text-black mb-1 border-b border-black" style={{fontSize:".7em"}}>{index+1} - {item}</div>

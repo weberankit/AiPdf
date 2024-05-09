@@ -3,13 +3,14 @@ import { useSelector ,useDispatch} from "react-redux";
 import { useEffect } from "react";
 import { addgiminRes ,addUserQuery} from "./geminiResponseSlice";
 import { gptError } from "./ErrorSlice";
-
+import { addSearchMsg } from "./ErrorSlice";
   const useGpt=(compoValue)=>{
  
 
 
 const selectKeyGPT=useSelector((store)=>store.userskey?.keyGPT?.gpt)
 console.log(selectKeyGPT)
+
  // Access your API key (see "Set up your API key" above) 
  const genAI = new GoogleGenerativeAI(selectKeyGPT);
 const dispatch=useDispatch()
@@ -22,6 +23,7 @@ const userAsk=useSelector((store)=>store.giminiRes?.userQuery)
 console.log(userAsk)
  async function run() {
 if(compoValue === true && textGrab){
+  dispatch(addSearchMsg("searching start..."))
   try{
     // For text-only input, use the gemini-pro model
     const model = genAI.getGenerativeModel({ model: "gemini-pro"});
@@ -36,14 +38,16 @@ if(compoValue === true && textGrab){
     const response = await result.response;
     const text = response.text();
     console.log(text);
+    dispatch(addSearchMsg(null))
    dispatch(addgiminRes(text))
    //stting value null after some sc so its not effect response
    setTimeout(()=>{dispatch(addUserQuery(null))},2000)
    
    dispatch(gptError(null))
   }catch(error){
-    console.log(error,error.reason,"   k",error.message["GoogleGenerativeAI Error"])
-    dispatch(gptError(error.message))
+    console.log(error,error.reason,"   ",error.message["GoogleGenerativeAI Error"])
+    dispatch(addSearchMsg(null))
+    dispatch(gptError(error.message +" " + " refresh page"))
   }
 }
   }

@@ -2,7 +2,7 @@ import {useSelector ,useDispatch} from "react-redux"
 import { useEffect } from "react"
 import { aiRes } from "./aiResponseSlice"
 import { sendAllDictData } from "./useStoreDataSlice"
-
+import { addSearchMsg } from "./ErrorSlice"
 const useDictionary=(componValue,setData,sourceLang="en",targetLang="hi")=>{
   if(!sourceLang){
     sourceLang='en'
@@ -50,6 +50,7 @@ console.log(sourceLang,"sourcelang")
 
      // using compoValue so that when user mount on other component it does not call api of dicitionary unnecssary
  if(componValue === true && textGrab){
+  dispatch(addSearchMsg("searching start..."))
    const url = `https://microsoft-translator-text.p.rapidapi.com/Dictionary/Lookup?to=${targetLang}&api-version=3.0&from=${sourceLang}`;
    
  
@@ -69,12 +70,13 @@ console.log(sourceLang,"sourcelang")
      const result = await response.text();
     
       const data = JSON.parse(result);
+      dispatch(addSearchMsg(null))
       setData(data)
        dispatch(sendAllDictData(data))
    
    } catch (error) {
      console.log("error occored");
-
+     dispatch(addSearchMsg(null))
    }
  
  }

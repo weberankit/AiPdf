@@ -68,6 +68,7 @@ console.log(dataApi)
  
     return(
         <>
+
         <div className="mt-1 ">
  {(selectingDictkeyVaues) ?  <div className="bg-red-600 p-1 select-none text-white  text-center text-xs font-semibold m-auto mt-auto  w-1/2 ">Request:I have used free key which has limited use so for better exprience create your own free key steps-- <Link className="text-blue-800 font-bold " to={"/setting"} ><div className=" inline-block animate-bounce hover:animate-none">setting</div></Link> </div> : "" }
  {selectSendDataMsg&&<div className="text-center text-md text-green-700 z-[2000] font-bold top-0 fixed  w-full bg-black m-auto select-none">{selectSendDataMsg }<button className='bg-white text-black p-2 rounded-md  m-1 text-sm' onClick={()=>dispatch(sendDataMail(null))}>close</button></div>}
