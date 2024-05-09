@@ -185,7 +185,7 @@ This way, you can access it from any device using the same email ID  <button id=
 <h1 className=" text-6xl md:text-7xl  lg:text-9xl text-red-600 pt-20 md:pt-5 p-5  italic pb-7">  AiPDF</h1>
 
   <div className="p-2 rounded-lg mb-1 inline-block text-white text-xl md:text-3xl ">👩<em className="text-xs bg-black p-1 md:p-2 rounded-lg">What makes this PDF reader unique?</em></div>
-  <div className="text-white rounded-lg ml-14 inline-block text-xl md:text-4xl m-1">👲<em className=" md:boxShadow text-xs bg-white text-black font-bold rounded-lg p-1 md:p-2">In this PDF reader, it provides text summarization.</em></div>
+  <div className="text-white rounded-lg ml-14 inline-block text-xl md:text-4xl m-1">👲<em className=" md:boxShadow text-xs bg-white text-black font-bold rounded-lg p-1 md:p-2">just select text ,it provides text summarization.its 100% free (no conditions applied) </em></div>
 <button className="font-bold text-black p-1 md:p-2 m-1 block animate-pulse" onClick={()=>setToogle(!toogle)}>{toogle?"Hide":"show more"}</button>
  { toogle &&<>
   <p className="p-2 rounded-lg mb-1 inline-block text-white text-xl md:text-3xl">👩 <em className="text-xs bg-black p-1 md:p-2 rounded-lg">oh really! How is that possible? .</em></p>
