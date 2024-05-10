@@ -1,17 +1,17 @@
 import { getStorage, ref, getDownloadURL , deleteObject} from "firebase/storage";
 import { toggler } from "../utils/userFiles";
-import { useDispatch } from "react-redux";
+import { useDispatch ,useSelector} from "react-redux";
 import { textFile } from "../utils/userSlice";
 //import { useSelector } from "react-redux"
 import { PDFDownloadLink, Document, Page } from '@react-pdf/renderer';
 import DisplaySimplePdf from "./DisplaySimplePdf"
 import ShowSimplePdf from "./ShowSimplePdf"
 import {useState} from "react"
+import {addUrlAdvPdf, addUrlPdf} from "../utils/useStoreDataSlice"
 
-
-const GetFilesFireBase=({slectfileMeta,SetMsg ,setUrl,setProUrl,myurl,setPrintFileName})=>{
+const GetFilesFireBase=({slectfileMeta,SetMsg ,setPrintFileName})=>{
 const textAlertMsg="Please Download pdf after HighLight and don't refresh/close (as highlight lost) Because USING TRIAL VERSION"
-const textMessageAlert="your highlighted text will be saved remains even after refresh in your same browser so use same browser ( because using free resources)"  
+const textMessageAlert="your highlighted text will be saved remains even after refresh in your  browser so use same browser ( because using free resources)"  
 const dispatch=useDispatch()
    const storage=getStorage()
  const [deleteIndication ,setDeleteIndication] = useState(null)
@@ -32,12 +32,13 @@ const dispatch=useDispatch()
     }
   }
    
-  
-  function handlePdf(path ,set){
+  function handlePdf(path){
       getDownloadURL(ref(storage, path))
     .then((url) => {
-   set(url)
-     // console.log(url)
+      console.log(url) 
+   //setDispatch(url)
+   dispatch(addUrlPdf(url))
+    
       SetMsg(null)
     })
     .catch((error) => {
@@ -45,6 +46,24 @@ const dispatch=useDispatch()
       // Handle any errors
     });
   }
+  //handleAdvPdf(item._location.path)
+  function handleAdvPdf(path ){
+    getDownloadURL(ref(storage, path))
+  .then((url) => {
+    console.log(url) 
+ dispatch(addUrlAdvPdf(url))
+ 
+    SetMsg(null)
+  })
+  .catch((error) => {
+    SetMsg("sorry their is some issue")
+    // Handle any errors
+  });
+}  
+
+
+
+
   //console.log(a)
   
   
@@ -59,7 +78,9 @@ function handleDelete(path){
       //console.log(item,"Items")
       dispatch(textFile(null))
      // setText(null)
-      setUrl(null)
+     dispatch(addUrlPdf(null))
+     dispatch(addUrlAdvPdf(null))
+      //setUrl(null)
       //indicate
       setDeleteIndication(null)
     }).catch((error) => {
@@ -103,7 +124,7 @@ function handleDelete(path){
 
   }
 
-console.log("myurl",myurl)
+//console.log("myurl",myurl)
 
     return(
       <>
@@ -117,9 +138,12 @@ slectfileMeta && slectfileMeta.map((item)=>{
   //textFileidentify==="txt"?setTextBtn()
  // console.log(textFileidentify)
  setPrintFileName(fileName)
+
+
+
   return(
   <>
-  <div key={textFileidentify+Date.now()+9} className="p-4 flex flex-row justify-between border  mt-2">
+  <div key={textFileidentify+Date.now()+9} className="p-4 flex flex-row justify-between border  mb-14">
 
 <div className="w-1/2">
 <div className="w-[3.4rem] md:w-14">
@@ -134,8 +158,8 @@ slectfileMeta && slectfileMeta.map((item)=>{
 
  {
               //to open high level-pdf viewer
-              textFileidentify !== "txt" &&  <button className=" bg-orange-600 hover:bg-yellow-500 text-black p-1 rounded-lg m-1 animate-pulse duration-1000 hover:animate-none text-sm md:text-base"  onClick={()=>{MangeAlertMsgAdvPdf();handlePdf(item._location.path,setProUrl) ;
-              handleReachTop(0);setUrl(null);  dispatch(textFile(null)) }}> Advance level pdf viewer</button>
+              textFileidentify !== "txt" &&  <button className=" bg-orange-600 hover:bg-yellow-500 text-black p-1 rounded-lg m-1 animate-pulse duration-1000 hover:animate-none text-sm md:text-base"  onClick={()=>{MangeAlertMsgAdvPdf();handleAdvPdf(item._location.path) ;
+              handleReachTop(0);dispatch(addUrlPdf(null));  dispatch(textFile(null)) }}> Advance level pdf viewer</button>
             }
                   
      </div>
@@ -155,8 +179,8 @@ slectfileMeta && slectfileMeta.map((item)=>{
             
 
              { 
-                   textFileidentify==="txt"?<button className="bg-green-500 text-white rounded-lg m-1 p-1 hover:bg-black text-sm md:text-base" onClick={()=>{handleText(item._location.path);setUrl(null);setProUrl(null);handleReachTop(0)}}>open text file</button> :  
-                   <button className="bg-gray-600 text-white rounded-lg m-1 p-1 hover:bg-black text-sm md:text-base animate-pulse" onClick={()=>{ MangeAlertMsgProPdf();handlePdf(item._location.path ,setUrl);   handleReachTop(0);setProUrl(null) ;  dispatch(textFile(null))}}>  Pro pdf viewer</button>
+                   textFileidentify==="txt"?<button className="bg-green-500 text-white rounded-lg m-1 p-1 hover:bg-black text-sm md:text-base" onClick={()=>{handleText(item._location.path);dispatch(addUrlPdf(null));dispatch(addUrlAdvPdf(null));handleReachTop(0)}}>open text file</button> :  
+                   <button className="bg-gray-600 text-white rounded-lg m-1 p-1 hover:bg-black text-sm md:text-base animate-pulse" onClick={()=>{ MangeAlertMsgProPdf();handlePdf(item._location.path);   handleReachTop(0);dispatch(addUrlAdvPdf(null)) ;  dispatch(textFile(null))}}>  Pro pdf viewer</button>
 
                   }
             </div>

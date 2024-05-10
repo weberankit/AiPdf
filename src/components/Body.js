@@ -32,6 +32,7 @@ useEffect(()=>{
          dispatch(infoUser({uid:uid ,email:email,displayName:displayName}))
          setUser(false)
          dispatch(loadingState(null))
+        
           // ...
         } else {
           // User is signed out
@@ -44,11 +45,11 @@ useEffect(()=>{
 },[])
 
 
-
+// <div className="bg-red-700  text-xs">{selectLoadingValue===true?"logging will be start... if you used email login must verified first and if you have already done wait..":""}</div>
     return(
         <>
-      
-    <div className="bg-red-700 text-xs">{selectLoadingValue===true?"logging will be start... if you used email login must verified first and if you have already done wait..":""}</div>
+         
+
         <div className="">
       
 <div className=""><Header /></div>
@@ -62,6 +63,9 @@ useEffect(()=>{
    selector == null ?<div className="visible"><Sign/></div>  :<div className="hidden"><Sign/></div>
    }    
     </div>
+    <div className="bg-green-500  text-xs">{selectLoadingValue===true?"logging will be start... if you used email login must verified first and if you have already done wait..":""}</div>
+
+
 
 
     <div className="pt-36 sm:pt-48 " >

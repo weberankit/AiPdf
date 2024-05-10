@@ -13,17 +13,20 @@ import ResetEmailPassword from "./ResetEmailPassword"
 
 import { loginMsg } from "../utils/ErrorSlice";
 import { sendEmailVerification} from "firebase/auth";
-
+import {Link} from "react-router-dom"
 import Footer from "./Footer";
 const Sign=()=>{
 
 
 const selectMsgLoginEmail=useSelector((store)=>store.ErrorSliced.loginEmailMsg)
-console.log(selectMsgLoginEmail)
+   //here  login page will be refresh when click on reset  as firebase  need to refresh after email address validation
+   //so using the selecttoggleonclickreset for that 
+const selectoggleOnclickOfReset=useSelector((store)=>store.ErrorSliced.restPasswordToogle)
+console.log(selectoggleOnclickOfReset,selectMsgLoginEmail)
     const dispatch=useDispatch()
     const auth = getAuth();
     //intial-false
-const [isLogin, setLogin]=useState(true)
+const [isLogin, setLogin]=useState(false) 
  const [errorMsg, setErrorMsg] = useState("")
 const email=useRef(null)
 const password=useRef(null)
@@ -31,6 +34,10 @@ const password=useRef(null)
 const fullName=useRef(null)
 const [toogle,setToogle] =useState(false)
 const [showForm,setForm]=useState(false)
+   //not using set error as it is in red colour so generally observer user panic on first
+      //view so using setInform
+const [informUser ,setInform] =useState(false)
+
 const handleSignin=()=>{
     setLogin(!isLogin)
 }
@@ -77,6 +84,8 @@ if(user.emailVerified === true){
    //hide login msg after link click on page refresh 
    setErrorMsg(null)
      dispatch(loginMsg())
+     //hide password
+     setForm(true)
     dispatch(infoUser({uid:uid ,email:email,displayName:displayName}))
   }
   }).catch((error) => {
@@ -115,8 +124,17 @@ setErrorMsg("Error:please check login credintials"+" "+error)
       // Signed in 
       const user = userCredential?.user;
       // ...
-     setErrorMsg("wait for a seconds, if you have used email/password login please first verify on email, ignore if already done")
-      console.log("working")
+     setForm(true)
+      //not using set error as it is in red colour so generally observer user panic on first
+      //view so using setInform
+     setErrorMsg(null)
+     //only show messgae when user email is not verified or user data is logged in suggestim him for forgot password
+     !selectoggleOnclickOfReset && setInform("THIS IS NOT A ERROR message JUST INFORMING YOU , wait for a second and if you have used email/password login please first verify on email, ignore if already done and If login not happening then it means  email is already used so please click on the Forgot Password  or simply use continue with google")
+  //after click on rset password preloading effect uses
+     selectoggleOnclickOfReset && setInform("wait...")
+     //refersh page after click on reset btn as page need to be refresh as firebase needed it.
+    selectoggleOnclickOfReset && window.location.reload() 
+     console.log("working")
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -146,7 +164,7 @@ const handleLoginGoogle=()=>{
      
      // const errorMessage = error.message;
     
-    setErrorMsg(error+"please check something went wrong(please check your account in browser / otherwise Use email&password login)")
+    setErrorMsg(error+" " +"please check something went wrong(please check your account in browser / otherwise Use email&password login)")
     });
 }
 
@@ -155,15 +173,18 @@ const handleLoginGoogle=()=>{
 
 function scrollToElement(id){
   const element=document.getElementById(id)
- element.scrollIntoView({ behavior: 'smooth' })
-
-
+// element.scrollIntoView({ behavior: 'smooth' ,block: 'start'})
+//element.getBoundingClientRect().top with window.pageYOffset,  get the total vertical offset of the element
+// from the top of the document.
+ const offsetTop = element.getBoundingClientRect().top + window.pageYOffset;
+ const scrollFactor = 1.5;
+ window.scrollTo({ top: offsetTop/scrollFactor, behavior: 'smooth' });
 }
 //here we send data for checking email not password as reset password so bypass paswword
 
 
 const fileSlide=['<img src="upload.svg" alt="file image"></img>' ]
-console.log(showForm)
+//console.log(showForm)
 
 
 
@@ -175,8 +196,8 @@ console.log(showForm)
  return(
 <>
 
-<div className=" bg-black  border-b-white  mt-0 p-3  w-auto  md:w-full text-sm font-bold fixed  block text-white pb-1 z-50">To upload a PDF, it is important to provide your email so that we can save your PDF with your email ID. 
-This way, you can access it from any device using the same email ID  <button id="signInButton" className={'bg-red-700 text-white hover:bg-black font-bold p-2 rounded-md animate-pulse mt-1 md:mt-0 ' } onClick={()=>scrollToElement("signin")}>signIn ⬇</button></div>
+<div className=" bg-black  border-b-white  mt-0 p-3  w-auto  md:w-full text-xs sm:text-sm font-bold fixed  block text-white pb-1 z-50">To upload a PDF, it is important to provide your email so that we can save your PDF with your email ID. 
+This way, you can access it from any device using the same email ID  <button id="signInButton" className={'bg-red-700 text-white hover:bg-black focus:bg-black font-bold p-2 py-1 rounded-md animate-pulse mt-1 md:mt-0 ' } onClick={()=>scrollToElement("signin")}>signIn ⬇</button></div>
   <div className="">
   <div className="flex flex-col" >
 
@@ -210,17 +231,18 @@ This way, you can access it from any device using the same email ID  <button id=
 
 </div>
 
-<h1  className="text-center font-bold text-black p-2 pb-0">SIGN IN  </h1>
+<h1  className="text-center font-bold text-black p-2 pb-0"id="signin">SIGN IN  </h1>
 <p className="text-center font-bold text-red-700 p-1 ">{errorMsg}</p>
-<div className="flex flex-col md:flex-row justify-center mt-6 md:mt-12 mb-6 md:mb-12  " id="signin">
+<p className="text-center font-bold text-green-500 text-sm  p-1 ">{informUser}</p>
+<div className="flex flex-col md:flex-row justify-center mt-6 md:mt-12 mb-6 md:mb-12  " >
 <form onSubmit={(e)=>e.preventDefault()}>
   
 <div className="flex flex-col  p-4 relative">
- {selectMsgLoginEmail && <p className="bg-blue-800 p-1 text-center absolute left-0 right-0 text-white font-semibold  text-sm top-[-30px]  md:top-[-42px]  rounded-lg">check your email id & verify it and after that <a className="text-black" href="">click here</a> </p>}
+ {selectMsgLoginEmail && <p className="bg-blue-800 p-1 text-center absolute left-0 right-0 text-white font-semibold  text-sm top-[-30px]  md:top-[-42px]  rounded-lg">check your email id & verify it and after that <a className="text-black" href="">click here</a></p>}
 
-{isLogin && <input className="w-64  md:m-2 border border-black rounded-md p-2 m-auto" type="name" ref={fullName} placeholder="name"></input>} 
- <input ref={email} className="w-64 rounded-md mt-1 mb-1 md:m-2 border border-black p-2 m-auto" type="email" placeholder="Email id"></input>
- { <input  className="w-64 rounded-md md:m-2 border border-black p-2 m-auto " ref={password}  placeholder="create password"></input>}
+{isLogin && <input className="w-64  md:m-2 border border-black rounded-md p-2 m-auto" type="name" name="username" ref={fullName} placeholder="name"></input>} 
+ <input ref={email} className="w-64 rounded-md mt-1 mb-1 md:m-2 border border-black p-2 m-auto" type="email" name="email" placeholder="Email id"></input>
+ {<div className="w-64 m-auto border border-black rounded-md py-2 sm:py-0"> <input  className=" w-[14rem] md:w-[13rem]  md:m-2  m-auto outline-none" ref={password} type={showForm?"text":"password"} placeholder=" password"></input> <span className="cursor-pointer" onClick={()=>setForm(!showForm)}> {showForm?"🙉":"🙈"}</span></div>}
  { /*isLogin && <input  className="w-64 rounded-md md:m-2 border border-black p-2 m-auto " ref={reEnter}  placeholder="ReEnter password"></input>*/ }
  </div>
  <div className="flex flex-row  justify-center ">
@@ -230,7 +252,7 @@ This way, you can access it from any device using the same email ID  <button id=
 }
 
 </div>
-{!isLogin&& <p className="text-center p-2 m-1 text-sm underline hover:cursor-pointer" onClick={()=>setForm(true)}>{"Forgot Password"} </p>}
+{!isLogin&& <Link to={"/reset"}><p className="text-center p-2 m-1 text-sm underline hover:cursor-pointer" >{"Forgot Password"} </p></Link> }
 
 
 </form>
@@ -253,7 +275,7 @@ This way, you can access it from any device using the same email ID  <button id=
 
 </div>
 </div>
-{showForm && <div><ResetEmailPassword auths={auth} setForm={setForm}/></div>}
+
 </>
 
  )

@@ -13,7 +13,7 @@ import {lazy,Suspense} from "react"
 import DicctKeyStep from "./components/DicctKeyStep";
 import Error from "./components/Error";
 import useCheckOnline from "./utils/useCheckOnline";
-
+import ResetEmailPassword from "./components/ResetEmailPassword";
   const StepsAi=lazy(()=>import("./components/AiKeyCreateStep"))
  const StepDict=lazy(()=>import("./components/DicctKeyStep"))
 const App = () => {
@@ -50,7 +50,12 @@ element:(  <Suspense fallback={<h1>loading....please wait</h1>}><StepsAi/></Susp
 {
   path:"dictKey",
   element:(<Suspense fallback={<h1>loading....please wait</h1>}><StepDict/></Suspense>)
-}
+},
+
+,{
+  path:"/reset",
+  element:<ResetEmailPassword/> 
+},
 ])
 
 

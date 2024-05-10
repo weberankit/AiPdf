@@ -15,7 +15,8 @@ import ShowSimplePdf from "./ShowSimplePdf";
 import GetFilesFireBase from "./GetFilesFireBase";
 import { textFile } from "../utils/userSlice";
 import AiComponents from "./AiComponents";
-import ReactToPrint from "react-to-print";
+//import ReactToPrint from "react-to-print";
+import { addUrlAdvPdf, addUrlPdf } from "../utils/useStoreDataSlice";
 //import ToShowSimplePdf from "./ToShowSimplePdf";
 import "../App.css"
 //import PrintComponent from "./ToShowSimplePdf";
@@ -30,16 +31,18 @@ const FileDisplay=()=>{
  const textShow=useSelector((store)=> store.userInformation.textGrab)
 const dispatch=useDispatch()
 const slectfileMeta=useSelector((store)=>store.fileInformation.file)
-const [url,setUrl]=useState("")
-const [proUrl,setProUrl]=useState("") 
+//const [url,setUrl]=useState("")
+//const [proUrl,setProUrl]=useState("") 
 const storage = getStorage();
 const [msg,SetMsg] =useState(null)
 const [sideBarShow , setSideBarShow]=useState(null)
 //toget name and pass for print function
 const [printFileName ,setPrintFileName] =useState("your highlighted Text")
 //to grab words from pdf while selecting
-
-
+const selectPdfUrl=useSelector((store)=>store.useDataSlice.pdfUrl)
+console.log(selectPdfUrl)
+const selectAdvPdfUrl=useSelector((store)=>store.useDataSlice.advPdfUrl)
+console.log(selectAdvPdfUrl)
 SelectionWord(setSideBarShow)
 console.log(sideBarShow,"sidebar")
 
@@ -56,8 +59,8 @@ console.log(sideBarShow,"sidebar")
 
 
         <div  >
-      {url &&  <button className="bg-black font-semibold text-white p-1 rounded-lg top-[200px] md:top-[100px] text-[11px] md:text-base fixed md:left-[13rem] z-[50]" onClick={()=>setUrl(null)}>Close pdf</button>}
- <div >   { url&& <ShowSimplePdf data={url} printfileName={printFileName}/>} </div> 
+      {selectPdfUrl &&  <button className="bg-black font-semibold text-white p-1 rounded-lg top-[200px] md:top-[100px] text-[11px] md:text-base fixed md:left-[13rem] z-[50]" onClick={()=>dispatch(addUrlPdf(null))}>Close pdf</button>}
+ <div >   { selectPdfUrl&& <ShowSimplePdf data={selectPdfUrl} printfileName={printFileName}/>} </div> 
    
 </div>
 
@@ -65,10 +68,10 @@ console.log(sideBarShow,"sidebar")
 
 
 <div className="text-center ">
- {proUrl&& <button className="bg-red-600 text-white p-2 rounded-sm text-center" onClick={()=>setProUrl(null)}>close file</button>}
- {proUrl && <div className="font-semibold text-xs select-none">As this is a free trial version so if you get session timeout then refresh the page  </div>}
+ {selectAdvPdfUrl&& <button className="bg-red-600 text-white p-2 rounded-sm text-center" onClick={()=>dispatch(addUrlAdvPdf(null))}>close file</button>}
+ {selectAdvPdfUrl && <div className="font-semibold text-xs select-none">As this is a free trial version so if you get session timeout then refresh the page  </div>}
 {
-proUrl &&  <ShowPdf data={proUrl}/>
+selectAdvPdfUrl &&  <ShowPdf data={selectAdvPdfUrl}/>
 }
 </div>
 
@@ -85,10 +88,10 @@ proUrl &&  <ShowPdf data={proUrl}/>
               <GetFilesFireBase slectfileMeta={slectfileMeta}
                                  
                                 SetMsg={SetMsg}
-                                setUrl={setUrl}
-                                setProUrl={setProUrl}
+                               // setUrl={setUrl}
+                               // setProUrl={setProUrl}
                                 //setGrab={grab}
-                                myurl={url}
+                              //  myurl={selectPdfUrl}
                                 setPrintFileName={setPrintFileName}
               />
           

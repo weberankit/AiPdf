@@ -7,7 +7,8 @@ const ErrorSlice=createSlice({
         loginEmailMsg:false,
         firebaseError:null,
         sendDataMsg:null,
-        searchMsg:null
+        searchMsg:null,
+        restPasswordToogle:null
       
     },
     reducers:{
@@ -25,9 +26,12 @@ const ErrorSlice=createSlice({
     } ,
     addSearchMsg:(state,action)=>{
         state.searchMsg=action.payload
+    },
+    reset:(state,action)=>{
+        state.restPasswordToogle=action.payload
     }
 
     }
 })
 export default ErrorSlice.reducer
-export const {gptError,loginMsg,fireBaseErr,sendDataMail,addSearchMsg}=ErrorSlice.actions
+export const {gptError,loginMsg,fireBaseErr,sendDataMail,addSearchMsg,reset}=ErrorSlice.actions
