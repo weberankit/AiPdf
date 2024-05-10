@@ -5,12 +5,24 @@ import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 import { getDatabase } from "firebase/database";
-
+const process={env:"AIzaSyADqvuE0vS55AbgnNu-A7TX51WfMXS1nfw"}
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+//"AIzaSyADqvuE0vS55AbgnNu-A7TX51WfMXS1nfw"
+
+
+
+
+
+
+
+
+
+
+
 
 export const firebaseConfig = {
-  apiKey:"AIzaSyADqvuE0vS55AbgnNu-A7TX51WfMXS1nfw",
+  apiKey:process.env,
   authDomain:"aipdf-375e4.firebaseapp.com" ,
   projectId: "aipdf-375e4",
   storageBucket: "aipdf-375e4.appspot.com",

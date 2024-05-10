@@ -6,8 +6,17 @@ import { textFile } from "../utils/userSlice";
 import { PDFDownloadLink, Document, Page } from '@react-pdf/renderer';
 import DisplaySimplePdf from "./DisplaySimplePdf"
 import ShowSimplePdf from "./ShowSimplePdf"
-import {useState} from "react"
+import {useState,useEffect} from "react"
 import {addUrlAdvPdf, addUrlPdf} from "../utils/useStoreDataSlice"
+import Joyride from 'react-joyride'; // Import Joyride
+//import tourSteps from "../utils/tourSteps"
+import {SecondTourSteps} from "../utils/tourSteps"
+
+
+
+
+
+
 
 const GetFilesFireBase=({slectfileMeta,SetMsg ,setPrintFileName})=>{
 const textAlertMsg="Please Download pdf after HighLight and don't refresh/close (as highlight lost) Because USING TRIAL VERSION"
@@ -125,11 +134,41 @@ function handleDelete(path){
   }
 
 //console.log("myurl",myurl)
+/**/
+
+const [lastStep,setLastStep] =useState(false)
+useEffect(()=>{
+  let tourSecond=localStorage.getItem("SecondtourCompleted")
+  if(!tourSecond){
+    if(slectfileMeta){
+  setLastStep(true)
+}
+  }
+
+},[])
+
+
+const handleTourComplete = () => {
+  // Set a flag in local storage indicating that the tour has been completed
+  localStorage.setItem('SecondtourCompleted', 'true');
+//  alert("j")
+};
 
     return(
       <>
+    {lastStep  && <Joyride 
+          steps={SecondTourSteps} 
+          continuous={true}
+           //showProgress={true}
+            showSkipButton={true}
+             run={lastStep}
+             callback={handleTourComplete} // Set a callback to mark tour as completed
+             
+             />}
+<div className="step-1"></div>
+
     {deleteIndication &&  <div className="text-center  text-red-600 bg-black w-1/2 m-auto rounded-md  text-sm animate-pulse fixed  left-0 right-0">{deleteIndication}</div>}
-        <div  className="w-2/3 m-auto" > 
+        <div  className="w-2/3 m-auto  " > 
         {
 slectfileMeta && slectfileMeta.map((item)=>{
 //  console.log(item,item._location.path )
@@ -143,7 +182,12 @@ slectfileMeta && slectfileMeta.map((item)=>{
 
   return(
   <>
-  <div key={textFileidentify+Date.now()+9} className="p-4 flex flex-row justify-between border  mb-14">
+
+
+
+
+
+  <div key={textFileidentify+Date.now()+9} className=" p-4 flex flex-row justify-between border  mb-14">
 
 <div className="w-1/2">
 <div className="w-[3.4rem] md:w-14">
@@ -152,7 +196,7 @@ slectfileMeta && slectfileMeta.map((item)=>{
 </div>
 
 
-    <div className="w-1/2">
+    <div className={`w-1/2 `}>
 
  <div >
 

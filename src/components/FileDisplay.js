@@ -88,6 +88,7 @@ selectAdvPdfUrl &&  <ShowPdf data={selectAdvPdfUrl}/>
               <GetFilesFireBase slectfileMeta={slectfileMeta}
                                  
                                 SetMsg={SetMsg}
+                              
                                // setUrl={setUrl}
                                // setProUrl={setProUrl}
                                 //setGrab={grab}

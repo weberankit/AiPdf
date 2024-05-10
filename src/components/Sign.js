@@ -197,17 +197,17 @@ const fileSlide=['<img src="upload.svg" alt="file image"></img>' ]
 <>
 
 <div className=" bg-black  border-b-white  mt-0 p-3  w-auto  md:w-full text-xs sm:text-sm font-bold fixed  block text-white pb-1 z-50">To upload a PDF, it is important to provide your email so that we can save your PDF with your email ID. 
-This way, you can access it from any device using the same email ID  <button id="signInButton" className={'bg-red-700 text-white hover:bg-black focus:bg-black font-bold p-2 py-1 rounded-md animate-pulse mt-1 md:mt-0 ' } onClick={()=>scrollToElement("signin")}>signIn ⬇</button></div>
+This way, you can access it from any device using the same email ID  <button id="signInButton" className={'bg-red-700 text-white hover:bg-black focus:bg-black font-bold p-2 py-1 rounded-md animate-pulse mt-1 md:mt-0 ' } onClick={()=>scrollToElement("signin")}>SignIn ⬇</button></div>
   <div className="">
   <div className="flex flex-col" >
 
 <div className="p-10 flex flex-col md:flex-row">
 <div className="p-4 w-full md:w-1/2 mt-10 text-sm flex flex-col">
 <h1 className=" text-6xl md:text-7xl  lg:text-9xl text-red-600 pt-20 md:pt-5 p-5  italic pb-7">  AiPDF</h1>
-
+<span className="font-bold aniamte-pulse">AI-Summarization , Dictionary and Translate  by selecting text</span>
   <div className="p-2 rounded-lg mb-1 inline-block text-white text-xl md:text-3xl ">👩<em className="text-xs bg-black p-1 md:p-2 rounded-lg">What makes this PDF reader unique?</em></div>
   <div className="text-white rounded-lg ml-14 inline-block text-xl md:text-4xl m-1">👲<em className=" md:boxShadow text-xs bg-white text-black font-bold rounded-lg p-1 md:p-2">just select text ,it provides text summarization.its 100% free (no conditions applied) </em></div>
-<button className="font-bold text-black p-1 md:p-2 m-1 block animate-pulse" onClick={()=>setToogle(!toogle)}>{toogle?"Hide":"show more"}</button>
+<button className="font-bold text-black p-1 md:p-2 m-1 block animate-bounce hover:animate-none" onClick={()=>setToogle(!toogle)}>{toogle?"Hide":"show more"}</button>
  { toogle &&<>
   <p className="p-2 rounded-lg mb-1 inline-block text-white text-xl md:text-3xl">👩 <em className="text-xs bg-black p-1 md:p-2 rounded-lg">oh really! How is that possible? .</em></p>
   <p className="text-white rounded-lg ml-14 inline-block text-xl md:text-4xl m-1">👲<em className=" md:boxShadow text-xs bg-white text-black font-bold rounded-lg p-1 md:p-2 ">Let me explain. For example, if you're stuck on any line or paragraph, you can get a summary directly. Moreover, you can ask deeper questions using Gemini AI.</em></p>

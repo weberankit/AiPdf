@@ -153,6 +153,8 @@ function handleClear(){
   if(window.confirm("this will clear all of the highlights from all of your file so recommend to use button clear the Highlight DO YOU WANT TO clear ALL HIGHLIGHTS FROM ALL OF YOUR FILES")){
   localStorage.clear()
   setErrorMessage(null)
+  localStorage.setItem('tourCompleted', 'true');
+  localStorage.setItem('SecondtourCompleted', 'true');
   }else{
     console.log("not deleted")
   }
