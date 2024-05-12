@@ -29,7 +29,7 @@ sendData("AiSearch-of-all-data-right-now-seesion", selectgeminiResponse,selectUs
     <Link to={"/setting"} className="text-blue-800 " > <div className=" inline-block animate-bounce hover:animate-none">setting</div></Link> </div> : "" }
 {selectSendDataMsg&&<div className="text-center text-md text-green-700 z-[2000] font-bold bg-[black] top-0  fixed  w-full  inline-block m-auto">{selectSendDataMsg}<button className='bg-white text-black p-2 rounded-md  m-1 text-sm' onClick={()=>dispatch(sendDataMail(null))}>close</button> </div>}
 </div>
-     <div className = "bg-black text-white  fixed right-0 z-50  " style={styles}>
+     <div className = "boxBg text-white  fixed right-0 z-50  " style={styles}>
       <div className="overflow-scroll  h-96 ">
 
       <div className=" flex flex-row fixed bg-black">

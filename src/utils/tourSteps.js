@@ -13,7 +13,7 @@ const tourSteps = [
     // Add more steps as needed
     {
       target: '.step-3',
-      content: 'For more details on how to use this web app, click on this instruction pdf.',
+      content: 'For more details on how to use this web app, click on this .',
       disableBeacon: true,
     },
    
@@ -26,7 +26,8 @@ const tourSteps = [
 export  const SecondTourSteps = [
   {
     target: '.step-1',
-    content: 'Here your uploaded file will be appear, and there are two options to open a pdf. Use any, and after selecting text, three options will be visible, i.e., Ai, Dictionary/D, Translate/T. Click on any to search for data.------ ----- Select text, click on any three options, and get your doubt solved.------------',
+    content: `Here, your uploaded file will appear, and there are two options to open a pdf. Use any, and after selecting text, three options will be visible, i.e., AI, Dictionary/D, Translate/T. Click on any to get your doubt solved.
+When you get a result after clicking on buttons, i.e., AI or Dictionary, you can now send all answers to your query by just clicking on the send button, and also, in the Pro Pdf viewer, you can download your highlighted text.`,
     disableBeacon: true,
   },
  

@@ -68,7 +68,7 @@ const handleTourComplete = () => {
 
 // <div className="bg-red-700  text-xs">{selectLoadingValue===true?"logging will be start... if you used email login must verified first and if you have already done wait..":""}</div>
     return(
-        <>
+        <div className="uploadBg">
           {onBoardStep  && <Joyride 
           steps={tourSteps} 
           continuous={true}
@@ -89,7 +89,7 @@ const handleTourComplete = () => {
       //here in classname hiding sign 
     }  
    {
-   selector == null ?<div className="visible"><Sign/></div>  :<div className="hidden"><Sign/></div>
+   selector == null ?<div className="visible signBg"><Sign/></div>  :<div className="hidden"><Sign/></div>
    }    
     </div>
     <div className="bg-green-500  text-xs">{selectLoadingValue===true?"logging will be start... if you used email login must verified first and if you have already done wait..":""}</div>
@@ -106,7 +106,7 @@ const handleTourComplete = () => {
         </div>
 
         <Footer/>
-        </>
+        </div>
     )
 }
 export default Body

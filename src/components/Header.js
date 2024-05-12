@@ -61,12 +61,12 @@ window.addEventListener("resize",()=>{
        </Link>
      { iconToggle && <div onClick={()=>setNavIcon(!navIcon)}> {navIcon?<div className="w-8 p-1 m-1 absolute right-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="red" d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"/></svg></div>:<div className="w-8 p-1 m-1 absolute right-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></div>} </div> }
 
-<div  className={`z-[100] text-md  text-black  md:flex w-2/3  bg-red-600 justify-between p-2 items-center md:flex-row  ${navIcon ? "flex flex-col fixed top-0  left-0 h-48 " : "hidden"} `} >
+<div  className={`z-[100] text-md  text-black  md:flex w-2/3  headerBg justify-between p-2 items-center md:flex-row  ${navIcon ? "flex flex-col fixed top-0  left-0 h-48 " : "hidden"} `} >
 
-    <Link className={stepClass}  to={"/cart"}><div  className={userPath.pathname === "/cart" ? "text-white":" " }>FilesCart</div> </Link>
-<Link to={"/setting"}><div className={userPath.pathname === "/setting" ? "text-white":" "}>Setting</div></Link>
+    <Link  className={` ${stepClass}  hover:text-gray-600`}  to={"/cart"}><div  className={userPath.pathname === "/cart" ? "text-white":" " } >FilesCart</div> </Link>
+<Link to={"/setting"} className="hover:text-gray-600"><div className={userPath.pathname === "/setting" ? "text-white":" "}>Setting</div></Link>
     <div className="select-none parent">{selector.displayName} <p className="text-xs absolute element bg-black p-1 rounded-xl">{selector?.email}</p></div>
-    <p className="hover:text-white hover:cursor-pointer" onClick={logout}>Logout</p>
+    <p className="hover:text-gray-600 hover:cursor-pointer" onClick={logout}>Logout</p>
 </div>
 
 </div>

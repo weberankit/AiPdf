@@ -140,9 +140,9 @@ const [lastStep,setLastStep] =useState(false)
 useEffect(()=>{
   let tourSecond=localStorage.getItem("SecondtourCompleted")
   if(!tourSecond){
-    if(slectfileMeta){
+   // if(slectfileMeta){}
   setLastStep(true)
-}
+
   }
 
 },[])
@@ -156,7 +156,7 @@ const handleTourComplete = () => {
 
     return(
       <>
-    {lastStep  && <Joyride 
+    {lastStep &&<Joyride 
           steps={SecondTourSteps} 
           continuous={true}
            //showProgress={true}

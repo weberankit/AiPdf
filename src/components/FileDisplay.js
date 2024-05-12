@@ -59,7 +59,7 @@ console.log(sideBarShow,"sidebar")
 
 
         <div  >
-      {selectPdfUrl &&  <button className="bg-black font-semibold text-white p-1 rounded-lg top-[200px] md:top-[100px] text-[11px] md:text-base fixed md:left-[13rem] z-[50]" onClick={()=>dispatch(addUrlPdf(null))}>Close pdf</button>}
+      {selectPdfUrl &&  <button className="bg-red-600 font-semibold text-white p-1 rounded-lg top-[100px] text-[11px] md:text-base fixed left-1 z-[50]" onClick={()=>dispatch(addUrlPdf(null))}>Close pdf</button>}
  <div >   { selectPdfUrl&& <ShowSimplePdf data={selectPdfUrl} printfileName={printFileName}/>} </div> 
    
 </div>

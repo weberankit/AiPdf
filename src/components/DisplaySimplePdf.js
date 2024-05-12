@@ -2,23 +2,79 @@
 
 
 import { PdfLoader, PdfHighlighter, Tip, Highlight, AreaHighlight, Popup } from 'react-pdf-highlighter';
-import { Document} from '@react-pdf/renderer';
+import { Document,Page} from '@react-pdf/renderer';
+ 
 
+
+// Import styles
+//import '@react-pdf-viewer/page-navigation/lib/styles/index.css';
+
+import {useRef} from "react"
 
 
 const DisplaySimplePdf=({deleteHighlight,data,pdfHighlighter,handleLocalStorageError,clearLocalStorage,HighlightPopup,addHighlight,updateHighlight,highlights})=>{
-   
+ // const [numPages, setNumPages] = useState(null);
 
+
+  // console.log(numPages,"this is page no")
+
+/*futher we will add this features also
+   let scrollInterval;
+
+   function handleScroll() {
+     console.log("Scrolling...");
+     const divd = document.querySelector(".PdfHighlighter");
+     console.log(divd, "get the div");
    
+     // Start scrolling continuously
+     scrollInterval = setInterval(() => {
+       divd.scrollTop -= 50; // Adjust scrolling speed as needed
+     }, 100); // Adjust the interval for smoother scrolling
+   
+     // Stop scrolling when the button is released
+     window.addEventListener("mouseup", () => {
+       clearInterval(scrollInterval);
+     });
+   }  <button onClick={()=>handleScroll()}>manin</button> */
+
+const pageInput=useRef()
+
+   function scrollToPage() {
+    const pageElement = document.querySelector(`.page[data-page-number="${pageInput.current.value.trim()}"] `);
+    
+    if (pageElement) {
+      pageElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+    //  console.log(`Page ${pageNumber} not found.`);
+      alert("please provide correct page no ")
+    }
+  }
+  //scrollToPage(2); // Scrolls to page with data-page-number="2"
+  //scrollToPage(100003); // Scrolls to page with data-page-number="3"
+
+
+
+
     return(
 
+<>
+
+<div className=" fixed z-[99] left-14 top-4  m-2 ">
+<form onSubmit={(e)=>e.preventDefault()}>
+  <input className="w-11 border border-black m-1  p-2 rounded-lg text-xs" placeholder="pageNo" ref={pageInput}></input>
+<button onClick={()=>scrollToPage() } className="text-white bg-black rounded-lg p-2 m-1 hover:bg-yellow-500">page</button>
+</form>
+</div>
 <Document  >
 
     <div className="App" style={{ display: "flex", height: "100vh"  }}>
     
    
 
-      <PdfLoader url={data} beforeLoad={<div>Loading...</div>}>
+      <PdfLoader url={data} beforeLoad={<div className='text-center font-bold  w-full m-auto'>Loading...</div>}
+      //onLoadSuccess={(pdf) => setNumPages(pdf.numPages)}
+   
+      >
         {pdfDocument => (
           <PdfHighlighter
             pdfDocument={pdfDocument}
@@ -94,10 +150,11 @@ const DisplaySimplePdf=({deleteHighlight,data,pdfHighlighter,handleLocalStorageE
      
    
     </div>
-   
+    <Page  pageNumber={5} />
     </Document>
 
 
+    </>
 
 
     )

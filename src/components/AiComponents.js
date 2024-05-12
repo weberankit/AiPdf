@@ -66,9 +66,9 @@ useEffect(()=>{
      position: 'fixed',
      width: `${width}%`,
    // height: `${height}px`,
-
+    // className:"boxBg",
        ["maxWidth"] : "97%" ,
-     backgroundColor: '#FFC72C',
+     //backgroundColor: '#FFC72C',
      fontSize:`${fontValue.current}px`,
      transition: 'all 0.3s ease',
      borderRadius:"10px"
@@ -88,12 +88,12 @@ function handleTransActions(){
     forDispatch(gptValue,false,dicitValue,false);dispatch(translateValue(true))
 }
 
-
+//top-15
     return(
 <>
-
+   
     <Draggable>
-<div className="flex flex-col  top-15 bg-black text-white rounded-md  fixed ml-1 p-2 animate-pulse hover:animate-none z-50  md:z-[120]"  >
+<div className="aicompo flex flex-col  top-40 left-6 md:left-8  text-white rounded-md  fixed ml-1 p-2 z-50  md:z-[120]"  >
 
     <button className="hover:bg-red-600 hover:text-white rounded-sm" onTouchStart={() => handleAiActions()} onClick={()=>handleAiActions()}>Ai</button>
     <button className="hover:bg-red-600 hover:text-white p-1 rounded-sm" onTouchStart={()=>handleDictActions()}    onClick={()=>handleDictActions()}>D<span className={valueToHideText}>ictionary</span> </button>
@@ -105,7 +105,7 @@ function handleTransActions(){
 </Draggable>
 
 
-     <div >
+     <div >  
 
 
  <div className="" > {selectGpt===true ? <><GptText styles={divStyle} /></>:" "}</div>
