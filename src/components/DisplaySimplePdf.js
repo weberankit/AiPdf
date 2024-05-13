@@ -61,7 +61,7 @@ const pageInput=useRef()
 
 <div className=" fixed z-[99] left-14 top-4  m-2 ">
 <form onSubmit={(e)=>e.preventDefault()}>
-  <input className="w-11 border border-black m-1  p-2 rounded-lg text-xs" placeholder="pageNo" ref={pageInput}></input>
+  <input className="w-11 border border-black m-1  p-2 rounded-lg text-xs" placeholder="1" ref={pageInput}></input>
 <button onClick={()=>scrollToPage() } className="text-white bg-black rounded-lg p-2 m-1 hover:bg-yellow-500">page</button>
 </form>
 </div>

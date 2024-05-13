@@ -37,14 +37,14 @@ const dispatch=useDispatch()
       dispatch(textFile(text));
   
     } catch (error) {
-      console.error('Error fetching file:');
+     // console.error('Error fetching file:');
     }
   }
    
   function handlePdf(path){
       getDownloadURL(ref(storage, path))
     .then((url) => {
-      console.log(url) 
+     // console.log(url) 
    //setDispatch(url)
    dispatch(addUrlPdf(url))
     
@@ -59,7 +59,7 @@ const dispatch=useDispatch()
   function handleAdvPdf(path ){
     getDownloadURL(ref(storage, path))
   .then((url) => {
-    console.log(url) 
+    //console.log(url) 
  dispatch(addUrlAdvPdf(url))
  
     SetMsg(null)

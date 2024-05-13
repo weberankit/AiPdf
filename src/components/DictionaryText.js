@@ -29,7 +29,7 @@ const DictionaryText=({styles})=>{
    if(!targetLang){
     targetLang='hi'
    }*/
-   console.log(sourceLang)
+  // console.log(sourceLang)
 
    const [toogleLang ,setToogleLang]=useState(false)
    
@@ -39,7 +39,7 @@ const DictionaryText=({styles})=>{
    const selectUserEmail=useSelector((store)=>store.userInformation.value?.email)
    const selectDictAllDataTosendEmail=useSelector((store)=>store.useDataSlice.dictiDataTosendMail)
    useDictionary(selectDic,setApiData,sourceLang,targetLang)
-console.log(dataApi)
+//console.log(dataApi)
  // State variables for width, height, and text
  /*
  const [width, setWidth] = useState("auto");

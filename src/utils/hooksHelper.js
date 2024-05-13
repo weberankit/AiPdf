@@ -44,7 +44,7 @@ export    function call(storage,directoryPath,dispatch,addFile,SetMsg,fireBaseEr
               const pdfFiles = res.items.filter((item) => item.name.endsWith('.pdf') || item.name.endsWith('.txt'));
               console.log(pdfFiles,"pdfFiles")
                dispatch(addFile(pdfFiles))
-       pdfFiles.length===0?SetMsg("your have not uploaded any file use correct login id"):SetMsg(null)
+       pdfFiles.length===0?SetMsg("your have not uploaded any file ,use correct login id"):SetMsg(null)
               //setPdfFiles(pdfFiles);
             //  console.log(pdfFiles)
          
@@ -55,7 +55,7 @@ export    function call(storage,directoryPath,dispatch,addFile,SetMsg,fireBaseEr
               console.error('Error getting PDF files:', error);
             //  SetMsg("sorry not getting your details from firebase")
             if(fireBaseErr){
-               dispatch(fireBaseErr("sorry not getting your details from firebase"))
+               dispatch(fireBaseErr("sorry not getting your details, checck your internet"))
             }
            
             

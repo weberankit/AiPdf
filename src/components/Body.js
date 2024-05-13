@@ -21,7 +21,7 @@ const Body=()=>{
    const [user , setUser] = useState(true) 
    const selector=useSelector((store)=>store.userInformation.value)
    const selectLoadingValue=useSelector((store)=>store.userInformation.preLoading)
-  console.log(selector)
+  //console.log(selector)
   
     const auth = getAuth();
    const navigate=useNavigate()

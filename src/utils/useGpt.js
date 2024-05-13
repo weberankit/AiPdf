@@ -6,7 +6,7 @@ import { gptError } from "./ErrorSlice";
 import { addSearchMsg } from "./ErrorSlice";
   const useGpt=(compoValue)=>{
  
-
+//alert("jj")
 
 const selectKeyGPT=useSelector((store)=>store.userskey?.keyGPT?.gpt)
 console.log(selectKeyGPT)
@@ -22,6 +22,7 @@ console.log(textGrab)
 const userAsk=useSelector((store)=>store.giminiRes?.userQuery)
 console.log(userAsk)
  async function run() {
+ 
 if(compoValue === true && textGrab){
   dispatch(addSearchMsg("searching start..."))
   try{
@@ -55,7 +56,9 @@ if(compoValue === true && textGrab){
 
 
  useEffect(()=>{
+ // alert("pk")
 if(selectKeyGPT){
+ // alert("tk")
 run();
 }
 

@@ -8,11 +8,11 @@ const GeminiResponse=()=>{
     const selectSearchMsg=useSelector((store)=>store.ErrorSliced.searchMsg)
 
 const selectgeminiResponse=useSelector((store)=>store.giminiRes.responseArray)
-console.log(selectgeminiResponse)
+//console.log(selectgeminiResponse)
 const selectGeminiError=useSelector((store)=>store.ErrorSliced?.gptResponseError)
-console.log(selectGeminiError)
+//console.log(selectGeminiError)
 const [userInput,setuser]=useState()
-console.log(userInput)
+//console.log(userInput)
 function handleClick(){
     if(!userInput?.trim()){
       alert("please provide")

@@ -8,8 +8,8 @@ const selectSearchMsg=useSelector((store)=>store.ErrorSliced.searchMsg)
 const selectRespDict=useSelector((store)=>store.aiRespond?.dataDictRes)
 //console.log(selectRespDict)
 const selectToogleEg=useSelector((store)=>store.aiRespond?.toggleExample)
-console.log(data?.message)
-console.log(data?.error?.message)
+//console.log(data?.message)
+//console.log(data?.error?.message)
 if(data?.error?.message){
   
   return `please check ${data?.error?.message}`

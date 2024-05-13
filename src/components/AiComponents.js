@@ -29,7 +29,7 @@ const AiComponents=()=>{
   let widthSet=20;
   //when user open on phone but move to desktopmode or move back desktop to phone mode
   window.addEventListener('resize', () => {
-    console.log('Screen width changed:', window.innerWidth);
+   // console.log('Screen width changed:', window.innerWidth);
  widthSetResponseBox(setWidth,fontValue.current,valueToHideText)
 
     
@@ -56,7 +56,7 @@ useEffect(()=>{
      // Update the text
      
       fontValue.current=fontValue.current + 2 -opeartor
-      console.log(fontValue.current,divStyle)
+     // console.log(fontValue.current,divStyle)
    };
 
    

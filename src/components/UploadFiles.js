@@ -37,7 +37,7 @@ const [error,setError] = useState("")
     file.value = '';
     return false; 
   }
-       console.log(file)
+      // console.log(file)
     
     // console.log(e.target.files,file)
         // Reset file input value to empty string
@@ -81,7 +81,7 @@ const [error,setError] = useState("")
         <div className="text-2xl sm:text-3xl md:text-5xl text-black w-1/2 sm:w-3/4 md:w-1/2 ml-2">
           <p>UPLOAD PDF FILES ENJOY THE POWER OF AiPDF</p>
          
-        <div className="" > <Link to={"/demo"}><div className={` ${stepThird}  text-xs sm:text-base m-1  font-semibold  pt-4 `}><button className="bg-black w-44 p-4 text-white rounded-lg hover:bg-white hover:text-black">Demo</button> </div></Link>
+        <div className="" > <Link to={"/demo"}><div className={` ${stepThird}  text-xs sm:text-base m-1  font-semibold  pt-4 `}><button className="bg-black w-44 p-4 text-white rounded-lg hover:bg-white hover:text-black animate-pulse">Demo</button> </div></Link>
         </div>  
         
         </div>
