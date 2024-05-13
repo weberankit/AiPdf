@@ -17,12 +17,12 @@ const [dataUrl , SetDataUrl] =useState("https://firebasestorage.googleapis.com/v
 
     return(
         <>
-        <Link to={"/"}><div className="bg-red-600 text-sm sm:text-xs  p-2  right-0 text-white rounded-lg w-24 m-auto z-[99] fixed ">upload Page</div></Link>
+        <Link to={"/"}><div className="bg-red-600 text-sm sm:text-xs  p-2  right-0 text-white rounded-lg w-24 m-auto z-[99] fixed top-4">upload Page</div></Link>
 <div className="">
     
  { sideBarShow && <AiComponents/>}
- { dataUrl && <button className="bg-red-600 font-semibold text-white p-1 rounded-lg top-[100px] text-[11px] md:text-base fixed left-1 z-[50]" onClick={()=>{ SetDataUrl(null);setSideBarShow(null)}} >Close pdf</button>}
-{dataUrl && <ShowSimplePdf data={dataUrl} printfileName={"default"}/>}
+ { dataUrl && <button className="  bg-red-600 font-semibold text-white p-1 rounded-lg top-[0px] sm:top-[100px] text-[11px] md:text-base fixed left-1 z-[50]" onClick={()=>{ SetDataUrl(null);setSideBarShow(null)}} >Close pdf</button>}
+<div className=" mt-[70px] sm:mt-[50px] "> {dataUrl && <ShowSimplePdf data={dataUrl} printfileName={"demoPdf"}/>}</div>
 <Link to={"/demo"}><div className="bg-black text-center p-2 rounded-lg m-1 text-white w-24 m-auto text-sm" >Back</div></Link>
 </div>
 
