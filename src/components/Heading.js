@@ -123,11 +123,11 @@ const [showSupport , setShowSupport] = useState(null)
         <div className={`fixed w-full border-b border-gray-400 z-[850]  ${refHide.current}  ${selectDarkToogle?" darkMode text-white ":"bg-white" }`}>
             <div className='flex flex-row justify-between p-4'>
                 <div className='w-1/3 select-none'>
-       <div className='mt-4 flex flex-row '>  <FilePdfFill size={28}/><span className="hidden md:block text-2xl font-extrabold  ">{sign1}</span></div>
+       <div className='mt-4 flex flex-row '> <Link to={"/"} className="flex flex-row"> <FilePdfFill size={28} /><span className={`hidden md:block text-2xl font-extrabold  `}>{sign1}</span></Link></div>
             </div>
             <div className='w-[360px] flex flex-row justify-between  text-white'>
             <div  > { selectDarkToogle ?  <div className=" mt-[14px]  cursor-pointer text-lg p-2 rounded-3xl m-2  bg-[#8a60f6] flex items-center justify-center" onClick={()=>{dispatch(addDarkMode(false));handleDarkToggleStore("white")}}> <MoonStarsFill color='white' size={16}/> </div> : <div className=" mt-[14px] text-lg p-2 rounded-3xl m-2  bg-[#8a60f6] flex items-center justify-center cursor-pointer" onClick={()=>{dispatch(addDarkMode(true)) ;handleDarkToggleStore("black")}}> <MoonStarsFill color='black' size={16}/></div>}</div>
-  {!selector ? <Link to={"/sign"} className='p-2 mt-[4px] whitespace-nowrap'>     <div className='  bg-black  p-2 rounded-md flex items-center justify-center initialPage'> {sign2} </div></Link>:<div   > {selectNavToggle ?<div className={ `cursor-pointer ${selectDarkToogle?"text-white":"text-black"} cursor-pointer p-4 rounded-lg`} onClick={()=>dispatch(addToogleNav(false))}><MenuAppFill size={24}/> </div>:<div onClick={()=>dispatch(addToogleNav(true))} className={` ${selectDarkToogle?"text-white":"text-black"} cursor-pointer p-4 rounded-lg`}><MenuButtonWideFill size={24}/></div>}     </div>
+  {!selector ? <Link to={"/sign"} className='p-2 mt-[4px] whitespace-nowrap'>     <div className='  bg-black  p-2 rounded-md flex items-center justify-center initialPage'> {sign2} </div></Link>:<div   > {selectNavToggle ?<div className={ `cursor-pointer   ${selectDarkToogle?"text-white  ":"text-black"} cursor-pointer p-4 rounded-lg`} onClick={()=>dispatch(addToogleNav(false))}><MenuAppFill size={24}/> </div>:<div onClick={()=>dispatch(addToogleNav(true))} className={` ${selectDarkToogle?"text-white":"text-black"} cursor-pointer p-4 rounded-lg `}><MenuButtonWideFill size={24}/></div>}     </div>
 }
           <div onClick={()=>setShowSupport(!showSupport)} className='bg-[#f7b239] text-black p-4 rounded-lg my-1 cursor-pointer'>{showSupport?<ThreeDots/>:<Translate size={22} />}</div>
           </div>

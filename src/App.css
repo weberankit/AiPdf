@@ -100,6 +100,18 @@
 .aicompo{
   background-image: linear-gradient(to left bottom, #ff1414, #ef004b, #cd006e, #a02c80, #6f3c81, #754180, #7a477f, #7f4d7e, #b0597f, #d86d77, #f28a6a, #fbb05f);
 } 
+
+
+.homeHeader {
+  background: linear-gradient(to left bottom, #ff1414, #ef004b, #cd006e, #a02c80, #6f3c81, #754180, #7a477f, #7f4d7e, #b0597f, #d86d77, #f28a6a, #fbb05f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+
+
 /*  
 .boxBg{
   background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);

@@ -12,6 +12,7 @@ const path=useLocation()
 const {pathname:location}=path 
 console.log(location)
 const dispatch=useDispatch()
+const selectDarkToogle=useSelector((store)=>store.userInformation.darkModes)
 
 const navLinks=[
     {
@@ -52,11 +53,11 @@ const navLinks=[
 {navLinks.map((item)=>{
     return(
         <>
-        <div className="p-2 text-center border border-gray-200 hover:bg-[#202020c9] hover:text-white">
+        <div className={`p-2 text-center border border-gray-200 hover:bg-[#202020c9] hover:text-white ${selectDarkToogle ? "hover:bg-gray-400":"text-black"} `}>
 
 
         <Link to={item.path}>
-<li className="py-2 px-4 border-b-gray-200 hover:text-white">{location === item.path?<div className="flex flex-row"><div  className=" p-1 font-bold font-serif">{item.icon}</div><div className="mt-1 px-8 text-[#8a60f6]  font-bold font-serif">{item.navName}</div></div>:<div className="flex flex-row hover:text-white"><div className=" p-1 font-bold font-serif">{item.icon}</div><div className="mt-1 px-8 text-black font-bold font-serif   ">{item.navName}</div></div>}</li>
+<li className="py-2 px-4 border-b-gray-200 hover:text-white">{location === item.path?<div className="flex flex-row"><div  className=" p-1 font-bold font-serif">{item.icon}</div><div className="mt-1 px-8 text-[#8a60f6]  font-bold font-serif">{item.navName}</div></div>:<div className="flex flex-row hover:text-white"><div className=" p-1 font-bold font-serif">{item.icon}</div><div className={`mt-1 px-8  font-bold font-serif   ${    selectDarkToogle?"text-white":"text-black"}`}>{item.navName}</div></div>}</li>
 </Link>
 
         </div>
@@ -64,7 +65,7 @@ const navLinks=[
     )
 })}
 <div className="p-2 hover:bg-[#202020c9] ml-2 cursor-pointer"  onClick={()=>logoutUser()}>
-<li className=" py-2 px-4 border-b-gray-200 hover:text-white "><div className="flex flex-row "><div  className=" p-1 font-bold font-serif mt-1"><PersonBadgeFill/></div><div className="mt-1 px-8 text-[black]  font-bold font-serif" >{nav5}</div></div></li>
+<li className=" py-2 px-4 border-b-gray-200 hover:text-white "><div className="flex flex-row "><div  className=" p-1 font-bold font-serif mt-1"><PersonBadgeFill/></div><div className={`mt-1 px-8   font-bold font-serif ${    selectDarkToogle?"text-white":"text-black"}`} >{nav5}</div></div></li>
 </div>
 </ul>
 
