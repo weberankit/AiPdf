@@ -13,11 +13,11 @@ export function callUserInfoOnRefresh(navigate,selectUsrDetail,dispatch,infoUser
         
     
           if(!selectUsrDetail){
-             console.log(user,"USER")
+          //   console.log(user,"USER")
              //newly
              if(!user)return
              const {uid ,email,displayName}= user ;
-             console.log(uid,email)
+         //    console.log(uid,email)
              dispatch(infoUser({uid:uid ,email:email,displayName:displayName}))
              SetMsg(null)
              //so on seeting page refresh it does not retain firbaseerr  so using inside if
@@ -40,9 +40,9 @@ export    function call(storage,directoryPath,dispatch,addFile,SetMsg,fireBaseEr
         const check= listAll(ref(storage, directoryPath))
             .then((res) => {
               // Filter out only PDF files
-              console.log(res,"res")
+            //  console.log(res,"res")
               const pdfFiles = res.items.filter((item) => item.name.endsWith('.pdf') || item.name.endsWith('.txt'));
-              console.log(pdfFiles,"pdfFiles")
+           //   console.log(pdfFiles,"pdfFiles")
                dispatch(addFile(pdfFiles))
        pdfFiles.length===0?SetMsg("your have not uploaded any file ,use correct login id"):SetMsg(null)
               //setPdfFiles(pdfFiles);

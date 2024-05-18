@@ -12,23 +12,23 @@ const useDictionary=(componValue,setData,sourceLang="en",targetLang="hi")=>{
    }
 
    const dispatch=useDispatch()
-console.log(sourceLang,"sourcelang")
+//console.log(sourceLang,"sourcelang")
     const selectKeyDict=useSelector((store)=>store.userskey?.KeyDICT?.dict)
-    console.log(selectKeyDict)
+   // console.log(selectKeyDict)
     const selectToggleforApi=useSelector((store)=>store.userskey?.toggleToCallApi)
     const textGrab=useSelector((store)=>store.fileInformation?.text)
- console.log(textGrab)
+ //console.log(textGrab)
 
  function SplitText(text){
      if(!textGrab)return
      const splitWord=text.trim().split(" ")
-     console.log(splitWord)
+    // console.log(splitWord)
      return splitWord
  } 
  
  
  const textWords=SplitText(textGrab)
- console.log(textWords)
+ //console.log(textWords)
  let data
  //enable user to get 5 words meaning at smae time
 

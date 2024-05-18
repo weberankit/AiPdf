@@ -1,3 +1,4 @@
+import { langugesConstant } from "../utils/langugesConstant";
 import { useRef,useState,useEffect } from "react"
 import { getAuth, createUserWithEmailAndPassword ,updateProfile , signInWithEmailAndPassword , onAuthStateChanged} from "firebase/auth";
 import { firebaseConfig } from "../utils/firebase";
@@ -13,10 +14,14 @@ import ResetEmailPassword from "./ResetEmailPassword"
 
 import { loginMsg } from "../utils/ErrorSlice";
 import { sendEmailVerification} from "firebase/auth";
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import Footer from "./Footer";
+import {useSignBgOnRefresh} from "../utils/useBodybgDark"
+import useSupportLang from "../utils/useSupportLang";
 const Sign=()=>{
+  const {sign3,sign4,sign5,sign6,sign8,sign9,sign10,sign11,sign12,sign13,sign14,sign15,sign16,sign17} =langugesConstant[useSupportLang()]
 
+  const selectDarkToogle=useSelector((store)=>store.userInformation.darkModes)
 
 const selectMsgLoginEmail=useSelector((store)=>store.ErrorSliced.loginEmailMsg)
    //here  login page will be refresh when click on reset  as firebase  need to refresh after email address validation
@@ -41,7 +46,7 @@ const [informUser ,setInform] =useState(false)
 const handleSignin=()=>{
     setLogin(!isLogin)
 }
-
+const navigate =useNavigate()
 
 
 const handleForm=()=>{
@@ -87,6 +92,7 @@ if(user.emailVerified === true){
      //hide password
      setForm(true)
     dispatch(infoUser({uid:uid ,email:email,displayName:displayName}))
+    navigate("/")
   }
   }).catch((error) => {
     // An error occurred
@@ -124,15 +130,22 @@ setErrorMsg("Error:please check login credintials"+" "+error)
       // Signed in 
       const user = userCredential?.user;
       // ...
+      console.log(user)
      setForm(true)
       //not using set error as it is in red colour so generally observer user panic on first
       //view so using setInform
      setErrorMsg(null)
      //only show messgae when user email is not verified or user data is logged in suggestim him for forgot password
      !selectoggleOnclickOfReset && setInform("THIS IS NOT A ERROR message JUST INFORMING YOU , wait for a second and if you have used email/password login please first verify on email, ignore if already done and If login not happening then it means  email is already used so please click on the Forgot Password  or simply use continue with google")
-  //after click on rset password preloading effect uses
+       
+     //moving to body page for sigin aftr luser login by email
+    
+     user.emailVerified && navigate("/")
+     
+     //after click on rset password preloading effect uses
      selectoggleOnclickOfReset && setInform("wait...")
      //refersh page after click on reset btn as page need to be refresh as firebase needed it.
+    
     selectoggleOnclickOfReset && window.location.reload() 
      console.log("working")
     })
@@ -159,6 +172,7 @@ const handleLoginGoogle=()=>{
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
+      navigate("/")
     setErrorMsg(null)
     }).catch((error) => {
      
@@ -186,77 +200,46 @@ function scrollToElement(id){
 const fileSlide=['<img src="upload.svg" alt="file image"></img>' ]
 //console.log(showForm)
 
+//useBodybgDark()
+//onrefeesg darkmode body bg changes to black using localstorage
 
-
-
-
-
+useSignBgOnRefresh()
 
 
  return(
 <>
 
-<div className=" bg-black  border-b-white  mt-0 p-3  w-auto  md:w-full text-xs sm:text-sm font-bold fixed  block text-white pb-1 z-50">To upload a PDF, it is important to provide your email so that we can save your PDF with your email ID. 
-This way, you can access it from any device using the same email ID  <button id="signInButton" className={'bg-red-700 text-white hover:bg-black focus:bg-black font-bold p-2 py-1 rounded-md animate-pulse mt-1 md:mt-0 ' } onClick={()=>scrollToElement("signin")}>SignIn ⬇</button></div>
-  <div className="">
+
+  <div className={`${selectDarkToogle && 'darkMode text-white h-[2000px] fixed w-full pt-16'}`}>
+   <div>   <Link to={"/"}>  <button className="bg-black p-2 m-2 text-base text-white rounded-lg left-0 top-0 absolute hover:bg-yellow-500">{sign3}</button></Link></div> 
   <div className="flex flex-col " >
 
-<div className="p-10 flex flex-col md:flex-row">
-<div className="p-4 w-full md:w-1/2 mt-10 text-sm flex flex-col">
-<h1 className=" text-6xl md:text-7xl  lg:text-9xl text-red-600 pt-20 md:pt-5 p-5  italic pb-7">  AiPDF</h1>
-<span className="font-bold aniamte-pulse">AI-Summarization , Dictionary and Translate  by selecting text</span>
-  <div className="p-2 rounded-lg mb-1 inline-block text-white text-xl md:text-3xl ">👩<em className="text-xs bg-black p-1 md:p-2 rounded-lg">What makes this PDF reader unique?</em></div>
-  <div className="text-white rounded-lg ml-14 inline-block text-xl md:text-4xl m-1">👲<em className=" md:boxShadow text-xs bg-white text-black font-bold rounded-lg p-1 md:p-2">just select text ,it provides text summarization.its 100% free (no conditions applied) </em></div>
-<button className="font-bold text-black p-1 md:p-2 m-1 block animate-bounce hover:animate-none" onClick={()=>setToogle(!toogle)}>{toogle?"Hide":"show more"}</button>
- { toogle &&<>
-  <p className="p-2 rounded-lg mb-1 inline-block text-white text-xl md:text-3xl">👩 <em className="text-xs bg-black p-1 md:p-2 rounded-lg">oh really! How is that possible? .</em></p>
-  <p className="text-white rounded-lg ml-14 inline-block text-xl md:text-4xl m-1">👲<em className=" md:boxShadow text-xs bg-white text-black font-bold rounded-lg p-1 md:p-2 ">Let me explain. For example, if you're stuck on any line or paragraph, you can get a summary directly. Moreover, you can ask deeper questions using Gemini AI.</em></p>
-  <p className="p-2 rounded-lg mb-1 inline-block text-white text-xl md:text-3xl">👩<em className="text-xs bg-black p-1 md:p-2 rounded-lg">Do you have any other features?</em></p>
-  <p className="text-white p-2 rounded-lg ml-14 inline-block  text-xl md:text-4xl m-1">👲 <em className=" md:boxShadow text-xs bg-white text-black font-bold rounded-lg p-1 md:p-2" >Yes, you can search for word meanings in different languages, and you can also convert text into different languages.</em></p>
-  <p className="text-white p-2 rounded-lg ml-14 inline-block text-xl md:text-4xl m-1">👲 <em className="text-xs bg-white text-black font-bold rounded-lg p-1 md:p-2" >You can try it out first and then decide .</em></p>
- </>
- }
-</div>
-
-
-
-<div className="p-4  mt-5 md:mt-10  w-1/2 float-right ">
-<div className="w-[200px] md:w-[300px] lg:w-[400px] text-center md:float-right">
- 
-<img src={"upload.svg"} alt="svg-image-file"></img>
- 
-
-</div>
-</div>
-
-</div>
-
-<h1  className="text-center font-bold text-black p-2 pb-0"id="signin">SIGN IN  </h1>
+<h1  className="text-center  text-black p-2 pb-0 text-xl font-extrabold "id="signin">{sign4}  </h1>
 <p className="text-center font-bold text-red-700 p-1 ">{errorMsg}</p>
 <p className="text-center font-bold text-green-500 text-sm  p-1 ">{informUser}</p>
 <div className="flex flex-col md:flex-row justify-center mt-6 md:mt-12 mb-6 md:mb-12  " >
 <form onSubmit={(e)=>e.preventDefault()}>
   
 <div className="flex flex-col  p-4 relative">
- {selectMsgLoginEmail && <p className="bg-blue-800 p-1 text-center absolute left-0 right-0 text-white font-semibold  text-sm top-[-30px]  md:top-[-42px]  rounded-lg">check your email id & verify it and after that <a className="text-black" href="">click here</a></p>}
+ {selectMsgLoginEmail && <p className="bg-blue-800 p-1 text-center absolute left-0 right-0 text-white font-semibold  text-sm top-[-30px]  md:top-[-42px]  rounded-lg">{sign5} <a className="text-black" href="">{sign6}</a></p>}
 
-{isLogin && <input className="w-64  md:m-2 border border-black rounded-md p-2 m-auto" type="name" name="username" ref={fullName} placeholder="name"></input>} 
- <input ref={email} className="w-64 rounded-md mt-1 mb-1 md:m-2 border border-black p-2 m-auto" type="email" name="email" placeholder="Email id"></input>
- {<div className="w-64 m-auto border border-black rounded-md py-2 sm:py-0 bg-white"> <input  className=" w-[14rem] md:w-[13rem]  md:m-2  m-auto outline-none" ref={password} type={showForm?"text":"password"} placeholder=" password"></input> <span className="cursor-pointer" onClick={()=>setForm(!showForm)}> {showForm?"🙉":"🙈"}</span></div>}
+{isLogin && <input className="w-64  md:m-2 border border-black rounded-md p-2 m-auto" type="name" name="username" ref={fullName} placeholder={sign8}></input>} 
+ <input ref={email} className="w-64 rounded-md mt-1 mb-1 md:m-2 border border-black p-2 m-auto" type="email" name="email" placeholder={sign9}></input>
+ {<div className="w-64 m-auto border border-black rounded-md py-2 sm:py-0 bg-white text-black"> <input  className=" w-[14rem] md:w-[13rem]  md:m-2  m-auto outline-none" ref={password} type={showForm?"text":"password"} placeholder={sign10}></input> <span className="cursor-pointer" onClick={()=>setForm(!showForm)}> {showForm?"🙉":"🙈"}</span></div>}
  { /*isLogin && <input  className="w-64 rounded-md md:m-2 border border-black p-2 m-auto " ref={reEnter}  placeholder="ReEnter password"></input>*/ }
  </div>
  <div className="flex flex-row  justify-center ">
- <button className="m-1 bg-black p-2 rounded-md hover:text-black hover:bg-yellow-500 text-white h-11" onClick={handleForm} >{isLogin?"SignUp":"Login"}</button>
+ <button className="m-1 bg-black p-2 rounded-md hover:text-black hover:bg-yellow-500 text-white h-11" onClick={handleForm} >{isLogin?<>{sign11}</>:<>{sign12}</>}</button>
  {
-<p className="m-1 bg-white p-2 rounded-md text-black border border-black cursor-pointer  h-11 w-48 text-semibold" onClick={handleSignin}>{!isLogin?"New User":"already User"}</p>
+<p className="m-1 bg-white p-2 rounded-md text-black border border-black cursor-pointer  h-11 w-48 text-semibold" onClick={handleSignin}>{!isLogin?<>{sign13}</>:<>{sign14}</>}</p>
 }
 
 </div>
-{!isLogin&& <Link to={"/reset"}><p className="text-center p-2 m-1 text-sm underline hover:cursor-pointer" >{"Forgot Password"} </p></Link> }
+{!isLogin&& <Link to={"/reset"}><p className="text-center p-2 m-1 text-sm underline hover:cursor-pointer" >{sign15} </p></Link> }
 
 
 </form>
-<div className=" w-4 m-auto md:m-0 md:w-12  md:h-14 mt-7 md:mt-8  md:pt-4  text-center flex flex-row font-bold">or</div>
+<div className=" w-4 m-auto md:m-0 md:w-12  md:h-14 mt-7 md:mt-8  md:pt-4  text-center flex flex-row font-bold">{sign16}</div>
 <div
  className="flex flex-row border cursor-pointer border-black p-2 rounded-md  bg-black text-white hover:bg-white hover:text-black text-xs sm:text-sm  sm:font-normal  m-auto md:m-0 md:w-48  md:h-14 mt-7 md:mt-8  md:pt-4  text-center "
   onClick={handleLoginGoogle}>
@@ -266,7 +249,7 @@ This way, you can access it from any device using the same email ID  <button id=
     viewBox="0 0 48 48" className="w-8 " >
       <path fill="#FFC107"
        d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z">
-        </path><path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"></path><path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0124 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"></path><path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 01-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"></path></svg> <p className="ml-2 pt-1 text-sm sm:text-sm">continue with Google</p> </div>
+        </path><path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"></path><path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0124 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"></path><path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 01-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"></path></svg> <p className="ml-2 pt-1 text-sm sm:text-sm">{sign17}</p> </div>
 
 </div>
 </div>

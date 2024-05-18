@@ -15,7 +15,6 @@ const AiComponents=()=>{
     const selectGpt=useSelector((store)=>store.aiManage.Gpt)
      const selectDic=useSelector((store)=>store.aiManage.Dictionary)
      const selectTrans=useSelector((store)=>store.aiManage.Translate)
-    // const selectToggleforApi=useSelector((store)=>store.userskey?.toggleToCallApi)
 //function for closing other compo  
      function forDispatch(val,bool ,val2 ,bool2){
          dispatch(val(bool))
@@ -68,7 +67,7 @@ useEffect(()=>{
    // height: `${height}px`,
     // className:"boxBg",
        ["maxWidth"] : "97%" ,
-     //backgroundColor: '#FFC72C',
+     //backgroundColor: 'white',
      fontSize:`${fontValue.current}px`,
      transition: 'all 0.3s ease',
      borderRadius:"10px"
@@ -93,13 +92,14 @@ function handleTransActions(){
 <>
    
     <Draggable>
-<div className="aicompo flex flex-col  top-40 left-6 md:left-8  text-white rounded-md  fixed ml-1 p-2 z-50  md:z-[120]"  >
+        
+<div className="aicompo flex flex-col  top-40 left-6 md:left-8  text-white rounded-md  fixed ml-1 p-2 z-50  md:z-[120] "  >
 
-    <button className="hover:bg-red-600 hover:text-white rounded-sm" onTouchStart={() => handleAiActions()} onClick={()=>handleAiActions()}>Ai</button>
-    <button className="hover:bg-red-600 hover:text-white p-1 rounded-sm" onTouchStart={()=>handleDictActions()}    onClick={()=>handleDictActions()}>D<span className={valueToHideText}>ictionary</span> </button>
-    <button className="hover:bg-red-600 hover:text-white p-1 rounded-sm" onTouchStart={()=>handleTransActions()} onClick={()=>handleTransActions()}>T<span className={valueToHideText} >ranslate</span></button>
+    <button className="hover:bg-red-600 hover:text-white rounded-sm parenti" onTouchStart={() => handleAiActions()} onClick={()=>handleAiActions()}>Ai <p className="p-1 rounded-md showel absolute top-[-40px] w-[135px]  text-sm bg-gray-700  z-[160] transition-all duration-1000">AiSearch</p>   </button>
+    <button className="hover:bg-red-600 hover:text-white p-1 rounded-sm parenti" onTouchStart={()=>handleDictActions()}    onClick={()=>handleDictActions()}>D <p className="p-1 rounded-md showel absolute top-[-40px] w-[135px]  text-sm bg-gray-700  z-[160] transition-all duration-1000">Dictionary</p></button>
+    <button className="hover:bg-red-600 hover:text-white p-1 rounded-sm parenti" onTouchStart={()=>handleTransActions()} onClick={()=>handleTransActions()}>T <p className="p-1 rounded-md showel absolute top-[-40px] w-[135px]  text-sm bg-gray-700  z-[160] transition-all duration-1000">Translate</p> </button>
 
-<div className="bg-white text-[4px] hidden sm:block pr-2  m-1 ml-2 text-black h-7 absolute right-0 rounded-lg cursor-move parent">click<p className="element absolute top-[-40px] w-[135px]  text-sm bg-gray-700  z-[160]">hold and drag it</p> </div>
+<div className="w-[10px] h-[10px] bg-gray-400 rounded-3xl absolute top-0 right-0 parenti "><p className="p-1 rounded-md showel absolute top-[-40px] w-[135px]  text-sm bg-gray-700  z-[160] transition-all duration-500">hold and drag it</p> </div>
 
 </div>
 </Draggable>
@@ -112,15 +112,7 @@ function handleTransActions(){
  <div className=""> {selectDic===true ? <><DictionaryText styles={divStyle}/> </>:" "}</div>
  <div className=""> {selectTrans===true ? <><TranslateText styles={divStyle}/> </>:" "}</div>
 
-{ /*selectToggleforApi && (
- <div className="right-0 z-45 fixed text-white" >
-       
-       <div className="parent cursor-pointer bg-black inline-block mr-1"  onClick={()=>handleSizeClick(1,0)}>plus<p className="element absolute  top-20 bg-gray-700 ">to increse response box size</p></div>
-       <div className="parent cursor-pointer  bg-black inline-block"  onClick={()=>handleSizeClick(1.4,4)}>minus<p className="element absolute top-0 bg-gray-700 ">to decrease response box size</p></div>
-              
-          </div>
-)*/
-}
+
 
 {
     selectDic && <BoxSize handlePlusClick={()=>handleSizeClick(1,0)} handleMinusClick={()=>handleSizeClick(1.4,4)}  />

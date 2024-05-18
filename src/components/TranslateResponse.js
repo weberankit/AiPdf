@@ -6,9 +6,9 @@ const TranslateResponse=()=>{
     console.log(selectTransRespnse)
     return(
         <>
-          {selectSearchMsg&& <div className="bg-black text-center text-sm p-1 m-1 fixed text-white rounded-md"> {selectSearchMsg}</div>}
-        <div style={{fontSize:".5em"}} >  {selectTransRespnse?.message}</div> 
-        <div className="text-black" style={{fontSize:".8em"}} >     {selectTransRespnse&&selectTransRespnse}</div> 
+          {selectSearchMsg&& <div className="bg-black text-white p-2 rounded-lg  mb-1 border-b border-black font-serif text-xs"> {selectSearchMsg}</div>}
+        <div style={{fontSize:".5em"}} className="text-white">  {selectTransRespnse?.message}</div> 
+        <div className="bg-[#758bfd] text-white p-2 rounded-lg  mb-1 border-b border-black font-serif text-xs" style={{fontSize:".8em"}} >     {selectTransRespnse&&selectTransRespnse}</div> 
         </>
     )
 }

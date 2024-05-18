@@ -1,3 +1,5 @@
+import {langugesConstant} from "../utils/langugesConstant"
+import Heading from "./Heading";
 import { getStorage, ref, uploadBytes, uploadBytesResumable} from "firebase/storage";
 import ShimmerEffect from "./ShimmerEffect";
 import {  useSelector ,useDispatch} from "react-redux";
@@ -6,8 +8,16 @@ import { useNavigate,Link } from "react-router-dom";
 import Header from "./Header"; 
 import {uploadFile} from "../utils/hooksHelper"
 import { gptValue,dicitValue,translateValue } from "../utils/aiManagment";
-
+import { callUserInfoOnRefresh } from "../utils/hooksHelper";
+import { infoUser } from "../utils/userSlice";
+import { fireBaseErr } from "../utils/ErrorSlice"
+import { addToogleNav } from "../utils/useStoreDataSlice";
+import useBodybgDark from "../utils/useBodybgDark"
+import useSupportLang from "../utils/useSupportLang";
 const UploadFiles=({step1stClass , stepThird })=>{
+
+  const {upPage1,upPage2,upPage3,upPage4} =langugesConstant[useSupportLang()]
+  const selectDarkToogle=useSelector((store)=>store.userInformation.darkModes)
   const navigate=useNavigate()
   const dispatch=useDispatch()
    //preventing from nwanted call of api when user reuses any 3 features
@@ -29,11 +39,11 @@ const [error,setError] = useState("")
         let maxSize = 300 * 1024 * 1024; // 300 MB
 
   if (!['application/pdf', 'text/plain'].includes(file?.type)) {
-    alert('Please select either a PDF or TXT file.');
+    alert(upPage3);
     file.value = '';
     return false;
   } else if (file?.size > maxSize) {
-    alert('File size exceeds the maximum allowed limit (300MB) please contact me.');
+    alert(upPage4);
     file.value = '';
     return false; 
   }
@@ -59,81 +69,60 @@ const [error,setError] = useState("")
     
     * 
     */
+//calling pages on refresh and also protecting when user play with url without login
+
    useEffect(()=>{
     window.scrollTo({ top: 0, behavior: 'smooth' });
    },[])
+   useEffect(()=>{
+    //alert("ll")  
+    //-earlier- callUserInfoOnRefresh(navigate,selectUsrDetail,setUserInfo)
+    callUserInfoOnRefresh(navigate,selectUsrDetail,dispatch,infoUser,setError,fireBaseErr)
+    dispatch(addToogleNav())
+    },[])
+
+////black bg when upload pages is refresh changing the outer box bg to black
+//as because in filecart body bg is black so it remain when we move to upload page 
+//but on refersh of upload page it does not have body colour so used same function that we had ised in filecart 
+   
+    useBodybgDark()
 
 
     return(
-<>
-{ <div className="absolute top-[120px] left-0 right-0 h-[3rem] sm:text-center">{uploadProgress && <>  <ShimmerEffect/>  <div className="text-black font-semibold text-center mr-24 sm:mr-0 ">Upload Status <em className="text-green-500">{uploadProgress}% </em></div></>}
+<div className={``}>
+
+<Heading/>
+
+
+
+{ <div className="absolute top-[120px] left-0 right-0 h-[3rem] sm:text-center">{uploadProgress && <>  <ShimmerEffect/>  <div className="text-black font-semibold text-center  sm:mr-0 ">{upPage1}<em className="text-green-500">{uploadProgress}% </em></div></>}
 </div>
 
 }
-    <h1 className="text-red-900 text-center">{error}</h1>
     
-<div className="flex flex-row p-2 overflow-hidden pl-10 sm:pl-20 md:pl-2 uploadBg justify-between">
-<div className="flex flex-col justify-center   ">
+<div className=" text-center  pt-60 md:pt-36 mb-4">
+  <div className="w-3/4 m-auto">
+    <div className={` ${selectDarkToogle ?"darkMode " :"bg-gray-100"}     shadow-lg p-10 md:p-40 border border-dashed border-gray-600  w-full`}>
+      <div className="p-6">
     <form onSubmit={ (e)=>{ e.preventDefault()
    handleFileChange()}
      }>
-      <div className="flex flex-col md:flex-row w-full">
-        <div className="text-2xl sm:text-3xl md:text-5xl text-black w-1/2 sm:w-3/4 md:w-1/2 ml-2">
-          <p>UPLOAD PDF FILES ENJOY THE POWER OF AiPDF</p>
-         
-        <div className="" > <Link to={"/demo"}><div className={` ${stepThird}  text-xs sm:text-base m-1  font-semibold  pt-4 `}><button className="bg-black w-44 p-4 text-white rounded-lg hover:bg-white hover:text-black animate-pulse">Demo</button> </div></Link>
-        </div>  
-        
-        </div>
-        {/**this  */}
-      <div className=" p-6 m-1 rounded-md    ml-0 mr-2 sm:mr-0">
-        <div className="flex flex-row  m-auto">
-        <div className="bg-black text-white p-4 rounded-lg ">
+    
         
    
     <input id="files" name="file" type="file" accept=".pdf , .txt"  onChange={handleFileChange} ></input>
-   <label for="files" className={` ${step1stClass} bg-red-600 p-1 rounded-lg m-1 inputfile  text-xs md:p-2 md:text-base animate-pulse hover:animate-none hover:bg-white hover:text-black`}>
-        UPLOAD file 
+   <label for="files" className={` ${step1stClass} bg-white p-1 rounded-lg m-1 inputfile hover:bg-gray-300 hover:text-black transition-all duration-500`}>
+      <div className="p-4 m-1 bg-gray-200 shadow-sm cursor-pointer "><h1 className="  text-3xl font-extrabold leading-0 md:leading-6 font-serif ">{upPage2}</h1></div>
     </label>
-   
- 
-   
-   
-    <p className="mt-2 text-xs md:text-base">pdf and txt mode only</p>
-    <p className="text-xs md:text-base">first read Instruction below</p>
-    </div>
-    <div className="">
-    <svg className="w-28 sm:w-44" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="red" d="M128 64c0-35.3 28.7-64 64-64H352V128c0 17.7 14.3 32 32 32H512V448c0 35.3-28.7 64-64 64H192c-35.3 0-64-28.7-64-64V336H302.1l-39 39c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l80-80c9.4-9.4 9.4-24.6 0-33.9l-80-80c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l39 39H128V64zm0 224v48H24c-13.3 0-24-10.7-24-24s10.7-24 24-24H128zM512 128H384V0L512 128z"/></svg>
-    </div>
-    </div>
-    </div>
-</div>
+    <h1 className="text-red-900 text-center font-semibold ">{error}</h1>
 
-    <div className="md:text-center p-4 ">Please Read Instruction Below 
-      
-    </div>
-    <div className="flex flex-col md:flex-row justify-center md:justify-between pt-12 ">
-   <p className=" text-white    bg-violet-500 rounded-lg p-4  md:mr-1 text-sm font-bold w-1/2  mb-2 ml-6 md:ml-0">If your pdf is scanned images pdf then you need to convert 
-    --'100mb'{<a className="underline text-blue-950" rel="noopener noreferrer" href="https://www.pdf2go.com/create-searchable-pdf" target="_blank">convert</a>} and then upload
-   
-  
-
-   </p>
-   <p className="text-white w-1/2 bg-pink-950 rounded-lg p-4 md:ml-1 text-sm font-bold  mb-10 md:mb-2 ml-6"> If you want to Upload image then convert here first  {<a className="underline text-blue-950" rel="noopener noreferrer" href="  https://www.ocr2edit.com/convert-to-txt" target="_blank">convert</a>} and then upload
-   </p>
-</div>
- 
-
-    </form>
-   
-
-</div>
-<div>
-
+</form>
 </div>
 </div>
+</div>
+   </div>
 
-</>
+</div>
     )
 }
 export default UploadFiles

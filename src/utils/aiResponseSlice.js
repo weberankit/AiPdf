@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit"
-import { translate } from "pdf-lib"
+//import { translate } from "pdf-lib"
 
 const aiResponse = createSlice({
     name:"aiResponse",

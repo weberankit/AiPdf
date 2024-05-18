@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@google/generative-ai": "^0.7.1",
     "@react-pdf-viewer/core": "^3.12.0",
     "@react-pdf-viewer/default-layout": "^3.12.0",
@@ -25,6 +26,7 @@
     "pspdfkit": "^2024.2.0",
     "qs": "^6.12.1",
     "react": "^18.2.0",
+    "react-bootstrap-icons": "^1.11.4",
     "react-dom": "^18.2.0",
     "react-draggable": "^4.4.6",
     "react-joyride": "^2.8.1",
