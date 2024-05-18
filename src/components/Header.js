@@ -17,6 +17,7 @@ const Header=({stepClass})=>{
 signOut(auth).then(() => {
   // Sign-out successful.
   dispatch(infoUser(null))
+  
    navigate("/")
    window.location.reload()
 }).catch((error) => {

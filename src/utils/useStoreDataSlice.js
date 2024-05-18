@@ -10,6 +10,8 @@ const useStoreDataSlice=createSlice({
         dictiDataTosendMail:[],
         pdfUrl:null,
         advPdfUrl:null,
+        toggleNav:false,
+        support:null,
     },
     reducers:{
    //filter the value
@@ -35,9 +37,16 @@ const useStoreDataSlice=createSlice({
    
    addUrlAdvPdf:(state,action)=>{
     state.advPdfUrl=action.payload
-   } 
+   } ,
+
+   addToogleNav:(state,action)=>{
+    state.toggleNav=action.payload
+   },
+   addSupport:(state,action)=>{
+    state.support=action.payload
+   }
 
     }
 })
 export default useStoreDataSlice.reducer
-export const {sendAllDictData ,addUrlPdf,addUrlAdvPdf}=useStoreDataSlice.actions
+export const {sendAllDictData ,addUrlPdf,addUrlAdvPdf,addToogleNav,addSupport}=useStoreDataSlice.actions

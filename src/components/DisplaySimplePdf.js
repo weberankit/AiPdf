@@ -3,18 +3,23 @@
 
 import { PdfLoader, PdfHighlighter, Tip, Highlight, AreaHighlight, Popup } from 'react-pdf-highlighter';
 import { Document,Page} from '@react-pdf/renderer';
- 
+import {langugesConstant} from "../utils/langugesConstant"
 
 
-// Import styles
-//import '@react-pdf-viewer/page-navigation/lib/styles/index.css';
 
-import {useRef} from "react"
 
+
+import {useRef,useEffect} from "react"
+import {useSelector} from "react-redux"
+import useSupportLang from '../utils/useSupportLang';
 
 const DisplaySimplePdf=({deleteHighlight,data,pdfHighlighter,handleLocalStorageError,clearLocalStorage,HighlightPopup,addHighlight,updateHighlight,highlights})=>{
- // const [numPages, setNumPages] = useState(null);
 
+
+
+
+const {display1,display2} =langugesConstant[useSupportLang()]
+ const selectDarkToogle=useSelector((store)=>store.userInformation.darkModes)
 
   // console.log(numPages,"this is page no")
 
@@ -51,7 +56,22 @@ const pageInput=useRef()
   }
   //scrollToPage(2); // Scrolls to page with data-page-number="2"
   //scrollToPage(100003); // Scrolls to page with data-page-number="3"
+/*  useEffect(()=>{
 
+if (selectDarkToogle){
+let documentPdf =document.querySelectorAll(".textLayer")
+   console.log(documentPdf)
+    if(documentPdf){
+      documentPdf.forEach((item)=>{
+        item.style.backgroundColor="#808080"
+      })
+      
+    }
+}
+
+    
+   
+    })*/
 
 
 
@@ -62,7 +82,7 @@ const pageInput=useRef()
 <div className=" fixed z-[99] left-14 top-4  m-2 ">
 <form onSubmit={(e)=>e.preventDefault()}>
   <input className="w-11 border border-black m-1  p-2 rounded-lg text-xs" placeholder="1" ref={pageInput}></input>
-<button onClick={()=>scrollToPage() } className="text-white bg-black rounded-lg p-2 m-1 hover:bg-yellow-500">page</button>
+<button onClick={()=>scrollToPage() } className="text-white bg-black rounded-lg p-2 m-1 hover:bg-yellow-500">{display2}</button>
 </form>
 </div>
 <Document  >
@@ -71,9 +91,9 @@ const pageInput=useRef()
     
    
 
-      <PdfLoader url={data} beforeLoad={<div className='text-center font-bold  w-full m-auto'>Loading...</div>}
+      <PdfLoader url={data} beforeLoad={<div className='text-center font-bold  w-full m-auto'>{display1}</div>}
       //onLoadSuccess={(pdf) => setNumPages(pdf.numPages)}
-   
+      
       >
         {pdfDocument => (
           <PdfHighlighter

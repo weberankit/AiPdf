@@ -5,7 +5,8 @@ const userSlice =  createSlice({
     initialState:{
         value:null,
         preLoading:null,
-        textGrab:null
+        textGrab:null,
+        darkModes:null
         
     },
     reducers:{
@@ -17,8 +18,12 @@ const userSlice =  createSlice({
         },
         textFile:(state,action)=>{
             state.textGrab=action.payload
+        },
+        addDarkMode:(state,action)=>{
+            state.darkModes=action.payload
         }
+
     }
 })
 export default userSlice.reducer
-export const {infoUser , loadingState,textFile} = userSlice.actions
+export const {infoUser , loadingState,textFile,addDarkMode} = userSlice.actions

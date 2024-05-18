@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom"
-import Header from "./Header"
+//import { Link } from "react-router-dom"
+//import Header from "./Header"
 import first from "../images/aiStep/first.png"
 import sec from "../images/aiStep/sec.png"
 import third from "../images/aiStep/third.png"

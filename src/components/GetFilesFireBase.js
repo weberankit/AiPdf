@@ -1,3 +1,5 @@
+
+import {langugesConstant} from "../utils/langugesConstant"
 import { getStorage, ref, getDownloadURL , deleteObject} from "firebase/storage";
 import { toggler } from "../utils/userFiles";
 import { useDispatch ,useSelector} from "react-redux";
@@ -11,16 +13,18 @@ import {addUrlAdvPdf, addUrlPdf} from "../utils/useStoreDataSlice"
 import Joyride from 'react-joyride'; // Import Joyride
 //import tourSteps from "../utils/tourSteps"
 import {SecondTourSteps} from "../utils/tourSteps"
-
-
+import { Trash } from "react-bootstrap-icons";
+//import fileSvg from "../images/img/filesvg.svg"
+import useSupportLang from "../utils/useSupportLang";
 
 
 
 
 
 const GetFilesFireBase=({slectfileMeta,SetMsg ,setPrintFileName})=>{
-const textAlertMsg="Please Download pdf after HighLight and don't refresh/close (as highlight lost) Because USING TRIAL VERSION"
-const textMessageAlert="your highlighted text will be saved remains even after refresh in your  browser so use same browser ( because using free resources)"  
+  const {file1,file2,file3 ,file4,file5,del1 , del2 } = langugesConstant[useSupportLang()]
+const textAlertMsg=file4
+const textMessageAlert=file5
 const dispatch=useDispatch()
    const storage=getStorage()
  const [deleteIndication ,setDeleteIndication] = useState(null)
@@ -77,7 +81,9 @@ const dispatch=useDispatch()
   
   
 function handleDelete(path){
-  setDeleteIndication("Wait Deleting the file")
+
+  if(window.confirm(del1)){
+  setDeleteIndication(del2)
     const desertRef = ref(storage, path);
   
     // Delete the file
@@ -96,7 +102,9 @@ function handleDelete(path){
       // Uh-oh, an error occurred!
       setDeleteIndication("sorry not able to delete file please check network and retry")
     });
-  
+  }else{
+    console.log("not deleted")
+  }
   
   }
  
@@ -136,39 +144,19 @@ function handleDelete(path){
 //console.log("myurl",myurl)
 /**/
 
-const [lastStep,setLastStep] =useState(false)
-useEffect(()=>{
-  let tourSecond=localStorage.getItem("SecondtourCompleted")
-  if(!tourSecond){
-   // if(slectfileMeta){}
-  setLastStep(true)
-
-  }
-
-},[])
 
 
-const handleTourComplete = () => {
-  // Set a flag in local storage indicating that the tour has been completed
-  localStorage.setItem('SecondtourCompleted', 'true');
-//  alert("j")
-};
+
+
+
 
     return(
       <>
-    {lastStep &&<Joyride 
-          steps={SecondTourSteps} 
-          continuous={true}
-           //showProgress={true}
-            showSkipButton={true}
-             run={lastStep}
-             callback={handleTourComplete} // Set a callback to mark tour as completed
-             
-             />}
-<div className="step-1"></div>
+   
+
 
     {deleteIndication &&  <div className="text-center  text-red-600 bg-black w-1/2 m-auto rounded-md  text-sm animate-pulse fixed  left-0 right-0">{deleteIndication}</div>}
-        <div  className="w-2/3 m-auto  " > 
+       
         {
 slectfileMeta && slectfileMeta.map((item)=>{
 //  console.log(item,item._location.path )
@@ -187,59 +175,60 @@ slectfileMeta && slectfileMeta.map((item)=>{
 
 
 
-  <div key={textFileidentify+Date.now()+9} className=" p-4 flex flex-row justify-between border  mb-14">
+  <div key={textFileidentify+Date.now()+9} className="mt-6 ">
+<div className="max-w-[786px] m-auto">
+<div className="p-6 bg-gray-100 rounded-lg shadow-lg relative ">
+<button className="text-red-800 absolute right-0 top-0 p-1 text-base md:text-xl" onClick={()=>{handleDelete(item._location.path )}}><Trash/></button>
+    <div className="flex flex-row justify-between p-1  ">
+      <div className="w-1/2"><img className="w-44 md:w-52" loading="lazy"  src={"https://ucarecdn.com/62ce4afc-c404-49d8-abde-88fe7da2a11f/filesvg.svg"} alt="image"></img>
+    
+      </div>
 
-<div className="w-1/2">
-<div className="w-[3.4rem] md:w-14">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="#ff0000" d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM112 256H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>
-</div>
-</div>
-
-
-    <div className={`w-1/2 `}>
-
- <div >
-
- {
-              //to open high level-pdf viewer
-              textFileidentify !== "txt" &&  <button className=" bg-orange-600 hover:bg-yellow-500 text-black p-1 rounded-lg m-1 animate-pulse duration-1000 hover:animate-none text-sm md:text-base"  onClick={()=>{MangeAlertMsgAdvPdf();handleAdvPdf(item._location.path) ;
-              handleReachTop(0);dispatch(addUrlPdf(null));  dispatch(textFile(null)) }}> Advance level pdf viewer</button>
-            }
-                  
-     </div>
-
-    <div className="font-semibold select-none m-1 text-sm">
-    {fileName}</div>
-
-               
-</div>
-
-<div className="w-1/2" >
-
-            <div >
-
-           
-            
-            
-
-             { 
-                   textFileidentify==="txt"?<button className="bg-green-500 text-white rounded-lg m-1 p-1 hover:bg-black text-sm md:text-base" onClick={()=>{handleText(item._location.path);dispatch(addUrlPdf(null));dispatch(addUrlAdvPdf(null));handleReachTop(0)}}>open text file</button> :  
-                   <button className="bg-gray-600 text-white rounded-lg m-1 p-1 hover:bg-black text-sm md:text-base animate-pulse" onClick={()=>{ MangeAlertMsgProPdf();handlePdf(item._location.path);   handleReachTop(0);dispatch(addUrlAdvPdf(null)) ;  dispatch(textFile(null))}}>  Pro pdf viewer</button>
+     <div className="w-1/2">
+    <div>
+      <div className= " parenti sm:text-center mb-2 select-none sm:w-60 "> <h1 className=" main text-2xl md:text-4xl mt-0 md:mt-3  font-extrabold font-serif truncate">{fileName}</h1>   <p className="showel bg-gray-400 p-1 rounded-lg text-white absolute ">{fileName}</p></div>
+<div className="flex flex-row  mt-8 w-full sm:w-52">
+      <div className="text-center m-auto">
+           { 
+                   textFileidentify==="txt"?<button className=" btn text-base m-auto p-2 md:px-6 bg-black rounded-lg text-white font-semibold font-serif hover:bg-white hover:text-black transition-all duration-500" onClick={()=>{handleText(item._location.path);dispatch(addUrlPdf(null));dispatch(addUrlAdvPdf(null));handleReachTop(0)}}>{file1}</button> :  
+                   <button className=" whitespace-nowrap btn text-base p-2 md:px-6 bg-black rounded-lg text-white font-semibold font-serif hover:bg-white hover:text-black transition-all duration-500" onClick={()=>{ MangeAlertMsgProPdf();handlePdf(item._location.path);   handleReachTop(0);dispatch(addUrlAdvPdf(null)) ;  dispatch(textFile(null))}}>{file2}</button>
 
                   }
-            </div>
+      </div>
 
- 
+      <div className="sm:ml-1">{
+              //to open high level-pdf viewer
+              textFileidentify !== "txt" &&  <button className=" whitespace-nowrap btn ml-2 sm:ml-0 text-base p-2 md:px-6 bg-black rounded-lg text-white font-semibold font-serif hover:bg-white hover:text-black transition-all duration-500" onClick={()=>{MangeAlertMsgAdvPdf();handleAdvPdf(item._location.path) ;
+              handleReachTop(0);dispatch(addUrlPdf(null));  dispatch(textFile(null)) }}> {file3}</button>
+            }</div>
 
-                     <button className="bg-red-600 text-white m-1 p-1 rounded-lg" onClick={()=>{handleDelete(item._location.path )}}>Delete files</button>
-                     </div>
-                     </div>
+</div>
+      <div></div>
+    </div>
+
+     </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+              
+
+
+                     
   
-  
+  </div>   
   </>)
 })
 }
-</div>    
+ 
 
 
 </>  

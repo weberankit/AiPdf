@@ -1,7 +1,13 @@
 import { useSelector } from "react-redux";
-const sendData=(para , arrayData,selectUserEmail,dispatch,sendDataMail)=>{
-    //const selectgeminiResponse=useSelector((store)=>store.giminiRes.responseArray)
-   // console.log(selectgeminiResponse.join(","))
+import { langugesConstant } from "./langugesConstant";
+import useSupportLang from "./useSupportLang"
+const sendData=(para , arrayData,selectUserEmail,dispatch,sendDataMail ,log2,send1)=>{
+   
+  
+   if(selectUserEmail){
+
+    setTimeout(()=>{dispatch( sendDataMail(send1) )
+  },2000)
    const data=async()=>{
     const res=await fetch(`https://formsubmit.co/ajax/${selectUserEmail}`, {
         method: 'POST',
@@ -17,14 +23,20 @@ const sendData=(para , arrayData,selectUserEmail,dispatch,sendDataMail)=>{
    for sending via a network request.  */
    
    //if clearinterval clear it before executing so to prevent we again using clearinterval
-  dispatch( sendDataMail("all data is sent (please authorize formSubmit on your email if already done ignore it)") )
+
 
   setTimeout(()=>{
     
-    dispatch(sendDataMail(null))},7000)
-  } 
-    
-      data()
+    dispatch(sendDataMail(null))},5000)
+  }
+  
+  
+  data()
+}else{
+  alert(log2)
+}
+     
+
     
   };
   

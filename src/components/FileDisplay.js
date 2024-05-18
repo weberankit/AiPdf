@@ -1,4 +1,4 @@
-
+import {langugesConstant} from "../utils/langugesConstant"
 import { getStorage,   deleteObject} from "firebase/storage";
 import { useState ,useRef} from "react";
 import { pdfjs } from 'react-pdf';
@@ -19,6 +19,7 @@ import AiComponents from "./AiComponents";
 import { addUrlAdvPdf, addUrlPdf } from "../utils/useStoreDataSlice";
 //import ToShowSimplePdf from "./ToShowSimplePdf";
 import "../App.css"
+import useSupportLang from "../utils/useSupportLang";
 //import PrintComponent from "./ToShowSimplePdf";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
@@ -27,6 +28,9 @@ pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pd
 
 
 const FileDisplay=()=>{
+  
+ 
+const {fileDisplay1,fileDisplay2} =langugesConstant[useSupportLang()]
 
  const textShow=useSelector((store)=> store.userInformation.textGrab)
 const dispatch=useDispatch()
@@ -45,7 +49,7 @@ const selectAdvPdfUrl=useSelector((store)=>store.useDataSlice.advPdfUrl)
 //console.log(selectAdvPdfUrl)
 SelectionWord(setSideBarShow)
 //console.log(sideBarShow,"sidebar")
-
+//const selectingGptkeyVaues=useSelector((store)=>store.userskey?.keyGPT?.msg)
 
 
 
@@ -59,7 +63,7 @@ SelectionWord(setSideBarShow)
 
 
         <div  >
-      {selectPdfUrl &&  <button className="bg-red-600 font-semibold text-white p-1 rounded-lg top-[100px] text-[11px] md:text-base fixed left-1 z-[50]" onClick={()=>dispatch(addUrlPdf(null))}>Close pdf</button>}
+      {selectPdfUrl &&  <button className="bg-red-600 font-semibold text-white p-1 rounded-lg top-[100px] text-[11px] md:text-base fixed left-1 z-[50]" onClick={()=>dispatch(addUrlPdf(null))}>{fileDisplay1}</button>}
  <div >   { selectPdfUrl&& <ShowSimplePdf data={selectPdfUrl} printfileName={printFileName}/>} </div> 
    
 </div>
@@ -68,8 +72,8 @@ SelectionWord(setSideBarShow)
 
 
 <div className="text-center ">
- {selectAdvPdfUrl&& <button className="bg-red-600 text-white p-2 rounded-sm text-center" onClick={()=>dispatch(addUrlAdvPdf(null))}>close file</button>}
- {selectAdvPdfUrl && <div className="font-semibold text-xs select-none">As this is a free trial version so if you get session timeout then refresh the page  </div>}
+ {selectAdvPdfUrl&& <button className="bg-red-600 text-white p-2 rounded-sm text-center" onClick={()=>dispatch(addUrlAdvPdf(null))}>{fileDisplay1}</button>}
+ {selectAdvPdfUrl && <div className="font-semibold text-xs select-none">{fileDisplay2} </div>}
 {
 selectAdvPdfUrl &&  <ShowPdf data={selectAdvPdfUrl}/>
 }
@@ -78,7 +82,7 @@ selectAdvPdfUrl &&  <ShowPdf data={selectAdvPdfUrl}/>
 <div className=" w-3/2 p-2 ">
 {/*textShow && <button className="w-44 m-auto" onClick={()=>dispatch(textFile(null))}>close</button>*/}
    { textShow && <>   <div className=" w-4/5 sm:w-1/2 m-auto text-xs sm:text-sm "> 
-   <div><button className="bg-black text-white hover:bg-gray-600 p-2 rounded-lg" onClick={()=>dispatch(textFile(null))}>close</button></div>
+   <div><button className="bg-black text-white hover:bg-gray-600 p-2 rounded-lg" onClick={()=>dispatch(textFile(null))}>{fileDisplay1}</button></div>
     {textShow}</div> </>}
 
 </div>

@@ -27,9 +27,35 @@
     <title>Ai-Pdf  | Dictionary| Translation</title>
    
   </head>
+  <style> /* Moved animation definition to a separate style tag for better readability (optional) */
+     /* Moved animation definition to a separate style tag for better readability */
+  @keyframes progress {
+    from { width: 0%; }
+    to { width: 100%; }
+  }
+</style>
+  </style>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
    
+    <div id="loading-indicator" style="
+    width: 80%; /* Adjust width as needed */
+    height: 10px; /* Adjust height as needed */
+    position: fixed;
+    top: 20%; /* Adjust position as needed */
+    left: 10%; /* Adjust position as needed */
+    background-color: #746aff; /* Base color for the bar */
+    border-radius: 5px; /* Rounded corners */
+    overflow: hidden; /* Clip overflowing content */
+    animation: progress 2s linear infinite; /* Animation definition */
+  ">
+    <div style="
+      width: 0%; /* Initial width for the progress bar */
+      height: 100%; /* Full height of the bar */
+      background-color: #fff; /* Progress color */
+      transition: width 1s ease-in-out; /* Smooth transition for progress */
+    "></div>
+  </div>
     <div id="root"></div>
    
     <!--
@@ -42,5 +68,8 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+
   </body>
+  
+ 
 </html>

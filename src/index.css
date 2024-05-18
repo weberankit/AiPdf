@@ -26,6 +26,7 @@ display:block;
  color:white;
   
 }
+/*
 .shadow13 {
   color: rgba(167, 221, 60, 1);
   text-shadow: 2px 0px 0px rgba(128, 0, 64, 1), 
@@ -48,7 +49,7 @@ display:block;
 }
 .boxShadow{
 box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-}
+}*/
 html,.body{
   max-width: "3000px",
   
@@ -97,3 +98,8 @@ input[type="file"] {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+*{
+  @apply transition-colors duration-200
+}
