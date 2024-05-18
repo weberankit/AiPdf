@@ -5,7 +5,7 @@ import ShimmerEffect from "./ShimmerEffect";
 import {  useSelector ,useDispatch} from "react-redux";
 import { useState,useEffect } from "react";
 import { useNavigate,Link } from "react-router-dom";
-import Header from "./Header"; 
+//import Header from "./Header"; 
 import {uploadFile} from "../utils/hooksHelper"
 import { gptValue,dicitValue,translateValue } from "../utils/aiManagment";
 import { callUserInfoOnRefresh } from "../utils/hooksHelper";
