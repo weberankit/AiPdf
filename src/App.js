@@ -34,7 +34,10 @@ function toLoad() {
     }
      window.addEventListener("load", toLoad);
   
+useEffect(()=>{
+  document.getElementById("loading-indicator").style.display = "none";
 
+},[])
 
 const appRouter=createBrowserRouter([
 {
