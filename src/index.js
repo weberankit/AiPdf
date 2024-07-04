@@ -8,7 +8,9 @@ import reportWebVitals from './reportWebVitals';
 // pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 function toDisableInspect(){
 document.addEventListener('contextmenu', (e) => e.preventDefault());
-
+/*keyCode.charCodeAt(0) converts the first character of the keyCode string to its corresponding ASCII code.
+For example, if keyCode is 'I', then keyCode.charCodeAt(0) will return 73, which is the ASCII code for I
+*/
 function ctrlShiftKey(e, keyCode) {
   return e.ctrlKey && e.shiftKey && e.keyCode === keyCode.charCodeAt(0);
 }

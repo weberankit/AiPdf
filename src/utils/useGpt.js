@@ -28,8 +28,8 @@ const userAsk=useSelector((store)=>store.giminiRes?.userQuery)
 if(compoValue === true && textGrab){
   dispatch(addSearchMsg("searching start..."))
   try{
-    // For text-only input, use the gemini-pro model
-    const model = genAI.getGenerativeModel({ model: "gemini-pro"});
+    // For text-only input, use the gemini-flash-model
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
   
     const prompt = `
      ${gpt6}  ${textGrab} ${gpt7}

@@ -60,6 +60,8 @@ signOut(auth).then(() => {
      console.log(refHide.current)
 
    const navHideOutsideClick=useRef()
+//using to close sideNavbar when user click out of box
+
    function hideNavOnOutside(e) {
     // navHideOutsideClick.current instanceof HTMLElement why it needed because below
 /*please note this This check is essential because you might accidentally store a different type of value in navHideOutsideClick.current (e.g., a string or number)
@@ -67,6 +69,8 @@ signOut(auth).then(() => {
 //instances means  meaning it has its own copy of the properties and methods defined in the constructor.
     if (navHideOutsideClick.current && navHideOutsideClick.current instanceof HTMLElement) {
       // Check for click outside the navigation bar
+      /*contains method is a DOM method that returns true if the element
+       on which it is called contains the specified element, including itself. */
       if (!navHideOutsideClick.current.contains(e.target)) {
         dispatch(addToogleNav(false));
       }
@@ -87,6 +91,7 @@ if(getDefaultDark === "black"){
 }
 }
     window.addEventListener("mousedown", hideNavOnOutside);
+
   return () => window.removeEventListener("mousedown", hideNavOnOutside);
 
 
