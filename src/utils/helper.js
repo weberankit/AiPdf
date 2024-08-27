@@ -1,3 +1,4 @@
+import { createContext } from "react"
 export const widthSetResponseBox=(setWidth,fontValue,valueToHideText)=>{
     
     //
@@ -67,4 +68,4 @@ export function handlePrint( keyForStoringHighlight,printfileName) {
   
 }
 
-
+export  const contextSpinLogin=createContext({spin:false})

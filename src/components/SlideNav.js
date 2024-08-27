@@ -46,7 +46,7 @@ const navLinks=[
     return(
         <>
 <div className={`relative `} >
-    <span className="absolute top-3 text-xs sm:text-base font-bold font-serif">{emailId}</span>
+    <span className="absolute top-3 text-xs sm:text-base font-bold font-serif ml-1">{emailId}</span>
 <button className="p-2 m-1 rounded-lg ml-[85%] text-red-600 text-2xl font-extrabold" onClick={()=>dispatch(addToogleNav())}><XSquare/></button>
 <div >
 <ul className="mt-16">

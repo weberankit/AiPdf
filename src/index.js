@@ -27,7 +27,7 @@ document.onkeydown = (e) => {
     return false; // Prevent default action for these key combinations
 };
 }
-toDisableInspect()
+//toDisableInspect()
 
 
 

@@ -20,7 +20,7 @@ const GptText=({styles})=>{
     const dispatch=useDispatch()
   console.log(styles)
   const selectingGptkeyVaues=useSelector((store)=>store.userskey?.keyGPT?.msg)
-
+//console.log(selectingGptkeyVaues)
   const selectgeminiResponse=useSelector((store)=>store.giminiRes.responseArray)
   const selectUserEmail=useSelector((store)=>store.userInformation.value?.email)
   const selectSendDataMsg=useSelector((store)=>store.ErrorSliced.sendDataMsg)

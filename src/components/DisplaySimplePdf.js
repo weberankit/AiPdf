@@ -1,6 +1,4 @@
 
-
-
 import { PdfLoader, PdfHighlighter, Tip, Highlight, AreaHighlight, Popup } from 'react-pdf-highlighter';
 import { Document,Page} from '@react-pdf/renderer';
 import {langugesConstant} from "../utils/langugesConstant"
@@ -181,4 +179,3 @@ let documentPdf =document.querySelectorAll(".textLayer")
 }
 
 export default DisplaySimplePdf
-
