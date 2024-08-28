@@ -145,4 +145,4 @@ const [showSupport , setShowSupport] = useState(null)
     )
 } 
 
-export default Heading
+export default  Heading
