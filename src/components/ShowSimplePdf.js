@@ -379,7 +379,7 @@ const ShowSimplePdf = memo(({ data }) => {
         <span className="text-gray-500 ">
           Page {pageNo} of {numPages}
         </span>
-        <div className="flex justify-center"> 
+        <div className=" hidden sm:flex justify-center "> 
         <span className="pr-1 hover:cursor-pointer">
           <ZoomIn size ={20} onClick={()=>setWidth((prev)=>prev+100)}/>  </span>
        <span className="pl-1 hover:cursor-pointer"> <ZoomOut size={20} onClick={()=>setWidth((prev)=>prev-100)}/></span>  
@@ -388,7 +388,7 @@ const ShowSimplePdf = memo(({ data }) => {
         {pageNo < numPages && (
           <button
             onClick={nextPage}
-            className=" relative p-1 top-[250px] sm:px-4 sm:py-2 bg-gray-500 text-white font-semibold rounded-md hover:bg-gray-800 transition duration-300"
+            className=" relative p-1  top-[250px] sm:px-4 sm:py-2 bg-gray-500 text-white font-semibold rounded-md hover:bg-gray-800 transition duration-300"
           >
             <CaretRight size={20}/>
           </button>
