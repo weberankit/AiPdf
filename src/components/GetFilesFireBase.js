@@ -2,17 +2,17 @@
 import {langugesConstant} from "../utils/langugesConstant"
 import { getStorage, ref, getDownloadURL , deleteObject} from "firebase/storage";
 import { toggler } from "../utils/userFiles";
-import { useDispatch ,useSelector} from "react-redux";
+import { useDispatch } from "react-redux";
 import { textFile } from "../utils/userSlice";
 //import { useSelector } from "react-redux"
-import { PDFDownloadLink, Document, Page } from '@react-pdf/renderer';
-import DisplaySimplePdf from "./DisplaySimplePdf"
-import ShowSimplePdf from "./ShowSimplePdf"
-import {useState,useEffect} from "react"
+//import { PDFDownloadLink, Document, Page } from '@react-pdf/renderer';
+//import DisplaySimplePdf from "./DisplaySimplePdf"
+//import ShowSimplePdf from "./ShowSimplePdf"
+import {useState} from "react"
 import {addUrlAdvPdf, addUrlPdf} from "../utils/useStoreDataSlice"
-import Joyride from 'react-joyride'; // Import Joyride
+//import Joyride from 'react-joyride'; // Import Joyride
 //import tourSteps from "../utils/tourSteps"
-import {SecondTourSteps} from "../utils/tourSteps"
+//import {SecondTourSteps} from "../utils/tourSteps"
 import { Trash } from "react-bootstrap-icons";
 //import fileSvg from "../images/img/filesvg.svg"
 import useSupportLang from "../utils/useSupportLang";
@@ -21,7 +21,7 @@ import useSupportLang from "../utils/useSupportLang";
 
 
 
-const GetFilesFireBase=({slectfileMeta,SetMsg ,setPrintFileName})=>{
+const GetFilesFireBase=({slectfileMeta,SetMsg })=>{
   const {file1,file2,file3 ,file4,file5,del1 , del2 } = langugesConstant[useSupportLang()]
 const textAlertMsg=file4
 const textMessageAlert=file5
@@ -153,7 +153,7 @@ function handleDelete(path){
     return(
       <>
    
-{!slectfileMeta && <p className="text-center font-bold ">loading file from Firebase Store..</p>}
+{!slectfileMeta && <p className="text-center font-bold bg-gray-500 rounded-xl p-2 animate-pulse">loading file from Firebase Store..</p>}
 
     {deleteIndication &&  <div className="text-center  text-red-600 bg-black w-1/2 m-auto rounded-md  text-sm animate-pulse fixed  left-0 right-0">{deleteIndication}</div>}
        
@@ -164,7 +164,7 @@ slectfileMeta && slectfileMeta.map((item)=>{
   const textFileidentify=item._location.path.split(".").pop()
   //textFileidentify==="txt"?setTextBtn()
  // console.log(textFileidentify)
- setPrintFileName(fileName)
+ //setPrintFileName(fileName)
 
 
 
@@ -191,7 +191,7 @@ slectfileMeta && slectfileMeta.map((item)=>{
       <div className="text-center m-auto">
            { 
                    textFileidentify==="txt"?<button className=" btn text-base m-auto p-2 md:px-6 bg-black rounded-lg text-white font-semibold font-serif hover:bg-white hover:text-black transition-all duration-500" onClick={()=>{handleText(item._location.path);dispatch(addUrlPdf(null));dispatch(addUrlAdvPdf(null));handleReachTop(0)}}>{file1}</button> :  
-                   <button className=" whitespace-nowrap btn text-base p-2 md:px-6 bg-black rounded-lg text-white font-semibold font-serif hover:bg-white hover:text-black transition-all duration-500" onClick={()=>{ MangeAlertMsgProPdf();handlePdf(item._location.path);   handleReachTop(0);dispatch(addUrlAdvPdf(null)) ;  dispatch(textFile(null))}}>{file2}</button>
+                   <button className=" whitespace-nowrap btn text-base p-2 md:px-6 bg-black rounded-lg text-white font-semibold font-serif hover:bg-white hover:text-black transition-all duration-500" onClick={()=>{handlePdf(item._location.path);   handleReachTop(0);dispatch(addUrlAdvPdf(null)) ;  dispatch(textFile(null))}}>{file2}</button>
 
                   }
       </div>

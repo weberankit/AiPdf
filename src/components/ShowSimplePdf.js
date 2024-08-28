@@ -1,3 +1,6 @@
+
+import "react-pdf/dist/esm/Page/TextLayer.css";
+/*
 import {langugesConstant} from "../utils/langugesConstant"
 import React, { useState, useRef, useEffect } from 'react';
 import { PdfLoader, PdfHighlighter, Tip, Highlight, AreaHighlight, Popup } from 'react-pdf-highlighter';
@@ -5,11 +8,11 @@ import { PdfLoader, PdfHighlighter, Tip, Highlight, AreaHighlight, Popup } from 
 import DisplaySimplePdf from "./DisplaySimplePdf"
 import { handlePrint } from '../utils/helper';
 import useSupportLang from "../utils/useSupportLang";
+import { memo } from "react";
 
-import 'react-pdf/dist/Page/TextLayer.css';
 import {Document ,Page} from 'react-pdf'
 
-
+*/
 
 /*
 const parseIdFromHash = () =>
@@ -267,8 +270,8 @@ return(
 
 export default ShowSimplePdf
 */
-
-const ShowSimplePdf = ({ data }) => {
+/*
+const ShowSimplePdf = memo(({ data }) => {
   const [numPages, setNumPages] = useState(0);
   const [pageNo, setPageNo] = useState(1);
 
@@ -290,7 +293,8 @@ const ShowSimplePdf = ({ data }) => {
         file={data}
         onLoadSuccess={({ numPages: numPagesInPdf }) => setNumPages(numPagesInPdf)}
         loading={<div className="text-gray-500">PDF is loading...</div>}
-        className="w-full max-w-md border border-gray-300 shadow-lg rounded-lg overflow-hidden"
+       
+        className=" text-[.1rem] w-full md:w-3/4 lg:w-2/3 xl:w-1/2 flex justify-center border border-gray-300 shadow-lg rounded-lg "
       >
         <Page pageNumber={pageNo} />
       </Document>
@@ -304,6 +308,9 @@ const ShowSimplePdf = ({ data }) => {
             Prev
           </button>
         )}
+        <span className="text-gray-500">
+          Page {pageNo} of {numPages}
+        </span>
         {pageNo < numPages && (
           <button
             onClick={nextPage}
@@ -315,6 +322,90 @@ const ShowSimplePdf = ({ data }) => {
       </div>
     </div>
   );
-};
+});
+
+export default ShowSimplePdf;*/
+
+
+import { useState, useRef, useEffect, memo } from "react";
+import { Document, Page } from "react-pdf";
+import { ZoomIn,ZoomOut,CaretLeft,CaretRight } from "react-bootstrap-icons";
+
+const ShowSimplePdf = memo(({ data }) => {
+  const [numPages, setNumPages] = useState(0);
+  const [pageNo, setPageNo] = useState(1);
+  const [width, setWidth] = useState(0);
+  const containerRef = useRef();
+
+  useEffect(() => {
+    const updateWidth = () => {
+      if (containerRef.current) {
+        setWidth(containerRef.current.offsetWidth);
+      }
+    };
+
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
+
+  function nextPage() {
+    if (pageNo < numPages) {
+      setPageNo(pageNo + 1);
+    }
+  }
+
+  function prevPage() {
+    if (pageNo >= 2) {
+      setPageNo(pageNo - 1);
+    }
+  }
+
+  return (
+    <div
+      ref={containerRef}
+      className="  flex flex-col items-center justify-center w-full pt-[62px] sm:p-2 bg-gray-100 "
+    >
+      {/* Page Number and Navigation Controls at the Top */}
+      <div className="w-full flex justify-between items-center mb-4 fixed top-0 z-[100] bg-white">
+        {pageNo > 1 && (
+          <button
+            onClick={prevPage}
+            className=" top-[250px] relative  p-1 sm:px-4 sm:py-2 bg-gray-500 text-white font-semibold rounded-md hover:bg-gray-800 transition duration-300"
+          >
+            <CaretLeft size={20}/>
+          </button>
+        )}
+        <span className="text-gray-500 ">
+          Page {pageNo} of {numPages}
+        </span>
+        <div className="flex justify-center"> 
+        <span className="pr-1 hover:cursor-pointer">
+          <ZoomIn size ={20} onClick={()=>setWidth((prev)=>prev+100)}/>  </span>
+       <span className="pl-1 hover:cursor-pointer"> <ZoomOut size={20} onClick={()=>setWidth((prev)=>prev-100)}/></span>  
+</div>
+      
+        {pageNo < numPages && (
+          <button
+            onClick={nextPage}
+            className=" relative p-1 top-[250px] sm:px-4 sm:py-2 bg-gray-500 text-white font-semibold rounded-md hover:bg-gray-800 transition duration-300"
+          >
+            <CaretRight size={20}/>
+          </button>
+        )}
+      </div>
+
+      {/* PDF Document Display */}
+      <Document
+        file={data}
+        onLoadSuccess={({ numPages: numPagesInPdf }) => setNumPages(numPagesInPdf)}
+        loading={<div className="text-gray-500 absolute z-[250] font-bold bg-white p-2 rounded-md text-center">PDF is loading...</div>}
+        className="w-full  flex justify-center border border-gray-300 shadow-lg rounded-lg "
+      >
+        <Page pageNumber={pageNo} width={width} style={{fontSize:"10px"}} />
+      </Document>
+    </div>
+  );
+});
 
 export default ShowSimplePdf;

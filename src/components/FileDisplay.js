@@ -41,7 +41,7 @@ const storage = getStorage();
 const [msg,SetMsg] =useState(null)
 const [sideBarShow , setSideBarShow]=useState(null)
 //toget name and pass for print function
-const [printFileName ,setPrintFileName] =useState("your highlighted Text")
+//const [printFileName ,setPrintFileName] =useState("your highlighted Text")
 //to grab words from pdf while selecting
 const selectPdfUrl=useSelector((store)=>store.useDataSlice.pdfUrl)
 //console.log(selectPdfUrl)
@@ -58,20 +58,20 @@ SelectionWord(setSideBarShow)
         <div className="flex flex-col ">
 
 
-            <div>{ sideBarShow&& <AiComponents/>}</div>
+            <div className="absolute z-[9999]">{ sideBarShow&& <AiComponents/>}</div>
 {msg&&<p >{msg}</p>}
 
 
-        <div  >
+        <div  className={` ${selectPdfUrl ? ` bg-white top-0 left-0 right-0 bottom-0 h-screen  absolute z-[999]`:"" }  `}>
       {selectPdfUrl &&  <button className="bg-red-600 font-semibold text-white p-1 rounded-lg top-[100px] text-[11px] md:text-base fixed left-1 z-[50]" onClick={()=>dispatch(addUrlPdf(null))}>{fileDisplay1}</button>}
- <div >   { selectPdfUrl&& <ShowSimplePdf data={selectPdfUrl} printfileName={printFileName}/>} </div> 
+ <div >   { selectPdfUrl&& <ShowSimplePdf data={selectPdfUrl}/>} </div> 
    
 </div>
 
 
 
 
-<div className="text-center ">
+<div className={` ${selectAdvPdfUrl ? ` bg-white top-0 left-0 right-0 bottom-0 h-screen  absolute z-[999]`:"" } text-center `}>
  {selectAdvPdfUrl&& <button className="bg-red-600 text-white p-2 rounded-sm text-center" onClick={()=>dispatch(addUrlAdvPdf(null))}>{fileDisplay1}</button>}
  {selectAdvPdfUrl && <div className="font-semibold text-xs select-none">{fileDisplay2} </div>}
 {
@@ -79,13 +79,13 @@ selectAdvPdfUrl &&  <ShowPdf data={selectAdvPdfUrl}/>
 }
 </div>
 
-<div className=" w-3/2 p-2 ">
+<div  className={` ${textShow ? ` bg-white top-0 left-0 right-0 bottom-0 h-screen  absolute z-[999]`:"" } w-3/2 p-2 `}  >
 {/*textShow && <button className="w-44 m-auto" onClick={()=>dispatch(textFile(null))}>close</button>*/}
    { textShow && <>   <div className=" w-4/5 sm:w-1/2 m-auto text-xs sm:text-sm "> 
    <div><button className="bg-black text-white hover:bg-gray-600 p-2 rounded-lg" onClick={()=>dispatch(textFile(null))}>{fileDisplay1}</button></div>
     {textShow}</div> </>}
 
-</div>
+</div> 
 
 
              
@@ -97,7 +97,7 @@ selectAdvPdfUrl &&  <ShowPdf data={selectAdvPdfUrl}/>
                                // setProUrl={setProUrl}
                                 //setGrab={grab}
                               //  myurl={selectPdfUrl}
-                                setPrintFileName={setPrintFileName}
+                               // setPrintFileName={setPrintFileName}
               />
           
  
