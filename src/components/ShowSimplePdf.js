@@ -6,7 +6,7 @@ import DisplaySimplePdf from "./DisplaySimplePdf"
 import { handlePrint } from '../utils/helper';
 import useSupportLang from "../utils/useSupportLang";
 
-
+import 'react-pdf/dist/Page/TextLayer.css';
 import {Document ,Page} from 'react-pdf'
 
 
@@ -223,7 +223,7 @@ highlights={highlights}
 export default ShowSimplePdf;
 */
 
-
+/*
 const ShowSimplePdf=({data})=>{
     const [numPages, setNumPages] = useState(0);
     const [pageNo ,setPageNo]=useState(1)
@@ -266,4 +266,55 @@ return(
 }
 
 export default ShowSimplePdf
+*/
 
+const ShowSimplePdf = ({ data }) => {
+  const [numPages, setNumPages] = useState(0);
+  const [pageNo, setPageNo] = useState(1);
+
+  function nextPage() {
+    if (pageNo < numPages) {
+      setPageNo(pageNo + 1);
+    }
+  }
+
+  function prevPage() {
+    if (pageNo >= 2) {
+      setPageNo(pageNo - 1);
+    }
+  }
+
+  return (
+    <div className="flex flex-col items-center justify-center w-full p-4 bg-gray-100">
+      <Document
+        file={data}
+        onLoadSuccess={({ numPages: numPagesInPdf }) => setNumPages(numPagesInPdf)}
+        loading={<div className="text-gray-500">PDF is loading...</div>}
+        className="w-full max-w-md border border-gray-300 shadow-lg rounded-lg overflow-hidden"
+      >
+        <Page pageNumber={pageNo} />
+      </Document>
+
+      <div className="mt-4 flex space-x-4">
+        {pageNo > 1 && (
+          <button
+            onClick={prevPage}
+            className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition duration-300"
+          >
+            Prev
+          </button>
+        )}
+        {pageNo < numPages && (
+          <button
+            onClick={nextPage}
+            className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition duration-300"
+          >
+            Next
+          </button>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default ShowSimplePdf;
