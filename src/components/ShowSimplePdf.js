@@ -1,15 +1,17 @@
 import {langugesConstant} from "../utils/langugesConstant"
 import React, { useState, useRef, useEffect } from 'react';
 import { PdfLoader, PdfHighlighter, Tip, Highlight, AreaHighlight, Popup } from 'react-pdf-highlighter';
-import { PDFDownloadLink, Document, Page } from '@react-pdf/renderer';
+//-import { PDFDownloadLink, Document, Page } from '@react-pdf/renderer';
 import DisplaySimplePdf from "./DisplaySimplePdf"
 import { handlePrint } from '../utils/helper';
 import useSupportLang from "../utils/useSupportLang";
 
 
+import {Document ,Page} from 'react-pdf'
 
 
 
+/*
 const parseIdFromHash = () =>
   document.location.hash.slice("#highlight-".length);
 
@@ -34,7 +36,7 @@ const HighlightPopup = ({ comment, onDelete }) => {
     </div>
   );
 };
-
+/*
 const ShowSimplePdf = ({ data ,printfileName }) => {
   const {showPdf1,showPdf2,showPdf3,showPdf4,showPdf5,showPdf6,showPdf7,showPdf8,showPdf9,showPdf10,showPdf11} =langugesConstant[useSupportLang()]
   console.log(data)
@@ -45,7 +47,7 @@ const ShowSimplePdf = ({ data ,printfileName }) => {
  const[downloadBtnShow , setDownloaShow] =useState(null)
 
 
- // Clear local storage
+
  const clearLocalStorage = () => {
 
   try {
@@ -67,7 +69,7 @@ const ShowSimplePdf = ({ data ,printfileName }) => {
   }
 };
 
-// Handle local storage quota exceeded error
+
 const handleLocalStorageError = (error) => {
 
   if (error.name === 'QuotaExceededError') {
@@ -156,7 +158,7 @@ function handleClear(){
   localStorage.clear()
   setErrorMessage(null)
   localStorage.setItem('tourCompleted', 'true');
- // localStorage.setItem('SecondtourCompleted', 'true');
+ 
   }else{
     console.log("not deleted")
   }
@@ -172,7 +174,7 @@ errorMessage && <div className='bg-black fixed top-0 p-14 text-white text-sm z-[
  
   
 <button className='bg-white text-black p-2 rounded-md ' onClick={()=>setErrorMessage(null)}>{showPdf6}</button>
-{/* Error message errorMessage &&*/}
+
 { <div className='mr-4 w-full sm:w-5/6 text-red-700'>{errorMessage}</div>}
 
  <button className='bg-red-600 p-1 text-sm rounded-lg m-2 hover:bg-green-700' onClick={clearLocalStorage}>{showPdf11} </button>
@@ -216,6 +218,52 @@ highlights={highlights}
   );
 };
 
-export default ShowSimplePdf;
 
+
+export default ShowSimplePdf;
+*/
+
+
+const ShowSimplePdf=({data})=>{
+    const [numPages, setNumPages] = useState(0);
+    const [pageNo ,setPageNo]=useState(1)
+    function nextPage(){
+        //eg.pg-4
+          if(pageNo<numPages){
+            console.log(pageNo,numPages)
+              setPageNo(pageNo+1) //eg.pg-5 
+          }
+      
+      }
+      function prevPage(){
+        //since when totalpage is greate or equal to 2 then decrement
+        if(pageNo>=2){
+          setPageNo(pageNo-1)
+          console.log(pageNo,numPages)
+        }
+      }
+      console.log(data)
+return(
+    <>
+    
+    <Document file={data} onLoadSuccess={({ numPages: numPagesInPdf }) => {
+        setNumPages(numPagesInPdf)}}  loading={"pdf is loading"}>
+        <Page pageNumber={pageNo} />
+       
+    
+ 
+  
+      </Document>
+
+      {
+ (pageNo==1) ? " " : <button onClick={prevPage}>{data&&"Prev"}</button>
+  }
+ {
+ (pageNo>=numPages) ? " " : <button onClick={nextPage}>{data&&"Next"}</button>
+  }
+    </>
+)
+}
+
+export default ShowSimplePdf
 
