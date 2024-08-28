@@ -8,7 +8,7 @@ import UploadFiles from "./components/UploadFiles";
 import FileCart from "./components/FileCart";
 import Setting from "./components/Setting";
 //import AiKeyCreateStep from "./components/AiKeyCreateStep";
-import {lazy,Suspense} from "react"
+import {createContext, lazy,Suspense, useContext} from "react"
 //import DicctKeyStep from "./components/DicctKeyStep";
 import Error from "./components/Error";
 import useCheckOnline from "./utils/useCheckOnline";
@@ -22,12 +22,15 @@ import ResetEmailPassword from "./components/ResetEmailPassword";
  import Sign from "./components/Sign"; 
 import { useState,useEffect } from "react";
 import { Lines } from 'react-preloaders';
+import { contextSpinLogin } from "./utils/helper";
+
   const StepsAi=lazy(()=>import("./components/AiKeyCreateStep"))
  const StepDict=lazy(()=>import("./components/DicctKeyStep"))
  const DemoPage=lazy(()=>import("./components/ShowDemo"))
+
 const App = () => {
   const modeNetwork=useCheckOnline()
-  console.log(modeNetwork,"thidddddd")
+ 
  
 function toLoad() {
      document.getElementById("loading-indicator").style.display = "none";
@@ -94,13 +97,13 @@ element:(  <Suspense fallback={<h1  className="text-center font-bold">loading...
 
 ])
 
-
-
+//const useContextSpinLogin=useContext(contextSpinLogin)
+const [spin,setSpin]=useState({spin:false})
 
     return (
       <>
       {!modeNetwork && <p className="bg-red-600 text-white p-1 m-1 ">please check your network</p>}
-     
+     < contextSpinLogin.Provider value={{spin,setSpin}}>
           <Provider store={appStore}>
  <RouterProvider router={appRouter}>
  
@@ -110,9 +113,16 @@ element:(  <Suspense fallback={<h1  className="text-center font-bold">loading...
 
 
  </Provider>
+</contextSpinLogin.Provider >
+
       </>
        
     );
 };
 
 export default App;
+
+
+
+
+
