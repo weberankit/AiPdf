@@ -53,7 +53,7 @@ useStatusCheck()
 
 
 //const directoryPath = `path/to/${updateUserInfoOnrefresh}`; // Adjust the path according to your storage structure
-const directoryPath = `path/to/${selectUsrDetail?.uid}`; // Adjust the path according to your storage structure
+const directoryPath = `path/to/${selectUsrDetail?.uid}`; 
 
 useEffect(()=>{
 

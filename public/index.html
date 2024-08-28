@@ -38,24 +38,57 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
    
-    <div id="loading-indicator" style="
-    width: 80%; /* Adjust width as needed */
-    height: 10px; /* Adjust height as needed */
+    <div id="loading-overlay" style="
     position: fixed;
-    top: 20%; /* Adjust position as needed */
-    left: 10%; /* Adjust position as needed */
-    background-color: #746aff; /* Base color for the bar */
-    border-radius: 5px; /* Rounded corners */
-    overflow: hidden; /* Clip overflowing content */
-    animation: progress 2s linear infinite; /* Animation definition */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Ensure it stays on top */
+">
+  <div style="
+    text-align: center; /* Center align text and bar */
   ">
-    <div style="
-      width: 0%; /* Initial width for the progress bar */
-      height: 100%; /* Full height of the bar */
-      background-color: #fff; /* Progress color */
-      transition: width 1s ease-in-out; /* Smooth transition for progress */
-    "></div>
+    <p style="
+      color: white; 
+      font-size: 44px; 
+      margin-bottom: 20px;
+    "><img style="width: 110px ;border-radius: 20%; " src="https://ucarecdn.com/8d533a74-1817-4ae8-82ab-3653e2106f30/mainPage.svg">
+    </p>
+    <div id="loading-indicator" style="
+      width: 100%; /* Adjust width as needed */
+      height: 10px; /* Adjust height as needed */
+      background-color: #645bdd; /* Base color for the bar */
+      border-radius: 5px; /* Rounded corners */
+      overflow: hidden; /* Clip overflowing content */
+     
+    ">
+      <div id="progress-bar" style="
+        width: 0%; /* Initial width for the progress bar */
+        height: 100%; /* Full height of the bar */
+        background-color: #fff0f0; /* Progress color */
+        animation: loadingAnimation 2s linear infinite; /* Animation definition */
+       
+      ">
+      </div>
+    </div>
   </div>
+</div>
+
+<style>
+  @keyframes loadingAnimation {
+    0% { width: 0%; }
+    100% { width: 100%; }
+  }
+</style>
+
+
+
+   
     <div id="root"></div>
    
     <!--

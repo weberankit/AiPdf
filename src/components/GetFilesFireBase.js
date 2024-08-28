@@ -153,7 +153,7 @@ function handleDelete(path){
     return(
       <>
    
-
+{!slectfileMeta && <p className="text-center font-bold ">loading file from Firebase Store..</p>}
 
     {deleteIndication &&  <div className="text-center  text-red-600 bg-black w-1/2 m-auto rounded-md  text-sm animate-pulse fixed  left-0 right-0">{deleteIndication}</div>}
        

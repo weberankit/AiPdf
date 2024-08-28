@@ -20,27 +20,44 @@ import ResetEmailPassword from "./components/ResetEmailPassword";
 //import {useState ,useEffect} from "react"
 //import tourSteps from "./utils/tourSteps"
  import Sign from "./components/Sign"; 
-import { useState,useEffect } from "react";
-import { Lines } from 'react-preloaders';
+import { useState,useEffect,useCallback } from "react";
+//import { Lines } from 'react-preloaders';
 import { contextSpinLogin } from "./utils/helper";
 
   const StepsAi=lazy(()=>import("./components/AiKeyCreateStep"))
  const StepDict=lazy(()=>import("./components/DicctKeyStep"))
  const DemoPage=lazy(()=>import("./components/ShowDemo"))
+ //const FileLazy=lazy(()=>import("./components/FileCart"))
 
 const App = () => {
   const modeNetwork=useCheckOnline()
  
+  const callBackToUnLoad=useCallback(toLoad,[])
+  function toLoad() {
+    document.getElementById("loading-overlay").style.display = "none";
+  }
+  // Hide the loading indicator when the page has fully loaded
+ window.addEventListener("load", callBackToUnLoad);
  
-function toLoad() {
-     document.getElementById("loading-indicator").style.display = "none";
-    }
-     window.addEventListener("load", toLoad);
-  
-useEffect(()=>{
-  document.getElementById("loading-indicator").style.display = "none";
+ useEffect(()=>{
+ 
+ // Hide the loading indicator when the page has fully loaded
+ //to ensure 100% 
+document.getElementById("loading-overlay").style.display = "none";
 
-},[])
+
+
+
+ //removing it when unmounted --
+
+
+  return(()=>window.removeEventListener("load",callBackToUnLoad))
+ },[])
+
+
+
+
+
 
 const appRouter=createBrowserRouter([
 {
