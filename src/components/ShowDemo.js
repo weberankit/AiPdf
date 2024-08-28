@@ -43,7 +43,7 @@ return()=>document.body.style.backgroundColor="white"
 
 
     return(
-        <><Link to={"/"}><div className="bg-black text-center p-2 rounded-lg m-1 text-white w-24 m-auto text-sm" >{sign3}</div></Link>
+        <><Link to={"/"}><div className={` ${dataUrlAdv ? `hidden`:''} ${dataUrl ? `hidden`:""} bg-black text-center p-2 rounded-lg m-1 text-white w-24 m-auto text-sm  `} >{sign3}</div></Link>
      
 <div className="">
     

@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom"
+/*import {Link} from "react-router-dom"
 import { useState } from "react"
 
 const Demo=()=>{
@@ -11,13 +11,13 @@ const [skip , setSkip]=useState(0)
 
 
 </div>
-     <div> <h1 className="text-center bg-black text-white p-2"> <Link to="/"><button className="bg-red-600 p-2 m-1 rounded-md">back</button></Link> , please check the  video/pdf   to understand how it work then go for the Demo below </h1></div>
+     <div> <h1 className="text-center bg-black text-white p-2 z-[1300] absolute"> <Link to="/"><button className="bg-red-600 p-2 m-1 rounded-md">back</button></Link> , please check the  video/pdf   to understand how it work then go for the Demo below </h1></div>
         <div className="w-4/5 sm:w-1/2 m-auto pt-28">
 <div className="flex flex-col md:flex-row  justify-between ">
     <div>
    
 {
-/**/
+
         <iframe 
         className="w-full rounded-2xl shadow-lg hover:cursor-pointer h-96"
         frameborder="0"
@@ -50,3 +50,4 @@ const [skip , setSkip]=useState(0)
 }
 
 export default Demo
+*/

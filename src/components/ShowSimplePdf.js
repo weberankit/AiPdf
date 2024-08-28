@@ -1,15 +1,20 @@
+
+import "react-pdf/dist/esm/Page/TextLayer.css";
+/*
 import {langugesConstant} from "../utils/langugesConstant"
 import React, { useState, useRef, useEffect } from 'react';
 import { PdfLoader, PdfHighlighter, Tip, Highlight, AreaHighlight, Popup } from 'react-pdf-highlighter';
-import { PDFDownloadLink, Document, Page } from '@react-pdf/renderer';
+//-import { PDFDownloadLink, Document, Page } from '@react-pdf/renderer';
 import DisplaySimplePdf from "./DisplaySimplePdf"
 import { handlePrint } from '../utils/helper';
 import useSupportLang from "../utils/useSupportLang";
+import { memo } from "react";
 
+import {Document ,Page} from 'react-pdf'
 
+*/
 
-
-
+/*
 const parseIdFromHash = () =>
   document.location.hash.slice("#highlight-".length);
 
@@ -34,7 +39,7 @@ const HighlightPopup = ({ comment, onDelete }) => {
     </div>
   );
 };
-
+/*
 const ShowSimplePdf = ({ data ,printfileName }) => {
   const {showPdf1,showPdf2,showPdf3,showPdf4,showPdf5,showPdf6,showPdf7,showPdf8,showPdf9,showPdf10,showPdf11} =langugesConstant[useSupportLang()]
   console.log(data)
@@ -45,7 +50,7 @@ const ShowSimplePdf = ({ data ,printfileName }) => {
  const[downloadBtnShow , setDownloaShow] =useState(null)
 
 
- // Clear local storage
+
  const clearLocalStorage = () => {
 
   try {
@@ -67,7 +72,7 @@ const ShowSimplePdf = ({ data ,printfileName }) => {
   }
 };
 
-// Handle local storage quota exceeded error
+
 const handleLocalStorageError = (error) => {
 
   if (error.name === 'QuotaExceededError') {
@@ -156,7 +161,7 @@ function handleClear(){
   localStorage.clear()
   setErrorMessage(null)
   localStorage.setItem('tourCompleted', 'true');
- // localStorage.setItem('SecondtourCompleted', 'true');
+ 
   }else{
     console.log("not deleted")
   }
@@ -172,7 +177,7 @@ errorMessage && <div className='bg-black fixed top-0 p-14 text-white text-sm z-[
  
   
 <button className='bg-white text-black p-2 rounded-md ' onClick={()=>setErrorMessage(null)}>{showPdf6}</button>
-{/* Error message errorMessage &&*/}
+
 { <div className='mr-4 w-full sm:w-5/6 text-red-700'>{errorMessage}</div>}
 
  <button className='bg-red-600 p-1 text-sm rounded-lg m-2 hover:bg-green-700' onClick={clearLocalStorage}>{showPdf11} </button>
@@ -216,6 +221,191 @@ highlights={highlights}
   );
 };
 
+
+
 export default ShowSimplePdf;
+*/
+
+/*
+const ShowSimplePdf=({data})=>{
+    const [numPages, setNumPages] = useState(0);
+    const [pageNo ,setPageNo]=useState(1)
+    function nextPage(){
+        //eg.pg-4
+          if(pageNo<numPages){
+            console.log(pageNo,numPages)
+              setPageNo(pageNo+1) //eg.pg-5 
+          }
+      
+      }
+      function prevPage(){
+        //since when totalpage is greate or equal to 2 then decrement
+        if(pageNo>=2){
+          setPageNo(pageNo-1)
+          console.log(pageNo,numPages)
+        }
+      }
+      console.log(data)
+return(
+    <>
+    
+    <Document file={data} onLoadSuccess={({ numPages: numPagesInPdf }) => {
+        setNumPages(numPagesInPdf)}}  loading={"pdf is loading"}>
+        <Page pageNumber={pageNo} />
+       
+    
+ 
+  
+      </Document>
+
+      {
+ (pageNo==1) ? " " : <button onClick={prevPage}>{data&&"Prev"}</button>
+  }
+ {
+ (pageNo>=numPages) ? " " : <button onClick={nextPage}>{data&&"Next"}</button>
+  }
+    </>
+)
+}
+
+export default ShowSimplePdf
+*/
+/*
+const ShowSimplePdf = memo(({ data }) => {
+  const [numPages, setNumPages] = useState(0);
+  const [pageNo, setPageNo] = useState(1);
+
+  function nextPage() {
+    if (pageNo < numPages) {
+      setPageNo(pageNo + 1);
+    }
+  }
+
+  function prevPage() {
+    if (pageNo >= 2) {
+      setPageNo(pageNo - 1);
+    }
+  }
+
+  return (
+    <div className="flex flex-col items-center justify-center w-full p-4 bg-gray-100">
+      <Document
+        file={data}
+        onLoadSuccess={({ numPages: numPagesInPdf }) => setNumPages(numPagesInPdf)}
+        loading={<div className="text-gray-500">PDF is loading...</div>}
+       
+        className=" text-[.1rem] w-full md:w-3/4 lg:w-2/3 xl:w-1/2 flex justify-center border border-gray-300 shadow-lg rounded-lg "
+      >
+        <Page pageNumber={pageNo} />
+      </Document>
+
+      <div className="mt-4 flex space-x-4">
+        {pageNo > 1 && (
+          <button
+            onClick={prevPage}
+            className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition duration-300"
+          >
+            Prev
+          </button>
+        )}
+        <span className="text-gray-500">
+          Page {pageNo} of {numPages}
+        </span>
+        {pageNo < numPages && (
+          <button
+            onClick={nextPage}
+            className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition duration-300"
+          >
+            Next
+          </button>
+        )}
+      </div>
+    </div>
+  );
+});
+
+export default ShowSimplePdf;*/
 
 
+import { useState, useRef, useEffect, memo } from "react";
+import { Document, Page } from "react-pdf";
+import { ZoomIn,ZoomOut,CaretLeft,CaretRight } from "react-bootstrap-icons";
+
+const ShowSimplePdf = memo(({ data }) => {
+  const [numPages, setNumPages] = useState(0);
+  const [pageNo, setPageNo] = useState(1);
+  const [width, setWidth] = useState(0);
+  const containerRef = useRef();
+
+  useEffect(() => {
+    const updateWidth = () => {
+      if (containerRef.current) {
+        setWidth(containerRef.current.offsetWidth);
+      }
+    };
+
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
+
+  function nextPage() {
+    if (pageNo < numPages) {
+      setPageNo(pageNo + 1);
+    }
+  }
+
+  function prevPage() {
+    if (pageNo >= 2) {
+      setPageNo(pageNo - 1);
+    }
+  }
+
+  return (
+    <div
+      ref={containerRef}
+      className="  flex flex-col items-center justify-center w-full pt-[62px] sm:p-2 bg-gray-100 "
+    >
+      {/* Page Number and Navigation Controls at the Top */}
+      <div className="w-full flex justify-between items-center mb-4 fixed top-0 z-[100] bg-white">
+        {pageNo > 1 && (
+          <button
+            onClick={prevPage}
+            className=" top-[250px] relative  p-1 sm:px-4 sm:py-2 bg-gray-500 text-white font-semibold rounded-md hover:bg-gray-800 transition duration-300"
+          >
+            <CaretLeft size={20}/>
+          </button>
+        )}
+        <span className="text-gray-500 ">
+          Page {pageNo} of {numPages}
+        </span>
+        <div className="flex justify-center"> 
+        <span className="pr-1 hover:cursor-pointer">
+          <ZoomIn size ={20} onClick={()=>setWidth((prev)=>prev+100)}/>  </span>
+       <span className="pl-1 hover:cursor-pointer"> <ZoomOut size={20} onClick={()=>setWidth((prev)=>prev-100)}/></span>  
+</div>
+      
+        {pageNo < numPages && (
+          <button
+            onClick={nextPage}
+            className=" relative p-1 top-[250px] sm:px-4 sm:py-2 bg-gray-500 text-white font-semibold rounded-md hover:bg-gray-800 transition duration-300"
+          >
+            <CaretRight size={20}/>
+          </button>
+        )}
+      </div>
+
+      {/* PDF Document Display */}
+      <Document
+        file={data}
+        onLoadSuccess={({ numPages: numPagesInPdf }) => setNumPages(numPagesInPdf)}
+        loading={<div className="text-gray-500 absolute z-[250] font-bold bg-white p-2 rounded-md text-center">PDF is loading...</div>}
+        className="w-full  flex justify-center border border-gray-300 shadow-lg rounded-lg "
+      >
+        <Page pageNumber={pageNo} width={width} style={{fontSize:"10px"}} />
+      </Document>
+    </div>
+  );
+});
+
+export default ShowSimplePdf;

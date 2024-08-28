@@ -1,4 +1,4 @@
-
+/*
 import { PdfLoader, PdfHighlighter, Tip, Highlight, AreaHighlight, Popup } from 'react-pdf-highlighter';
 import { Document,Page} from '@react-pdf/renderer';
 import {langugesConstant} from "../utils/langugesConstant"
@@ -39,7 +39,7 @@ const {display1,display2} =langugesConstant[useSupportLang()]
        clearInterval(scrollInterval);
      });
    }  <button onClick={()=>handleScroll()}>manin</button> */
-
+/*
 const pageInput=useRef()
 
    function scrollToPage() {
@@ -71,7 +71,7 @@ let documentPdf =document.querySelectorAll(".textLayer")
    
     })*/
 
-
+/*
 
     return(
 
@@ -179,3 +179,5 @@ let documentPdf =document.querySelectorAll(".textLayer")
 }
 
 export default DisplaySimplePdf
+
+*/
