@@ -155,7 +155,7 @@ function handleDelete(path){
    
 {!slectfileMeta && <p className="text-center font-bold bg-gray-500 rounded-xl p-2 animate-pulse">loading file from Firebase Store..</p>}
 
-    {deleteIndication &&  <div className="text-center  text-red-600 bg-black w-1/2 m-auto rounded-md  text-sm animate-pulse fixed  left-0 right-0">{deleteIndication}</div>}
+    {deleteIndication &&  <div className=" z-[300] text-center p-2  text-red-600 bg-black w-1/2 m-auto rounded-md  text-sm animate-pulse fixed  left-0 right-0">{deleteIndication}</div>}
        
         {
 slectfileMeta && slectfileMeta.map((item)=>{
@@ -186,19 +186,19 @@ slectfileMeta && slectfileMeta.map((item)=>{
 
      <div className="w-1/2">
     <div>
-      <div className= " parenti sm:text-center mb-2 select-none sm:w-60 "> <h1 className=" main text-2xl md:text-4xl mt-0 md:mt-3  font-extrabold font-serif truncate">{fileName}</h1>   <p className="showel bg-gray-400 p-1 rounded-lg text-white absolute ">{fileName}</p></div>
+      <div className= " parenti sm:text-center mb-2 select-none sm:w-60 "> <h1 className=" main text-2xl md:text-4xl mt-0 md:mt-3  font-extrabold font-serif truncate ">{fileName}</h1>   <p className="showel bg-gray-400 p-1 rounded-lg text-white absolute top-0">{fileName}</p></div>
 <div className="flex flex-row  mt-8 w-full sm:w-52">
       <div className="text-center m-auto">
            { 
-                   textFileidentify==="txt"?<button className=" btn text-base m-auto p-2 md:px-6 bg-black rounded-lg text-white font-semibold font-serif hover:bg-white hover:text-black transition-all duration-500" onClick={()=>{handleText(item._location.path);dispatch(addUrlPdf(null));dispatch(addUrlAdvPdf(null));handleReachTop(0)}}>{file1}</button> :  
-                   <button className=" whitespace-nowrap btn text-base p-2 md:px-6 bg-black rounded-lg text-white font-semibold font-serif hover:bg-white hover:text-black transition-all duration-500" onClick={()=>{handlePdf(item._location.path);   handleReachTop(0);dispatch(addUrlAdvPdf(null)) ;  dispatch(textFile(null))}}>{file2}</button>
+                   textFileidentify==="txt"?<button className=" btn text-base m-auto p-2 md:px-6 bg-black rounded-lg text-white font-semibold font-serif sm:hover:bg-white sm:hover:text-black transition-all duration-500" onClick={()=>{handleText(item._location.path);dispatch(addUrlPdf(null));dispatch(addUrlAdvPdf(null));handleReachTop(0)}}>{file1}</button> :  
+                   <button className=" whitespace-nowrap btn text-base p-2 md:px-6 bg-black rounded-lg text-white font-semibold font-serif sm:hover:bg-white sm:hover:text-black transition-all duration-500" onClick={()=>{handlePdf(item._location.path);   handleReachTop(0);dispatch(addUrlAdvPdf(null)) ;  dispatch(textFile(null))}}>{file2}</button>
 
                   }
       </div>
 
       <div className="sm:ml-1">{
               //to open high level-pdf viewer
-              textFileidentify !== "txt" &&  <button className=" whitespace-nowrap btn ml-2 sm:ml-0 text-base p-2 md:px-6 bg-black rounded-lg text-white font-semibold font-serif hover:bg-white hover:text-black transition-all duration-500" onClick={()=>{MangeAlertMsgAdvPdf();handleAdvPdf(item._location.path) ;
+              textFileidentify !== "txt" &&  <button className=" whitespace-nowrap btn ml-2 sm:ml-0 text-base p-2 md:px-6 bg-black rounded-lg text-white font-semibold font-serif sm:hover:bg-white sm:hover:text-black transition-all duration-500" onClick={()=>{MangeAlertMsgAdvPdf();handleAdvPdf(item._location.path) ;
               handleReachTop(0);dispatch(addUrlPdf(null));  dispatch(textFile(null)) }}> {file3}</button>
             }</div>
 

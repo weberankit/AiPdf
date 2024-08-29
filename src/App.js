@@ -23,10 +23,13 @@ import ResetEmailPassword from "./components/ResetEmailPassword";
 import { useState,useEffect,useCallback } from "react";
 //import { Lines } from 'react-preloaders';
 import { contextSpinLogin } from "./utils/helper";
+//import WithoutUpload from "./components/WithoutUpload";
+
 
   const StepsAi=lazy(()=>import("./components/AiKeyCreateStep"))
  const StepDict=lazy(()=>import("./components/DicctKeyStep"))
  const DemoPage=lazy(()=>import("./components/ShowDemo"))
+ const WithoutUploads=lazy(()=>import("./components/WithoutUpload"))
  //const FileLazy=lazy(()=>import("./components/FileCart"))
 
 const App = () => {
@@ -111,6 +114,15 @@ element:(  <Suspense fallback={<h1  className="text-center font-bold">loading...
   path:"/showDemo",
   element:<Suspense fallback={<h1 className="text-center font-bold">loading....please wait</h1>}><DemoPage/></Suspense>
 }
+,
+
+{
+  path:"/withoutUpload",
+  element:<Suspense fallback={<h1 className="text-center font-bold">loading....please wait</h1>}><WithoutUploads/></Suspense>
+}
+
+
+
 
 ])
 
@@ -123,7 +135,7 @@ const [spin,setSpin]=useState({spin:false})
      < contextSpinLogin.Provider value={{spin,setSpin}}>
           <Provider store={appStore}>
  <RouterProvider router={appRouter}>
- 
+
  </RouterProvider>
 
 

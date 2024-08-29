@@ -5,7 +5,7 @@ import useSupportLang from "../utils/useSupportLang";
 const Faq=()=>{
     
     const {qs1,ans1,qs2,ans2,qs3,ans3,qs4,ans4,qs5,ans5} = langugesConstant[useSupportLang()]
-const [show,setShow] =useState(0)  
+const [show,setShow] =useState(2)  
 const Questions=[
     {ques:qs1,
      ans:ans1   
@@ -32,8 +32,8 @@ const Questions=[
         <>
 
 {Questions.map((item,index)=>{
-    return(<>
-    <div>
+    return(
+    <div key={index}>
         <div className="mt-3 rounded-lg  shadow-lg border border-white">
     {index === show ?<div className="flex flex-row justify-between cursor-pointer" onClick={()=>setShow(null)}> <div className=" p-2 text-xl font-bold fontFaq font-serif" > {item.ques}</div> <button  className="bg-[#8a60f6] p-1 mt-4 mb-4 text-center rounded-2xl" ><CaretLeft/></button>  </div>
      :
@@ -44,7 +44,7 @@ const Questions=[
 </div>
 
 
-    </>)
+    )
 })}
 
 

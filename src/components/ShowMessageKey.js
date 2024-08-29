@@ -3,11 +3,12 @@ import { useState ,useEffect } from "react"
 import { useLocation } from "react-router-dom"
 import { langugesConstant } from "../utils/langugesConstant"
 import useSupportLang from "../utils/useSupportLang"
+import { useSelector } from "react-redux"
 const ShowMessageKey=({keyAvail})=>{
         const {msg1} = langugesConstant[useSupportLang()] 
 const location =useLocation()
     const [showKeyMessage , setShowKeyMessage] = useState(null)
-
+    const selector = useSelector((store) => store.userInformation.value);
     useEffect(()=>{
        
 
@@ -17,8 +18,8 @@ function MangeAlert(){
         
     
         if(!getItems){
-       
- if(keyAvail && location.pathname === "/cart"){
+       //for both upload and direct open pdf
+ if(keyAvail && location.pathname === "/cart"  || keyAvail && location.pathname === "/withoutUpload" && selector ){
           setShowKeyMessage(true)
 
            sessionStorage.setItem("keyalert","done")

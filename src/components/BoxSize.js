@@ -1,7 +1,5 @@
 import {langugesConstant} from "../utils/langugesConstant"
-import {useSelector} from "react-redux"
-import { useRef } from "react";
-import { useState } from "react";
+
 import { ZoomIn, ZoomOut } from "react-bootstrap-icons";
 import useSupportLang from "../utils/useSupportLang";
 const BoxSize=({handlePlusClick,handleMinusClick})=>{

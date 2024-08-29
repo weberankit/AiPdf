@@ -54,7 +54,7 @@ signOut(auth).then(() => {
       // setHideHeaderPdfOpen("fixed")
       refHide.current="null"
      }
-     console.log(refHide.current)
+  //   console.log(refHide.current)
 
    const navHideOutsideClick=useRef()
 //using to close sideNavbar when user click out of box
@@ -117,7 +117,7 @@ const [showSupport , setShowSupport] = useState(null)
 
 const useSpinContext=useContext(contextSpinLogin)
 
-console.log(useSpinContext)
+//console.log(useSpinContext)
 
 
     return(

@@ -18,7 +18,7 @@ if(!sourceLang){
     console.log(selectKeyTrans)
     const selectToggleforApi=useSelector((store)=>store.userskey?.toggleToCallApi)
     const textGrab=useSelector((store)=>store.fileInformation?.text)
- console.log(textGrab,selectKeyTrans)
+ //console.log(textGrab,selectKeyTrans)
 async function callingTransApi(){
     if(selectTrans){
         //
@@ -33,9 +33,9 @@ async function callingTransApi(){
             const response = await fetch(url);
             const result = await response.json();
            // const data = JSON.parse(result);
-            console.log(result);
+         //   console.log(result);
             const res=result?.responseData?.translatedText
-           console.log(res)
+        //   console.log(res)
            dispatch(addSearchMsg(null))
 
          dispatch(translateApi(res))

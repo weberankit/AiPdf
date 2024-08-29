@@ -10,7 +10,7 @@ const SlideNav=({logoutUser,emailId})=>{
 
 const path=useLocation()
 const {pathname:location}=path 
-console.log(location)
+//console.log(location)
 const dispatch=useDispatch()
 const selectDarkToogle=useSelector((store)=>store.userInformation.darkModes)
 
@@ -35,6 +35,14 @@ const navLinks=[
             icon:<CloudUploadFill size={24}/>
          
              },
+
+             {
+                path:"/withoutUpload",
+                navName:"OpenFile",
+                icon:<CloudUploadFill size={24}/>
+             
+                 },
+
              {
                 path:"/setting",
                 navName:nav4,
@@ -52,9 +60,9 @@ const navLinks=[
 <button className="p-2 m-1 rounded-lg ml-[85%] text-red-600 text-2xl font-extrabold" onClick={()=>dispatch(addToogleNav())}><XSquare/></button>
 <div >
 <ul className="mt-16">
-{navLinks.map((item)=>{
+{navLinks.map((item,index)=>{
     return(
-        <>
+        <div key={index}>
         <div className={`p-2 text-center border border-gray-200 hover:bg-[#202020c9] hover:text-white ${selectDarkToogle ? "hover:bg-gray-400":"text-black"} `}>
 
 
@@ -63,7 +71,7 @@ const navLinks=[
 </Link>
 
         </div>
-        </>
+        </div>
     )
 })}
 <div className="p-2 hover:bg-[#202020c9] ml-2 cursor-pointer"  onClick={()=>logoutUser()}>

@@ -1,11 +1,9 @@
 
 import { langugesConstant } from "../utils/langugesConstant";
 
-//import { Translate, MoonStarsFill ,FilePdfFill} from 'react-bootstrap-icons';
-//import gifImage from "../images/gif/gif.gif"
+
 import Faq from './Faq';
-//import Footer from './Footer';
-//import logoMainPage from "../images/img/mainPage.svg"
+
 import Heading from "./Heading";
 import { Link ,useNavigate} from "react-router-dom";
 import { useSelector,useDispatch } from "react-redux";
@@ -14,6 +12,9 @@ import useSupportLang from "../utils/useSupportLang";
 import tourSteps from "../utils/tourSteps";
 import Joyride from 'react-joyride'; // Import Joyride
 import { useState,useEffect } from "react";
+
+
+
 const InitialPage=()=>{
   
  //  console.log(lang,"languges",selectSupportLang)
@@ -74,16 +75,29 @@ const handleTourComplete = () => {
 
 
 
-
             <Heading />
      
 
          <div className='pt-48 '>
             <div className='flex flex-row justify-between'>
             <div className='m-4  text-6xl leading-10'>
-     <h1 className='   font-bold whitespace-nowrap mb-4 font-serif step-1'>{heading}</h1>
+     <h1 className=' xs:text-3xl text-4xl sm:text-6xl  font-bold whitespace-nowrap mb-4 font-serif step-1'>{heading}</h1>
      
-     <b className='  whitespace-nowrap text-4xl mt-12 font-extrabold font-serif'> {headingPart} <br ></br> {subheading}</b>
+     <b className=' xs:text-2xl text-3xl sm:text-4xl whitespace-nowrap  mt-12 font-extrabold font-serif'> {headingPart} <br ></br> {subheading}</b>
+    
+    
+    
+     <div className="text-sm mt-12 relative w-full sm:w-1/2">
+  <span className="mt-1 p-[2px] rounded-l-md rounded-r-sm text-xs bg-red-500 text-white neon right-0 absolute">
+    New
+  </span>
+  <Link to={"/withoutUpload"}>
+    <button className=' font-bold bg-[#202020] text-white p-4 text-center rounded-md w-full  mt-1 sm:hover:bg-gray-200 sm:hover:text-black transition-all duration-500 neon-button'>
+      OPEN WITHOUT UPLOADING
+    </button>
+  </Link>
+</div>
+
 
 
 </div>
@@ -95,6 +109,10 @@ const handleTourComplete = () => {
 
          </div>
 
+
+       
+
+
 <div className='p-6'>
 <h2 className='text-base font-semibold'>
 <h3 className='whitespace-nowrap'>{companyHeading} </h3>
@@ -104,11 +122,16 @@ const handleTourComplete = () => {
 
 </div>
 
+
+
+
+
+
 <div className='p-3 pt-16'>
 <div className=' flex flex-col sm:flex-row  w-full m-auto'>
-    <div className=" w-full sm:w-[40%] m-auto"><Link to={"/showDemo"}><button className='bg-[#202020] text-white p-4 text-center rounded-md  w-full mt-1  hover:bg-gray-200 hover:text-black transition-all duration-500'>{DemoBtn}</button></Link></div>
+    <div className=" w-full sm:w-[40%] m-auto"><Link to={"/showDemo"}><button className='bg-[#202020] text-white p-4 text-center rounded-md  w-full mt-1  sm:hover:bg-gray-200 sm:hover:text-black transition-all duration-500'>{DemoBtn}</button></Link></div>
 
- <div className=" w-full sm:w-[40%] m-auto"><button onClick={()=>handleCheck()} className='  bg-[#202020] text-white p-4 text-center rounded-md w-full  mt-1 hover:bg-gray-200 hover:text-black transition-all duration-500'>{UplodBtn}</button></div>
+ <div className=" w-full sm:w-[40%] m-auto"><button onClick={()=>handleCheck()} className='  bg-[#202020] text-white p-4 text-center rounded-md w-full  mt-1 sm:hover:bg-gray-200 sm:hover:text-black transition-all duration-500'>{UplodBtn}</button></div>
 </div>
 </div>
 <div className='mt-14 pt-14 bg-[#202020] border border-gray-300 m-auto pb-10'>

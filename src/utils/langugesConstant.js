@@ -1,9 +1,9 @@
 export const langugesConstant={
     //english
 en:{
-heading:"Start your",
-headingPart:"learning through ",
-subheading:"AI",
+heading:"Start your learning",
+headingPart:"through AI with ",
+subheading:"Privacy",
 companyHeading:"Google Gemini Ai text Summarization",
 companyHeadingPart:"Microsoft Dictionary ",
 subcompanyHeading:"and Transalte",
@@ -17,7 +17,7 @@ ans1:"At the same time,you can ask AI , use Dictionary and translation for free"
 qs2:"How're you able to provide free",
 ans2:"I have created it in such a way that if you want to often use this ,you can use your key for this web app functionalities to work and use it for lifetimes , Actually all the companies like Google,microsoft provide free uses as you can generate it and uses it here and its also secure as well . I have provided steps in setting page",
 qs3:"Do you also store data",
-ans3:"we only store your email id,key and pdf so that you can use it from any devices but don't worry it 100% secure as used GOOGLE FireBase ",
+ans3:"For privacy I have provided 2-option to upload ,one without uploading data(does not store your pdf or anything) and second is upload which store data so that you can use on any device without need of uploading file ",
 qs4:"Do you have any other features",
 ans4:"yes , you can send all searched data to your email id just by one click and also lots of other features provided please explore it",
 qs5:"Do you only support pdf/txt file?",
@@ -58,7 +58,7 @@ file5:"your highlighted text will be saved remains even after refresh in your  b
 
 
 upPage1:"Upload Status ",
-upPage2:"Select Files",
+upPage2:"Select File",
 upPage3:"Please select either a PDF or TXT file.,checkout Frequent asked question, last ones",
 upPage4:"'File size exceeds the maximum allowed limit (300MB) please contact me.'",
 
@@ -148,7 +148,7 @@ log2:"you need to login first",
 
 send1:"all data is sent (please authorize formSubmit on your email if already done ignore it)",
 
-
+fileOpen:" open your file without upload"
 
 },
 
@@ -297,7 +297,7 @@ send1:"all data is sent (please authorize formSubmit on your email if already do
         log1: "क्या आप लॉगआउट करना चाहते हैं",
         log2: "पहले आपको लॉगिन करना होगा",
         send1: "सभी डेटा भेजे जा चुके हैं (कृपया अपने ईमेल पर formSubmit को अधिकृत करें, यदि पहले से किया है तो इसे अनदेखा करें)",
-
+        fileOpen:"फ़ाइल खोलें "
 
 
         },
@@ -448,7 +448,7 @@ send1:"all data is sent (please authorize formSubmit on your email if already do
             log1: "के आपनी लॉगआउट करना चाहता?",
             log2: "पहिले रउआ के लॉगिन करे के पड़ी",
            send1: "सगरी डाटा भेजल गइल बा (कृपया अपने ईमेल पर formSubmit के अधिकृत करीं, अगर पहिले से कइले बानी त अनदेखा करीं)",
-
+            fileOpen:"फाइल खोलीं "
 
             }
 
@@ -600,7 +600,7 @@ de:{
     log1: "Möchten Sie sich abmelden?",
     log2: "Sie müssen sich zuerst anmelden",
     send1: "Alle Daten wurden gesendet (bitte autorisieren Sie formSubmit in Ihrer E-Mail, falls bereits geschehen, ignorieren Sie diese Nachricht)",
-
+  fileOpen:"Datei öffnen"
 
     },
 //french
@@ -749,7 +749,7 @@ de:{
         log1: "Voulez-vous vous déconnecter?",
         log2: "Vous devez d'abord vous connecter",
 send1: "Toutes les données ont été envoyées (veuillez autoriser formSubmit dans votre e-mail, si c'est déjà fait, ignorez-le)",
-
+ fileOpen:"Ouvrir le fichier"
 
         }
 

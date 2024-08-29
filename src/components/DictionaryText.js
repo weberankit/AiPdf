@@ -22,6 +22,7 @@ const DictionaryText=({styles})=>{
 
 const{showPdf6,gpt1,dict1,dict2,dict3,dict4,log2,send1} = langugesConstant[useSupportLang()]
     const dispatch=useDispatch()
+    //way to check whether using default key or not
     const selectingDictkeyVaues=useSelector((store)=>store.userskey?.KeyDICT?.msg)
     //passing it so that when user mount on other component it does not call api unnecssary
     //slectdic is value when useris on dict component otherwise null

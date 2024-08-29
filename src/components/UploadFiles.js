@@ -14,6 +14,8 @@ import { fireBaseErr } from "../utils/ErrorSlice"
 import { addToogleNav } from "../utils/useStoreDataSlice";
 import useBodybgDark from "../utils/useBodybgDark"
 import useSupportLang from "../utils/useSupportLang";
+//import ShowSimplePdf from "./ShowSimplePdf";
+//import ShowSimpl
 const UploadFiles=({step1stClass , stepThird })=>{
 
   const {upPage1,upPage2,upPage3,upPage4} =langugesConstant[useSupportLang()]
@@ -31,6 +33,13 @@ const UploadFiles=({step1stClass , stepThird })=>{
 const selectUsrDetail=useSelector(store=>store?.userInformation?.value)
 const [error,setError] = useState("")
 //console.log(selectUsrDetail)
+
+//slectfiles
+//const [customUrl , setCustomUrl] = useState()
+
+
+
+
 // Get a reference to the storage service, which is used to create references in your storage bucket
 
     const handleFileChange = (e) => {
@@ -52,9 +61,15 @@ const [error,setError] = useState("")
     // console.log(e.target.files,file)
         // Reset file input value to empty string
         //e.target.value = '';
-        setFilePath(file)
-        uploadFile(file,selectUsrDetail,setUploadProgress,navigate,setError)
+     //   console.log(URL.createObjectURL(file))
+     //  const urlt= URL.createObjectURL(file)
+      // setCustomUrl(urlt)
+      setFilePath(file)
+     uploadFile(file,selectUsrDetail,setUploadProgress,navigate,setError)
 
+
+
+    // <showSimplePdf data={URL.createObjectURL(file)}/>  
        // uploadFile(file)
        
         
@@ -82,10 +97,10 @@ const [error,setError] = useState("")
     },[])
 
 ////black bg when upload pages is refresh changing the outer box bg to black
-//as because in filecart body bg is black so it remain when we move to upload page 
+// because in filecart body bg is black so it remain when we move to upload page 
 //but on refersh of upload page it does not have body colour so used same function that we had ised in filecart 
    
-    useBodybgDark()
+   // useBodybgDark()
 
 
     return(
@@ -121,6 +136,9 @@ const [error,setError] = useState("")
 </div>
 </div>
    </div>
+
+
+
 
 </div>
     )
