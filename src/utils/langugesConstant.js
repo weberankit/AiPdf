@@ -59,7 +59,7 @@ file5:"your highlighted text will be saved remains even after refresh in your  b
 
 upPage1:"Upload Status ",
 upPage2:"Select File",
-upPage3:"Please select either a PDF or TXT file.,checkout Frequent asked question, last ones",
+upPage3:"Please select PDF file only .,checkout Frequent asked question, last ones",
 upPage4:"'File size exceeds the maximum allowed limit (300MB) please contact me.'",
 
 

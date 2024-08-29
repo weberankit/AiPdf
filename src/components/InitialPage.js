@@ -79,7 +79,7 @@ const handleTourComplete = () => {
      
 
          <div className='pt-48 '>
-            <div className='flex flex-row justify-between'>
+            <div className='flex flex-row justify-between '>
             <div className='m-4  text-6xl leading-10'>
      <h1 className=' xs:text-3xl text-4xl sm:text-6xl  font-bold whitespace-nowrap mb-4 font-serif step-1'>{heading}</h1>
      
@@ -87,7 +87,7 @@ const handleTourComplete = () => {
     
     
     
-     <div className="text-sm mt-12 relative w-full sm:w-1/2">
+     <div className="text-sm mt-12 relative w-[80%] sm:w-1/2">
   <span className="mt-1 p-[2px] rounded-l-md rounded-r-sm text-xs bg-red-500 text-white neon right-0 absolute">
     New
   </span>
