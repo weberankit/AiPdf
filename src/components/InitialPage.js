@@ -93,7 +93,7 @@ const handleTourComplete = () => {
   </span>
   <Link to={"/withoutUpload"}>
     <button className=' font-bold bg-[#202020] text-white p-4 text-center rounded-md w-full  mt-1 sm:hover:bg-gray-200 sm:hover:text-black transition-all duration-500 neon-button'>
-      OPEN WITHOUT UPLOADING
+      INSTANT UPLOAD
     </button>
   </Link>
 </div>
