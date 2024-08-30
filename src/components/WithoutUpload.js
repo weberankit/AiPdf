@@ -20,9 +20,9 @@ const WithoutUpload = () => {
    const { upPage1, upPage2, upPage3, upPage4 ,nav1,showPdf6,fileOpen} = langugesConstant[useSupportLang()];
    const [fileCustom, setFileCustom] = useState(null);
    const [sideBarShow, setSideBarShow] = useState(null);
-   const [message, setMessage] = useState();
+   const [message, setMessage] = useState(false);
    let countFreeTrial = localStorage.getItem("check") || null;
- 
+ //console.log(countFreeTrial)
    // const dispatch = useDispatch();
    // const selector = useSelector((store) => store.userInformation.value);
    const auth = getAuth();
@@ -34,13 +34,15 @@ const WithoutUpload = () => {
          // const {uid, email, displayName, photoURL} = user;
          // dispatch(infoUser({uid: uid, email: email, displayName: displayName}));
          // dispatch(loadingState(null));
-         localStorage.setItem("check", null);
+
+         //user visit after sigin so no need to provide free trial msg
+        //-- localStorage.setItem("check", null);
        } else {
          // User is signed out
          // not login so free trial 3-times
-
+       // console.log(countFreeTrial)
           setMessage(true);
-         if (!countFreeTrial) {
+         if (!countFreeTrial || countFreeTrial == 'NaN') {
            localStorage.setItem("check", 4);
           
          }
@@ -65,8 +67,8 @@ const WithoutUpload = () => {
        return false;
      }
      // only 3 times without login
-     if (countFreeTrial) {
-       if (countFreeTrial <= 0) {
+     if (countFreeTrial && message) {
+       if (countFreeTrial <= 1) {
          alert("please signin to use it");
          e.target.value = "";
          return false;
