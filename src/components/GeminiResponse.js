@@ -31,15 +31,17 @@ function handleClick(){
 
 
 function scrollToElement(id){
+    if(!selectGeminiError){
 const element=document.getElementById(id)
 element.scrollIntoView({behavior:"smooth"})
+    }
 }
 
 
 useEffect(()=>{
     let value="UseForscrolling"
 
-if(selectgeminiResponse){
+if(selectgeminiResponse && !selectGeminiError){
     scrollToElement(value)
 }
 

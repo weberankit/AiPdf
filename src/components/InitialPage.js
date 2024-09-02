@@ -88,7 +88,7 @@ const handleTourComplete = () => {
     
     
      <div className="text-sm mt-12 relative w-[80%] sm:w-1/2">
-  <span className="mt-1 p-[2px] rounded-l-md rounded-r-sm text-xs bg-red-500 text-white neon right-0 absolute">
+  <span className="mt-1 p-[2px] rounded-l-md rounded-r-sm text-xs bg-red-500 text-white neon right-0 absolute animate-spin-outline ">
     New
   </span>
   <Link to={"/withoutUpload"}>

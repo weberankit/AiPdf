@@ -6,6 +6,7 @@ import { addgiminRes ,addUserQuery} from "./geminiResponseSlice";
 import { gptError } from "./ErrorSlice";
 import { addSearchMsg } from "./ErrorSlice";
 import useSupportLang from "./useSupportLang";
+import {safetySettings} from "./youtubeVideosFun"
   const useGpt=(compoValue)=>{
  const {gpt6,gpt7,gpt8,gpt9} =langugesConstant[useSupportLang()]
 //alert("jj")
@@ -29,13 +30,13 @@ if(compoValue === true && textGrab){
   dispatch(addSearchMsg("searching start..."))
   try{
     // For text-only input, use the gemini-flash-model
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash",safetySettings });
   
     const prompt = `
      ${gpt6}  ${textGrab} ${gpt7}
      ${userAsk?userAsk:gpt8}  ${gpt9} 
       `
-  console.log(prompt ,"prompt")
+  //console.log(prompt ,"prompt")
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();

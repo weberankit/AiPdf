@@ -3,6 +3,7 @@ import {  useDispatch } from "react-redux";
 
 //import { selectedText } from "./userFiles";
 import { SetselectedText } from "./userFiles";
+import { addQueryInput } from "./dataYoutubeSlice";
 const SelectionWord=(setSideBarShow)=>{
 
 const dispatch=useDispatch()
@@ -14,6 +15,7 @@ const dispatch=useDispatch()
         let selectedText = selection.toString();
         // Dispatch an action with the selected text
         dispatch(SetselectedText(selectedText));
+        dispatch(addQueryInput(selectedText))
         setSideBarShow(true)
     }
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect ,useContext} from "react";
 //import Sign from "./Sign"
-import {onAuthStateChanged ,getAuth} from "firebase/auth"
+import {onAuthStateChanged ,getAuth, prodErrorMap} from "firebase/auth"
 //import { Dispatch } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import { infoUser ,loadingState} from "../utils/userSlice";

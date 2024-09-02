@@ -64,14 +64,14 @@ return()=>document.body.style.backgroundColor="white"
 <div className="pt-4">
 <div className="text-center">
     <b className="">{demo1}</b>
-    <div className="flex flex-row justify-center p-32 bg-gray-100 shadow-lg rounded-lg  w-4/5 sm:w-1/2 m-auto ">
+    <div className=" grid grid-cols-2  sm:flex sm:flex-row sm:justify-center mt-6 p-20 sm:p-32 bg-gray-100 shadow-lg rounded-lg  w-4/5 h-48 sm:h-auto sm:w-1/2 m-auto ">
         
-        <div><button className="text-sm font-semibold sm:text-base font-serif bg-black p-2 text-white hover:text-black rounded-lg m-2 mr-2 hover:bg-white hover:transition-all duration-500" onClick={()=>{SetDataUrl(data);SetDataUrlAdv(null)}}>{file2}</button></div>
-        <div><button  className="text-sm font-semibold sm:text-base font-serif bg-black p-2 text-white hover:text-black rounded-lg m-2 mr-2 hover:bg-white hover:transition-all duration-500" onClick={()=>{SetDataUrlAdv(data);SetDataUrl(null)}}>{file3}</button></div>
+        <div className=""><button className="text-sm font-semibold sm:text-base font-serif bg-black p-2 text-white sm:hover:text-black rounded-lg m-2 mr-2 sm:backdrop sm:hover:bg-white sm:hover:transition-all duration-500 relative" onClick={()=>{SetDataUrl(data);SetDataUrlAdv(null)}}><span className="text-white absolute top-[-5px] right-0 text-xs bg-red-500 p-[1px] rounded-md">new</span>{file2}</button></div>
+        <div><button  className="text-sm font-semibold sm:text-base font-serif bg-black p-2 text-white sm:hover:text-black rounded-lg m-2 mr-2 sm:hover:bg-white sm:hover:transition-all duration-500" onClick={()=>{SetDataUrlAdv(data);SetDataUrl(null)}}>{file3}</button></div>
     </div>
 </div>
 
-</div>
+</div> 
 
 
 </div>

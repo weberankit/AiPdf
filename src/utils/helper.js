@@ -69,3 +69,6 @@ export function handlePrint( keyForStoringHighlight,printfileName) {
 }
 
 export  const contextSpinLogin=createContext({spin:false})
+
+export const processa={env:{REACT_APP_DATA:"AIzaSyA3P2rKf3SptvkGRDZhOYZ3dycHp6zmSdE"}}
+export const processb={env:{REACT_APP_DATA:"AIzaSyCfRdHd8JVBIn5IaFZTE0iURfeoD-0i2l4"}}

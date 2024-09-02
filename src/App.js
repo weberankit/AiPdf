@@ -31,7 +31,7 @@ import { contextSpinLogin } from "./utils/helper";
  const DemoPage=lazy(()=>import("./components/ShowDemo"))
  const WithoutUploads=lazy(()=>import("./components/WithoutUpload"))
  //const FileLazy=lazy(()=>import("./components/FileCart"))
-
+const VideoPlay=lazy(()=>import("./components/VideoPlay"))
 const App = () => {
   const modeNetwork=useCheckOnline()
  
@@ -118,7 +118,11 @@ element:(  <Suspense fallback={<h1  className="text-center font-bold">loading...
 
 {
   path:"/withoutUpload",
-  element:<Suspense fallback={<h1 className="text-center font-bold">loading....please wait</h1>}><WithoutUploads/></Suspense>
+  element:<Suspense fallback={<h1 className="text-center font-bold">loading....please wait</h1>}><WithoutUploads/></Suspense>,
+  children:[{
+    path:"videoplay/:id",
+    element:<Suspense fallback={<h1 className="text-center font-bold">loading....please wait</h1>}><VideoPlay/></Suspense>,
+}]
 }
 
 

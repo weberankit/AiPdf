@@ -2,11 +2,11 @@ export const langugesConstant={
     //english
 en:{
 heading:"Start your learning",
-headingPart:"through AI with ",
-subheading:"Privacy",
+headingPart:"Through AI Videos",
+subheading:" & Text",
 companyHeading:"Google Gemini Ai text Summarization",
 companyHeadingPart:"Microsoft Dictionary ",
-subcompanyHeading:"and Transalte",
+subcompanyHeading:"and Transalte with videos",
 
 DemoBtn:"Demo",
 UplodBtn:"Upload",

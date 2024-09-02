@@ -6,12 +6,28 @@ import "react-pdf/dist/esm/Page/TextLayer.css";
 import { useState, useRef, useEffect, memo } from "react";
 import { Document, Page } from "react-pdf";
 import { ZoomIn,ZoomOut,CaretLeft,CaretRight } from "react-bootstrap-icons";
+import { handleAiVideo } from "../utils/youtubeVideosFun";
+import { useSelector,useDispatch } from "react-redux";
+import { addListYt, addShowMsgi,addQueryInput } from "../utils/dataYoutubeSlice";
+import VideoShow from "./VideoShow";
+import SelectionWord from "../utils/selectionWord";
 
 const ShowSimplePdf = memo(({ data }) => {
+
   const [numPages, setNumPages] = useState(0);
   const [pageNo, setPageNo] = useState(1);
   const [width, setWidth] = useState(0);
+  //const [checkClick, setCheckClick]=useState()
+  const [sideBarShow, setSideBarShow] = useState(null);
+
+
+  //const [dataMsg , setDataMsg] = useState("")
   const containerRef = useRef();
+const dispatch=useDispatch()
+const selectTextYtVideo=useSelector((store)=>store.useYtSlice.queryInput)
+
+//const [showStaus,setShowStatus]=useState()
+SelectionWord(setSideBarShow);
 
   useEffect(() => {
     const updateWidth = () => {
@@ -58,9 +74,11 @@ const ShowSimplePdf = memo(({ data }) => {
          e.target[0].value=null; 
     
     }
-
+ 
 
   return (
+    <>
+    <VideoShow checkClick={sideBarShow}/>
     <div
       ref={containerRef}
       className="  flex flex-col items-center justify-center w-full pt-[62px] sm:p-2 bg-gray-100 "
@@ -75,7 +93,7 @@ const ShowSimplePdf = memo(({ data }) => {
             <CaretLeft size={20}/>
           </button>
         )}
-        <span className="text-gray-500 flex flex-row justify-center  w-full  ">
+        <span className="text-gray-500 flex flex-row justify-center  w-full  py-1">
           Page {pageNo} of {numPages}
           <form className="ml-3 sm:ml-9" onSubmit={(e)=>handleSubmitGo(e)}>
           
@@ -83,7 +101,11 @@ const ShowSimplePdf = memo(({ data }) => {
            <input required type="number" className="w-11 border border-gray-500" placeholder="" ></input> 
            <button className="font-bold ml-1" type="submit">Go</button>
          </form>
+   <button   className="bg-black text-white font-bold py-1 px-4 rounded-md ml-7 sm:ml-12 transition duration-300 ease-in-out transform hover:scale-105  focus:outline-none focus:ring-2 focus:ring-red-400 shadow-lg shadow-red-500/50 animate-spin-outline"onClick={()=>handleAiVideo(selectTextYtVideo,dispatch,addListYt,addShowMsgi,addQueryInput,sideBarShow)}>
+    
+    <span className=" text-red-500  bg-black bg-opacity-40">  Ai-VIDEO</span>
 
+   </button>
 
         </span>
         <div className=" hidden sm:flex justify-center "> 
@@ -106,12 +128,13 @@ const ShowSimplePdf = memo(({ data }) => {
       <Document
         file={data}
         onLoadSuccess={({ numPages: numPagesInPdf }) => setNumPages(numPagesInPdf)}
-        loading={<div className="text-gray-500 absolute z-[250] font-bold bg-white p-2 rounded-md text-center">PDF is loading...</div>}
+        loading={<div className="text-gray-500 absolute z-[250] font-bold bg-white p-2 rounded-md text-center top-0">PDF is loading...</div>}
         className="w-full  flex justify-center border border-gray-300 shadow-lg rounded-lg "
       >
         <Page pageNumber={pageNo} width={width} style={{fontSize:"10px"}} />
       </Document>
     </div>
+    </>
   );
 });
 

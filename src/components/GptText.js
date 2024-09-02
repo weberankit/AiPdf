@@ -18,7 +18,7 @@ const GptText=({styles})=>{
 
   const {showPdf6 ,gpt1,gpt2,log2,send1} = langugesConstant[useSupportLang()]
     const dispatch=useDispatch()
-  console.log(styles)
+  //console.log(styles)
   const selectingGptkeyVaues=useSelector((store)=>store.userskey?.keyGPT?.msg)
 //console.log(selectingGptkeyVaues)
   const selectgeminiResponse=useSelector((store)=>store.giminiRes.responseArray)

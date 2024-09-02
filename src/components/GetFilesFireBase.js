@@ -191,7 +191,7 @@ slectfileMeta && slectfileMeta.map((item)=>{
       <div className="text-center m-auto">
            { 
                    textFileidentify==="txt"?<button className=" btn text-base m-auto p-2 md:px-6 bg-black rounded-lg text-white font-semibold font-serif sm:hover:bg-white sm:hover:text-black transition-all duration-500" onClick={()=>{handleText(item._location.path);dispatch(addUrlPdf(null));dispatch(addUrlAdvPdf(null));handleReachTop(0)}}>{file1}</button> :  
-                   <button className=" whitespace-nowrap btn text-base p-2 md:px-6 bg-black rounded-lg text-white font-semibold font-serif sm:hover:bg-white sm:hover:text-black transition-all duration-500" onClick={()=>{handlePdf(item._location.path);   handleReachTop(0);dispatch(addUrlAdvPdf(null)) ;  dispatch(textFile(null))}}>{file2}</button>
+                   <button className=" whitespace-nowrap btn text-base p-2 md:px-6 bg-black rounded-lg text-white font-semibold font-serif sm:hover:bg-white sm:hover:text-black transition-all duration-500 relative" onClick={()=>{handlePdf(item._location.path);   handleReachTop(0);dispatch(addUrlAdvPdf(null)) ;  dispatch(textFile(null))}}><span className="text-white absolute top-[-5px] right-0 text-xs bg-red-500 p-[1px] rounded-md">new</span>{file2}</button>
 
                   }
       </div>

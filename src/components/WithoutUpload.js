@@ -19,7 +19,7 @@ import { langugesConstant } from "../utils/langugesConstant";
 const WithoutUpload = () => {
    const { upPage1, upPage2, upPage3, upPage4 ,nav1,showPdf6,fileOpen} = langugesConstant[useSupportLang()];
    const [fileCustom, setFileCustom] = useState(null);
-   const [sideBarShow, setSideBarShow] = useState(null);
+//-   const [sideBarShow, setSideBarShow] = useState(null);
    const [message, setMessage] = useState(false);
    let countFreeTrial = localStorage.getItem("check") || null;
  //console.log(countFreeTrial)
@@ -51,7 +51,7 @@ const WithoutUpload = () => {
    }, []);
  
    useStatusCheck();
-   SelectionWord(setSideBarShow);
+   //-SelectionWord(setSideBarShow);
  
    const handleFileChange = (e) => {
      const file = e.target.files[0];
@@ -81,7 +81,9 @@ const WithoutUpload = () => {
      const url = URL.createObjectURL(file);
      setFileCustom(url);
    };
- 
+ //console.log(sideBarShow)
+
+
    return (
      <div>
        {!fileCustom && (
@@ -105,6 +107,7 @@ const WithoutUpload = () => {
            <input
              type="file"
              id="fileUpload"
+             accept=".pdf"  
              className="hidden"
              onChange={handleFileChange}
            />
@@ -128,7 +131,7 @@ const WithoutUpload = () => {
 
          </div>
        )}
-       {sideBarShow && fileCustom && <div className="mt-6"> <AiComponents /></div>}
+       { fileCustom && <div className="mt-9"> <AiComponents /></div>}
        {fileCustom && <ShowSimplePdf data={fileCustom} />}
      </div>
    );
