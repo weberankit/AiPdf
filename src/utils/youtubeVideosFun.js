@@ -262,9 +262,9 @@ const apiFail=[
 
 
 
-const apikeyai=process.env.REACT_API_Gemini_KEY;
-const apikeyai2=process.env.REACT_API_Temini_KEY;
-   
+const apikeyai=process.env.REACT_APP_Gemini_KEY;
+const apikeyai2=process.env.REACT_APP_Temini_KEY;
+   //process.env.REACT_APP_first_KEY
  const genAI = new GoogleGenerativeAI(apikeyai);
 function apiCall(videoQuery,dispatch,addListYt,addShowMsgi,addQueryInput){
  dispatch(addShowMsgi("Ai- finding topic of text"))
