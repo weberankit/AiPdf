@@ -1,6 +1,6 @@
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { processa ,processb} from "./helper";
+//import { processa ,processb} from "./helper";
 import { HarmBlockThreshold, HarmCategory } from "@google/generative-ai";
 
 //import { useDispatch } from "react-redux";
@@ -262,9 +262,10 @@ const apiFail=[
 
 
 
-
+const apikeyai=process.env.REACT_API_Gemini_KEY;
+const apikeyai2=process.env.REACT_API_Temini_KEY;
    
- const genAI = new GoogleGenerativeAI(processa.env.REACT_APP_DATA);
+ const genAI = new GoogleGenerativeAI(apikeyai);
 function apiCall(videoQuery,dispatch,addListYt,addShowMsgi,addQueryInput){
  dispatch(addShowMsgi("Ai- finding topic of text"))
   async  function apiCallai(){
@@ -285,7 +286,7 @@ if(text){
    //if it fail again fetch data -- api quotaa over   
 try{
     dispatch(addShowMsgi("Retrying Ai understanding "))
-    const genAIt = new GoogleGenerativeAI(processb.env.REACT_APP_DATA);
+    const genAIt = new GoogleGenerativeAI(apikeyai2);
     const model = genAIt.getGenerativeModel({ model: "gemini-1.5-flash", safetySettings });
     const prompt = `you have to act as topic finder from given prompt, if the prompt is vague or general or small, provide the topic that best matches or related to context of prompt.
     please Note strictly only return 4-5 words of topic that closely matches from prompt.here is your prompt ${videoQuery} `
