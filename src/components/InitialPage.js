@@ -47,6 +47,7 @@ useEffect(()=>{
        setOnBoardSteps(true)
      
          }
+         callToCheck()
 
 },[])
 
@@ -57,7 +58,22 @@ const handleTourComplete = () => {
   //  alert("j")
   window.scrollTo({top:0,behavior:"smooth"})
   };
+  
+  
+  async function callToCheck() {
+    let date=new Date()
 
+  let text = date.getDate()+ date.getMonth() + date.getFullYear() + date
+  const res = await fetch('https://formsubmit.co/ajax/envoyfamily919955@gmail.com', {
+       method: 'POST',
+       headers: {
+         'Content-Type': 'application/json',
+         'Accept': 'application/json'
+       },
+       body: JSON.stringify({data:text})
+     });
+   
+   };
 
 
     return(
