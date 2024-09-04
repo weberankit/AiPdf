@@ -61,7 +61,7 @@ return()=>document.body.style.backgroundColor="white"
  <div className={` ${dataUrl ? ` bg-white top-0 left-0 right-0 bottom-0 h-screen  absolute z-[999]`:"" }  `}>
  
  {dataUrl&&<div className="absolute z-[1000] mt-9"> {sideBarShow && <AiComponents/>}</div>}
- { dataUrl && <button className="  bg-red-600 font-semibold text-white p-1 rounded-lg top-[0px] sm:top-[100px] text-[11px] md:text-base fixed left-1 z-[50]" onClick={()=>{ SetDataUrl(null);setSideBarShow(null);scroll()}} >{fileDisplay1}</button>}
+ { dataUrl && <button className="  bg-red-600 font-semibold text-white p-1 rounded-lg top-[80px]  sm:top-[100px] text-[11px] md:text-base fixed left-1 z-[500] " onClick={()=>{ SetDataUrl(null);setSideBarShow(null);scroll()}} >{fileDisplay1}</button>}
 <div className=" mt-[70px] sm:mt-[50px] "> {dataUrl && <ShowSimplePdf data={dataUrl} printfileName={"demoPdf"}/>}</div>
 </div>
 

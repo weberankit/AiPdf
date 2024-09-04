@@ -95,7 +95,7 @@ const appRouter=createBrowserRouter([
 },
 {path:"aiKey",
 
-element:(  <Suspense fallback={<h1  className="text-center font-bold">loading....please wait</h1>}><StepsAi/></Suspense>)
+element:(  <Suspense fallback={<div><h1  className="text-center font-bold animate-pulse">loading....please wait</h1></div>}><StepsAi/></Suspense>)
 }
 ,
 

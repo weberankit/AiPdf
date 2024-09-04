@@ -17,7 +17,7 @@ ans1:"while reading pdf if stuck anywhere just select text and you can go for Ai
 qs2:"How're you able to provide free",
 ans2:"I have created it in such a way that if you want to often use this ,you can use your key for this web app functionalities to work and use it for lifetimes , Actually all the companies like Google,microsoft provide free uses as you can generate it and uses it here and its also secure as well . I have provided steps in setting page",
 qs3:"Do you also store data",
-ans3:"For privacy I have provided 2-option to upload ,one Instant Upload (does not store your pdf or anything) and second is upload which store data so that you can use on any device without need of uploading file ",
+ans3:"For privacy I have provided 2-option to upload ,one Instant Upload (does not store your pdf or anything) and second is upload which store pdf  so that you can use on any device without need of uploading file Each time ",
 qs4:"Do you have any other features",
 ans4:"yes , you can send all searched data to your email id just by one click and also lots of other features provided please explore it",
 qs5:"Do you only support pdf file?",
