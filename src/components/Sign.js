@@ -223,8 +223,8 @@ useSignBgOnRefresh()
 <div className="flex flex-col  p-4 relative">
  {selectMsgLoginEmail && <p className="bg-blue-800 p-1 text-center absolute left-0 right-0 text-white font-semibold  text-sm top-[-30px]  md:top-[-42px]  rounded-lg">{sign5} <a className="text-black" href="">{sign6}</a></p>}
 
-{isLogin && <input className="w-64  md:m-2 border border-black rounded-md p-2 m-auto" type="name" name="username" ref={fullName} placeholder={sign8}></input>} 
- <input ref={email} className="w-64 rounded-md mt-1 mb-1 md:m-2 border border-black p-2 m-auto" type="email" name="email" placeholder={sign9}></input>
+{isLogin && <input className="w-64  md:m-2 border border-black rounded-md p-2 m-auto text-black" type="name" name="username" ref={fullName} placeholder={sign8}></input>} 
+ <input ref={email} className="w-64 rounded-md mt-1 mb-1 md:m-2 border border-black p-2 m-auto text-black" type="email" name="email" placeholder={sign9}></input>
  {<div className="w-64 m-auto border border-black rounded-md py-2 sm:py-0 bg-white text-black"> <input  className=" w-[14rem] md:w-[13rem]  md:m-2  m-auto outline-none" ref={password} type={showForm?"text":"password"} placeholder={sign10}></input> <span className="cursor-pointer" onClick={()=>setForm(!showForm)}> {showForm?"🙉":"🙈"}</span></div>}
  { /*isLogin && <input  className="w-64 rounded-md md:m-2 border border-black p-2 m-auto " ref={reEnter}  placeholder="ReEnter password"></input>*/ }
  </div>
