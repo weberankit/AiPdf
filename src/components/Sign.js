@@ -221,7 +221,7 @@ useSignBgOnRefresh()
 <form onSubmit={(e)=>e.preventDefault()}>
   
 <div className="flex flex-col  p-4 relative">
- {selectMsgLoginEmail && <p className="bg-blue-800 p-1 text-center absolute left-0 right-0 text-white font-semibold  text-sm top-[-30px]  md:top-[-42px]  rounded-lg">{sign5} <a className="text-black" href="">{sign6}</a></p>}
+ {selectMsgLoginEmail && <p className="bg-blue-800 p-1 text-center absolute left-0 right-0 text-white font-semibold  text-sm top-[-30px]  md:top-[-42px]  rounded-lg">{sign5} <a className="text-black" href="https://aipdf.ankitkr.in/">{sign6}</a></p>}
 
 {isLogin && <input className="w-64  md:m-2 border border-black rounded-md p-2 m-auto text-black" type="name" name="username" ref={fullName} placeholder={sign8}></input>} 
  <input ref={email} className="w-64 rounded-md mt-1 mb-1 md:m-2 border border-black p-2 m-auto text-black" type="email" name="email" placeholder={sign9}></input>
