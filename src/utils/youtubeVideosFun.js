@@ -2,6 +2,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 //import { processa ,processb} from "./helper";
 import { HarmBlockThreshold, HarmCategory } from "@google/generative-ai";
+import { addShowMsgi } from "./dataYoutubeSlice";
 
 //import { useDispatch } from "react-redux";
 
@@ -350,19 +351,30 @@ try{
     
     else{
        //if api fail
-       dispatch(addListYt(apiFail));
-      // dispatch(addShowMsg(null));
-     // dispatchVal(null,dispatch,addShowMsg)
+    //--   dispatch(addListYt(apiFail));
+      
+     //note- when user select text and go for aivideos and if api fail so it diaptch value for ex - array1(which has constant-data)
+     // now if user go for more option it come to this else and it will
+     //DISPATCH SAME DATA SO USEEFECT IN VIDEOSHOW HAS DEPENCY ON DATA SO
+     //NOTHING CHANGES TO DATA THEN USEFFECT WILL NOT RUN AND THEN 
+     //FETCHING ANIMATION WILL NOT hide SO TO DO THIS WE CREATE NEW DATA BY
+     //SPREAD OPERATOR AND DISPATCHING IT so it will run useefect and hidea black-cover-animation
+     const data=[...apiFail]
+     dispatch(addListYt(data));
+
+
     }
     }catch(error){
         //if api fail
-        dispatch(addListYt(apiFail));
-       // dispatch(addShowMsg(null));
+        const data=[...apiFail]
+        dispatch(addListYt(data));
+       // dispatch(addShowMsgi(null));
       // dispatchVal(null,dispatch,addShowMsg)
     }
            }
 
-videoFetchYt()
+videoFetchYt();
+
 }
 
   

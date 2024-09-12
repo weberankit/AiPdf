@@ -44,7 +44,7 @@ const [sideBarShow , setSideBarShow]=useState(null)
 //const [printFileName ,setPrintFileName] =useState("your highlighted Text")
 //to grab words from pdf while selecting
 const selectPdfUrl=useSelector((store)=>store.useDataSlice.pdfUrl)
-//console.log(selectPdfUrl)
+console.log(selectPdfUrl)
 const selectAdvPdfUrl=useSelector((store)=>store.useDataSlice.advPdfUrl)
 //console.log(selectAdvPdfUrl)
 SelectionWord(setSideBarShow)
@@ -91,9 +91,9 @@ selectAdvPdfUrl &&  <ShowPdf data={selectAdvPdfUrl}/>
 
 </div> 
 
-
-             
-              <GetFilesFireBase slectfileMeta={slectfileMeta}
+   
+     {        
+      !selectPdfUrl && !selectAdvPdfUrl &&       <GetFilesFireBase slectfileMeta={slectfileMeta}
                                  
                                 SetMsg={SetMsg}
                               
@@ -105,7 +105,7 @@ selectAdvPdfUrl &&  <ShowPdf data={selectAdvPdfUrl}/>
               />
           
  
-
+     }
 
 
 

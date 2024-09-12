@@ -86,7 +86,10 @@ const appRouter=createBrowserRouter([
  {
       path:"/cart",
       element:<FileCart/>,
-     
+      children:[{
+        path:"videoplay/:id",
+        element:<Suspense fallback={<h1 className="text-center font-bold">loading....please wait</h1>}><VideoPlay/></Suspense>,
+    }]
     }
 
 ,{
@@ -112,7 +115,11 @@ element:(  <Suspense fallback={<div><h1  className="text-center font-bold animat
 
 {
   path:"/showDemo",
-  element:<Suspense fallback={<h1 className="text-center font-bold">loading....please wait</h1>}><DemoPage/></Suspense>
+  element:<Suspense fallback={<h1 className="text-center font-bold">loading....please wait</h1>}><DemoPage/></Suspense>,
+  children:[{
+    path:"videoplay/:id",
+    element:<Suspense fallback={<h1 className="text-center font-bold">loading....please wait</h1>}><VideoPlay/></Suspense>,
+}]
 }
 ,
 

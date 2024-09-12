@@ -17,7 +17,9 @@ const ShowDemo=()=>{
     const [sideBarShow , setSideBarShow]=useState(null)
     useStatusCheck()
     SelectionWord(setSideBarShow)
-let data="https://firebasestorage.googleapis.com/v0/b/aipdf-375e4.appspot.com/o/path%2Fto%2FvFnr7xaXckVqklAYwqtOSUaZiCs2%2Fimpfile-not-del.pdf?alt=media&token=4b62ac1b-0158-44f1-ac54-429ec055c24b"
+let olddata="https://firebasestorage.googleapis.com/v0/b/aipdf-375e4.appspot.com/o/path%2Fto%2FvFnr7xaXckVqklAYwqtOSUaZiCs2%2Fimpfile-not-del.pdf?alt=media&token=4b62ac1b-0158-44f1-ac54-429ec055c24b"
+let data="https://firebasestorage.googleapis.com/v0/b/aipdf-375e4.appspot.com/o/path%2Fto%2FEgQ26O1NkGZZkQTq5KuCPOHHJ532%2Fsocial-issues-in-india--53498f83.pdf?alt=media&token=926b3ce0-6fd6-4523-b206-7dcbf1812823" || olddata;
+
 
 const [dataUrlAdv ,SetDataUrlAdv] =useState(null)
 const [dataUrl , SetDataUrl] =useState(null)

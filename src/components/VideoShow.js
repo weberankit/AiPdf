@@ -19,12 +19,12 @@ export default VideoShow*/
 
 
 import { useSelector,useDispatch } from "react-redux";
-import { useEffect ,useState,useRef} from "react";
+import { useEffect ,useState,useRef,memo} from "react";
 import { XSquare } from "react-bootstrap-icons";
  import { handleAiVideo } from "../utils/youtubeVideosFun";
  import { addListYt, addQueryInput, addShowMsgi } from "../utils/dataYoutubeSlice";
- import { Outlet,Link} from "react-router-dom";
-const VideoShow = ({checkClick}) => {
+ import { Outlet,Link,useLocation} from "react-router-dom";
+const VideoShow = memo(({checkClick}) => {
   const getVideoData = useSelector((store) => store.useYtSlice.listYt);
   const selectTextYtVideo=useSelector((store)=>store.useYtSlice.queryInput)
   const selectStatus=useSelector((store)=>store.useYtSlice.showMsg)
@@ -37,10 +37,12 @@ const VideoShow = ({checkClick}) => {
   
   useEffect(() => {
     
-   // console.log(getVideoData, "kk");
+  //only when user selected text in pdf
+  //used checkclick name --but it is sidebarshow--basically--selectionword
    if(checkClick){
     setData(getVideoData)  
     dispatch(addShowMsgi(null))
+    
    }
 
   }, [getVideoData]);
@@ -63,6 +65,10 @@ const handleResearch=()=>{
         inputRef.current.value=""
     }
 }
+const path=useLocation()
+
+const pathgrab=path?.pathname?.split("/")?.slice(0)
+
 //bg-[#FFF8DC]text-[#494F55]    
   return (
     <> 
@@ -83,7 +89,7 @@ const handleResearch=()=>{
 
             {getVideoData.map((video, index) => {
                 if(video?.id?.videoId){
-             return( <><Link key={index}  to={`/withoutUpload/videoplay/${video?.id?.videoId}`}><div  className=" sm:hover:shadow-md flex flex-row mb-4 sm:hover:cursor-pointer " >
+             return( <><Link key={index}  to={`/${pathgrab[1]}/videoplay/${video?.id?.videoId}`}><div  className=" sm:hover:shadow-md flex flex-row mb-4 sm:hover:cursor-pointer " >
                 
                 <img
                   src={video.snippet.thumbnails.medium.url}
@@ -103,7 +109,7 @@ const handleResearch=()=>{
     </>
   );
   
-};
+});
 
 export default VideoShow;
 

@@ -12,8 +12,8 @@ import {onAuthStateChanged ,getAuth} from "firebase/auth"
 //import { infoUser } from "../utils/userSlice";
 //import { loadingState } from "../utils/userSlice";
 import { langugesConstant } from "../utils/langugesConstant";
-
-
+import useKeyUpdate from "../utils/useKeyUpdate";
+import { useSelector } from "react-redux";
 
 
 const WithoutUpload = () => {
@@ -25,8 +25,10 @@ const WithoutUpload = () => {
  //console.log(countFreeTrial)
    // const dispatch = useDispatch();
    // const selector = useSelector((store) => store.userInformation.value);
+   //const selectUsrDetail=useSelector(store=>store?.userInformation?.value)
+   const readDataToggle=useSelector((store)=>store.aiManage?.readDataToggle)
    const auth = getAuth();
- 
+ const [userId , setUserId] =useState()
    useEffect(() => {
      // each visit check login or not
      let loginApi = onAuthStateChanged(auth, (user) => {
@@ -37,6 +39,7 @@ const WithoutUpload = () => {
 
          //user visit after sigin so no need to provide free trial msg
         //-- localStorage.setItem("check", null);
+        setUserId(user?.uid)
        } else {
          // User is signed out
          // not login so free trial 3-times
@@ -50,9 +53,12 @@ const WithoutUpload = () => {
      });
    }, []);
  
-   useStatusCheck();
-   //-SelectionWord(setSideBarShow);
- 
+   const [sideBarShow , setSideBarShow]=useState(null)
+   useStatusCheck()
+   SelectionWord(setSideBarShow)
+ //calling for updating api key fromfirebase
+useKeyUpdate(userId,readDataToggle)
+
    const handleFileChange = (e) => {
      const file = e.target.files[0];
      let maxSize = 300 * 1024 * 1024; // 300 MB
@@ -85,7 +91,7 @@ const WithoutUpload = () => {
 
 
    return (
-     <div>
+     <div className="">
        {!fileCustom && (
          <Link to="/">
            <button className="text-center bg-black text-white p-2 rounded-md absolute">
@@ -102,7 +108,8 @@ const WithoutUpload = () => {
          </div>
        )}
        {!fileCustom && (
-         <div className="min-h-screen bg-gray-500 flex flex-col justify-center items-center p-4">
+         <div className="min-h-screen bg-gray-400 flex flex-col justify-center items-center p-4">
+          
            <h1 className="text-white text-2xl mb-4">{fileOpen}</h1>
            <input
              type="file"
@@ -113,7 +120,7 @@ const WithoutUpload = () => {
            />
            <label
              htmlFor="fileUpload"
-             className="bg-white text-black font-semibold py-2 px-4 rounded cursor-pointer mb-4"
+             className="bg-white text-black font-semibold py-2 px-4 rounded cursor-pointer mb-4 text-center"
            >
              {upPage2}
            </label>
@@ -131,7 +138,7 @@ const WithoutUpload = () => {
 
          </div>
        )}
-       { fileCustom && <div className="mt-9"> <AiComponents /></div>}
+       { fileCustom &&  sideBarShow &&  <div className="mt-9"> <AiComponents /></div>}
        {fileCustom && <ShowSimplePdf data={fileCustom} />}
      </div>
    );
