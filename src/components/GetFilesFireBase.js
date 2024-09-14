@@ -28,6 +28,8 @@ const textMessageAlert=file5
 const dispatch=useDispatch()
    const storage=getStorage()
  const [deleteIndication ,setDeleteIndication] = useState(null)
+
+//toget text url
   async function handleText(path) {
     try {
       const url = await getDownloadURL(ref(storage, path));
@@ -44,7 +46,7 @@ const dispatch=useDispatch()
      // console.error('Error fetching file:');
     }
   }
-   
+   //to get pdf url
   function handlePdf(path){
       getDownloadURL(ref(storage, path))
     .then((url) => {

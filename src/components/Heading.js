@@ -5,7 +5,7 @@ import {Link} from "react-router-dom"
 
 import {useDispatch, useSelector} from "react-redux"
 import { getAuth, signOut } from "firebase/auth";
-import { UseDispatch } from "react-redux";
+//import { UseDispatch } from "react-redux";
 import { infoUser } from "../utils/userSlice";
 import { useNavigate ,useLocation} from "react-router-dom";
 import { useContext, useEffect, useRef, useState } from "react";
@@ -43,15 +43,16 @@ signOut(auth).then(() => {
      
  
      }
-    
+    //---check further wheter it is usedor not
     const refHide= useRef()
+    //getting pdf url
      const selectPdfUrl=useSelector((store)=>store.useDataSlice.pdfUrl)
-     //console.log(selectPdfUrl)
+     //getting advurl pdf
      const selectAdvPdfUrl=useSelector((store)=>store.useDataSlice.advPdfUrl)
      if(selectPdfUrl || selectAdvPdfUrl){
       refHide.current="hidden"
      }else{
-      // setHideHeaderPdfOpen("fixed")
+     
       refHide.current="null"
      }
   //   console.log(refHide.current)
@@ -78,6 +79,7 @@ signOut(auth).then(() => {
   
   
   useEffect(() => {
+    //when user revisit pageshoud show previous selected bg-theme of user
 const getDefaultDark=localStorage.getItem("darkModes")
 if(getDefaultDark){
 if(getDefaultDark === "white"){
@@ -99,7 +101,7 @@ if(getDefaultDark === "black"){
   
 
 
-
+//for handling darkand white mode both
 //store in local so to  use when user visit again
 function handleDarkToggleStore(item){
  
@@ -111,13 +113,12 @@ function handleDarkToggleStore(item){
 
 
 
-
+//for showing languagesetting languagesupport component used
 const [showSupport , setShowSupport] = useState(null)
 
-
+//used context to show indication--firebase taketime on slow network to show user login or not
 const useSpinContext=useContext(contextSpinLogin)
 
-//console.log(useSpinContext)
 
 
     return(
@@ -127,7 +128,7 @@ const useSpinContext=useContext(contextSpinLogin)
 
 
 
-        <div className={`fixed w-full border-b border-gray-400 z-[850]  ${refHide.current}  ${selectDarkToogle?" darkMode text-white ":"bg-white" }`}>
+        <div className={`fixed w-full border-b border-gray-400 z-[850]  ${refHide.current}  ${selectDarkToogle ? " darkMode text-white " : "bg-white" }`}>
             <div className='flex flex-row justify-between p-4'>
                 <div className='w-1/3 select-none'>
        <div className='mt-4 flex flex-row '> <Link to={"/"} className="flex flex-row"> <FilePdfFill size={28} /><span className={`hidden md:block text-2xl font-extrabold  `}>{sign1}</span></Link></div>

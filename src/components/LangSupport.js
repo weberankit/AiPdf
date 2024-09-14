@@ -21,8 +21,11 @@ const dispatch=useDispatch()
 
 
 function  handleSupport(item){
+  //settingto local
     localStorage.setItem("supportLang",item)
+    //dispatching value 
     dispatch(addSupport(item))
+    //close component after select 
     close(false)
 }
 
@@ -39,6 +42,7 @@ function  handleSupport(item){
         <select className="px-4 p-2  text-center ml-2 rounded-lg" onChange={(event) => handleSupport(event.target.value)}>
   {supportedLanguages.map((item,index) => (
     <option key={item.code} value={item.code} className="rounded-lg darkMode border  font-serif border-white text-white">
+      {/*here we show only select not codevalue for 1st one i.e select */}
       {item.language}- {`${index!==0?item.code:""}`}
     </option>
   ))}

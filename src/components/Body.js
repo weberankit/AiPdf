@@ -21,10 +21,10 @@ const Body=()=>{
    const [user , setUser] = useState(true) 
    const selector=useSelector((store)=>store.userInformation.value)
    const selectLoadingValue=useSelector((store)=>store.userInformation.preLoading)
- 
+ // updating login-indication 
   const useContextSpin=useContext(contextSpinLogin)
 const{spin,setSpin} = useContextSpin
-//console.log(spin.spin,"this is spin,",setSpin)
+
     const auth = getAuth();
    const navigate=useNavigate()
    
@@ -32,14 +32,15 @@ useEffect(()=>{
 
   const loginApi= onAuthStateChanged(auth, (user) => {
  setSpin(true)
-  // console.log(spin,"this is checking")
+ 
         if (user?.emailVerified) {
         
         
           const {uid ,email,displayName,photoURL} = user;
         
-
+          //dispatching user information--from-firebase
          dispatch(infoUser({uid:uid ,email:email,displayName:displayName}))
+         //updating indication --firbase tak time to show loginornoton slownetoek-used usecontext
          setUser(false)
          dispatch(loadingState(null))
        

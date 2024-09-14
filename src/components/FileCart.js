@@ -56,10 +56,12 @@ useStatusCheck()
 const directoryPath = `path/to/${selectUsrDetail?.uid}`; 
 
 useEffect(()=>{
-
+  //to get all files firebase path not files url and also if user refresh page  the calluserinfoonrefersh will be call which 
+  //dispatch value userinfo and this will change selectuserdetail which is dependcies here so it will call the call
     call(storage,directoryPath,dispatch,addFile ,SetMsg,fireBaseErr)
 },[selectUsrDetail?.uid])
 
+///calling it as if something changed to uploaded files it will be updated so using  dependcies selectoogle
 useEffect(()=>{
 call(storage,directoryPath,dispatch,addFile , SetMsg,fireBaseErr)
 },[selectToggle])

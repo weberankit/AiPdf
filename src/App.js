@@ -137,7 +137,9 @@ element:(  <Suspense fallback={<div><h1  className="text-center font-bold animat
 
 ])
 
-//const useContextSpinLogin=useContext(contextSpinLogin)
+
+//using in InitalPage-compo and In body compo(to update about login)
+//firebase take some time to check user-login or not on slow network so indication shoing
 const [spin,setSpin]=useState({spin:false})
 
     return (

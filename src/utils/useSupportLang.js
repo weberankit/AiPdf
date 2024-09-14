@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux"
 const useSupportLang=()=>{
     const selectSupportLang=useSelector((store)=>store.useDataSlice.support)
+    //get value if user selected || get from local|| default use en
    let  lang = selectSupportLang || localStorage.getItem("supportLang") || "en"
     return lang
 }

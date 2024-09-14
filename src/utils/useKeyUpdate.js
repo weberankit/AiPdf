@@ -17,11 +17,12 @@ const db = getDatabase();
     ];
 
 function readKey(Valt){
-
+//Valt---redux action
 onValue(this, (snapshot) => {
   this.data = snapshot.val();
 
  console.log(this.data)
+ // after getting key we are dispatching it
  dispatch(Valt(this.data))
 return this
 //

@@ -20,10 +20,9 @@ export function callUserInfoOnRefresh(navigate,selectUsrDetail,dispatch,infoUser
          //    console.log(uid,email)
              dispatch(infoUser({uid:uid ,email:email,displayName:displayName}))
              SetMsg(null)
-             //so on seeting page refresh it does not retain firbaseerr  so using inside if
-             //used settimeout as on refersh setting page first this dispatch call and after that dispatch of 
-             //call function call so to prevent it using settimeout
-             //we can use same thing witg setmsg but might be cause infinte rendering so using redux
+            //call function will call initally when page refersh amd  it does not have user detail
+            //so call function have firebase error .
+            //so after that callrefersh function call so we have to remove the call function firebase error 
              if(fireBaseErr){
                 setTimeout(()=>{dispatch(fireBaseErr(null))},3000) 
              }
@@ -55,7 +54,7 @@ export    function call(storage,directoryPath,dispatch,addFile,SetMsg,fireBaseEr
               console.error('Error getting PDF files:', error);
             //  SetMsg("sorry not getting your details from firebase")
             if(fireBaseErr){
-               dispatch(fireBaseErr("sorry not getting your details, checck your internet"))
+               dispatch(fireBaseErr("sorry not getting your details, check your internet"))
             }
            
             

@@ -3,12 +3,14 @@ import { dicitValue, gptValue, translateValue } from "../utils/aiManagment"
 import GptText from "./GptText"
 import DictionaryText from "./DictionaryText"
 import TranslateText from "./TranslateText"
-import { toggleForApi } from "../utils/userKey"
+import { toggleForApi } from "../utils/userKey";
+import Draggable from 'react-draggable';
 import { useRef,useState ,useEffect} from "react";
 import BoxSize from "./BoxSize"
 import { widthSetResponseBox } from "../utils/helper"
 
-import Draggable from 'react-draggable';
+
+
 const AiComponents=()=>{
    
     const dispatch=useDispatch()
@@ -76,7 +78,7 @@ useEffect(()=>{
    
     valueToHideText="hidden"
 }
-
+//function to close response box and open clicked response box
 function handleAiActions(){
     forDispatch(dicitValue,false,translateValue,false) ; dispatch(gptValue(true));
 }
