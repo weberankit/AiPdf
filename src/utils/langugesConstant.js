@@ -148,12 +148,14 @@ log2:"you need to login first",
 
 send1:"all data is sent (please authorize formSubmit on your email if already done ignore it)",
 
-fileOpen:" open your file without upload"
-
+fileOpen:" open your file without upload",
+upload: "Instant Upload",
+newB:"new"
 },
 
     //hindi
         hi:{
+          
         heading:"अपना सीखना",
         headingPart:"आज से शुरू करें एआई",
         subheading:"की सहायता से",
@@ -297,13 +299,15 @@ fileOpen:" open your file without upload"
         log1: "क्या आप लॉगआउट करना चाहते हैं",
         log2: "पहले आपको लॉगिन करना होगा",
         send1: "सभी डेटा भेजे जा चुके हैं (कृपया अपने ईमेल पर formSubmit को अधिकृत करें, यदि पहले से किया है तो इसे अनदेखा करें)",
-        fileOpen:"फ़ाइल खोलें "
-
+        fileOpen:"फ़ाइल खोलें ",
+        upload: "तुरंत अपलोड",
+        newB:"नया"
 
         },
         
       //bhojpuri
             bho:{
+
             heading:"अपना सीखना ",
             headingPart:"शुरू करें एआई ",
             subheading:" की मदत  से",
@@ -449,6 +453,9 @@ fileOpen:" open your file without upload"
             log2: "पहिले रउआ के लॉगिन करे के पड़ी",
            send1: "सगरी डाटा भेजल गइल बा (कृपया अपने ईमेल पर formSubmit के अधिकृत करीं, अगर पहिले से कइले बानी त अनदेखा करीं)",
             fileOpen:"फाइल खोलीं "
+            ,
+              upload: "तुरंत अपलोड",
+              newB:"नवका"
 
             }
 
@@ -600,8 +607,9 @@ de:{
     log1: "Möchten Sie sich abmelden?",
     log2: "Sie müssen sich zuerst anmelden",
     send1: "Alle Daten wurden gesendet (bitte autorisieren Sie formSubmit in Ihrer E-Mail, falls bereits geschehen, ignorieren Sie diese Nachricht)",
-  fileOpen:"Datei öffnen"
-
+  fileOpen:"Datei öffnen",
+  upload: "Sofortiges Hochladen",
+  newB:"Neu"
     },
 //french
     fr:{
@@ -749,8 +757,9 @@ de:{
         log1: "Voulez-vous vous déconnecter?",
         log2: "Vous devez d'abord vous connecter",
 send1: "Toutes les données ont été envoyées (veuillez autoriser formSubmit dans votre e-mail, si c'est déjà fait, ignorez-le)",
- fileOpen:"Ouvrir le fichier"
-
+ fileOpen:"Ouvrir le fichier",
+upload: "Téléchargement Instantané",
+newB:"Nouveau",
         }
 
 

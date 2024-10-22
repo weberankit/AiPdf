@@ -18,7 +18,7 @@ import { useState,useEffect } from "react";
 const InitialPage=()=>{
   
  //  console.log(lang,"languges",selectSupportLang)
-    const {heading,headingPart,subheading,companyHeading,companyHeadingPart,subcompanyHeading,DemoBtn,UplodBtn,Faqs,FaqPart,log2} = langugesConstant[useSupportLang()];
+    const {heading,headingPart,subheading,companyHeading,companyHeadingPart,subcompanyHeading,DemoBtn,UplodBtn,Faqs,FaqPart,log2,upload,newB} = langugesConstant[useSupportLang()];
 
   
     const selectDarkToogle=useSelector((store)=>store.userInformation.darkModes)
@@ -104,12 +104,12 @@ const handleTourComplete = () => {
     
     
      <div className="text-sm mt-12 relative w-[320px] sm:w-1/2 ">
-  <span className="mt-1 p-[2px] rounded-l-md rounded-r-sm text-xs bg-red-500 text-white neon right-0 absolute animate-spin-outline ">
-    New
+  <span className=" mr-1 pr-2  mt-1 p-[2px] rounded-l-md rounded-r-md text-xs bg-red-500 text-white neon right-0 absolute animate-spin-outline ">
+    {newB}
   </span>
   <Link to={"/withoutUpload"}>
     <button className=' font-bold bg-[#202020] text-white p-4 text-center rounded-md w-full  mt-1 sm:hover:bg-gray-200 sm:hover:text-black transition-all duration-500 neon-button'>
-      INSTANT UPLOAD
+     {upload}
     </button>
   </Link>
 </div>
