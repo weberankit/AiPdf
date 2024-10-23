@@ -35,6 +35,17 @@ useEffect(()=>{
     callUserInfoOnRefresh(navigate,selectUsrDetail,dispatch,infoUser , SetMsg)
     dispatch(addToogleNav())
 },[])
+
+
+//so instantly we want to redirect to home page if user is not sigin
+//since user fdata is not stored when email is not verified so using it to move to homepage fastly
+if(selectUsrDetail){
+  navigate("/")
+}
+
+
+
+
 //to get input from key
 const[gpts,setgpts]=useState(null)
 const[dicts,setdicts]=useState(null)

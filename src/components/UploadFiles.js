@@ -14,6 +14,7 @@ import { fireBaseErr } from "../utils/ErrorSlice"
 import { addToogleNav } from "../utils/useStoreDataSlice";
 import useBodybgDark from "../utils/useBodybgDark"
 import useSupportLang from "../utils/useSupportLang";
+
 //import ShowSimplePdf from "./ShowSimplePdf";
 //import ShowSimpl
 const UploadFiles=({step1stClass , stepThird })=>{
@@ -43,7 +44,8 @@ const [error,setError] = useState("")
 // Get a reference to the storage service, which is used to create references in your storage bucket
 
     const handleFileChange = (e) => {
-    
+     // console.log(selectUsrDetail)
+
         const file = e.target.files[0];
         let maxSize = 300 * 1024 * 1024; // 300 MB
 
@@ -119,7 +121,8 @@ const [error,setError] = useState("")
   <div className="w-3/4 m-auto">
     <div className={` ${selectDarkToogle ?"darkMode " :"bg-gray-100"}     shadow-lg p-10 md:p-40 border border-dashed border-gray-600  w-full`}>
       <div className="p-6">
-    <form onSubmit={ (e)=>{ e.preventDefault()
+   {
+   selectUsrDetail && <form onSubmit={ (e)=>{ e.preventDefault()
    handleFileChange()}
      }>
     
@@ -131,7 +134,11 @@ const [error,setError] = useState("")
     </label>
     <h1 className="text-red-900 text-center font-semibold ">{error}</h1>
 
+
 </form>
+
+    }
+
 </div>
 </div>
 </div>
