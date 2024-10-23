@@ -54,12 +54,12 @@ const useDictionary=(componValue,setData,sourceLang="en",targetLang="hi")=>{
    const url = `https://microsoft-translator-text.p.rapidapi.com/Dictionary/Lookup?to=${targetLang}&api-version=3.0&from=${sourceLang}`;
    
  
- 
+ //
    const options = {
      method: 'POST',
      headers: {
        'content-type': 'application/json',
-       'X-RapidAPI-Key': selectKeyDict,
+       'X-RapidAPI-Key':selectKeyDict ,
        'X-RapidAPI-Host': 'microsoft-translator-text.p.rapidapi.com'
      },
      body: JSON.stringify(data)
@@ -68,7 +68,7 @@ const useDictionary=(componValue,setData,sourceLang="en",targetLang="hi")=>{
    try {
      const response = await fetch(url, options);
      const result = await response.text();
-    
+       console.log(result,"result")
       const data = JSON.parse(result);
       dispatch(addSearchMsg(null))
       setData(data)

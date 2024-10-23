@@ -110,7 +110,7 @@ const [error,setError] = useState("")
 
 
 
-{ <div className="absolute top-[120px] left-0 right-0 h-[3rem] sm:text-center">{uploadProgress && <>  <ShimmerEffect/>  <div className="text-black font-semibold text-center  sm:mr-0 ">{upPage1}<em className="text-green-500">{uploadProgress}% </em></div></>}
+{ <div className="absolute top-[120px] left-0 right-0 h-[3rem] sm:text-center">{uploadProgress && <>  <ShimmerEffect/>  <div className="text-black font-semibold text-center  sm:mr-0 ">{upPage1}<em className="text-green-500">{uploadProgress} </em></div></>}
 </div>
 
 }

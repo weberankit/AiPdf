@@ -39,7 +39,7 @@ function handTargetLang(lang){
     return(
 <>
 <div className="w-5/6 ">
-<div className="fixed bg-white text-black  top-0  w-full z-[160] text-center pb-44 h-[1100px]  overflow-y-scroll">
+<div className="fixed bg-white text-black  top-0  w-full z-[210] text-center pb-44 h-[1100px]  overflow-y-scroll">
 <button className="bg-orange-600 text-white p-2 rounded-lg m-2 float-left" onClick={()=>closeProp()}>{sign3}</button>
   
    <div className="pt-28">
