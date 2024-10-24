@@ -121,6 +121,9 @@ const [error,setError] = useState("")
   <div className="w-3/4 m-auto">
     <div className={` ${selectDarkToogle ?"darkMode " :"bg-gray-100"}     shadow-lg p-10 md:p-40 border border-dashed border-gray-600  w-full`}>
       <div className="p-6">
+
+{!selectUsrDetail && <div className="animate-pulse p-2 bg-white rounded-sm">checking your email verification and sigin</div>}
+
    {
    selectUsrDetail && <form onSubmit={ (e)=>{ e.preventDefault()
    handleFileChange()}
