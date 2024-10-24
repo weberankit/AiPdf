@@ -37,11 +37,6 @@ useEffect(()=>{
 },[])
 
 
-//so instantly we want to redirect to home page if user is not sigin
-//since user fdata is not stored when email is not verified so using it to move to homepage fastly
-if(selectUsrDetail){
-  navigate("/")
-}
 
 
 
@@ -101,6 +96,12 @@ useStatusCheck()
         <>
         <Heading/>
 
+
+    {!selectUsrDetail && <div className=" w-1/2 m-auto text-center text-lg relative animate-pulse rounded-sm z-[1000] top-[400px] text-black p-2 bg-red-400 rounded-sm">fetching your detail</div>}
+
+
+
+{selectUsrDetail && <>
 <div className="pt-40 p-2">
   <div>
     <div className="bg-gray-100 shadow-lg  p-4 rounded-lg font-serif md:w-3/5 md:m-auto">
@@ -181,7 +182,8 @@ useStatusCheck()
 
 
 </div>
-
+</>
+}
 {msg}
 
 
