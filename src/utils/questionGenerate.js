@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { safetySettings } from "./youtubeVideosFun";
-import { error } from "pdf-lib";
+//import { error } from "pdf-lib";
 
 
 //import { text } from "@fortawesome/fontawesome-svg-core";

@@ -7,12 +7,20 @@ const DisplayOption=({item,index})=>{
            //A,B --help to find which is not clicked
             const converted=String.fromCharCode(65 + getValues)
            if(ans?.toLowerCase()!==converted?.toLowerCase()){
-              //get element user clicked but not match with correct-ans
+             /* //get element user clicked but not match with correct-ans
               const element=document.getElementById(`${index}qe-${getValues}`)
               if(!element)return;
             element.style.border="red solid 1px" 
-            element.style.borderRadius="10px"  
-            
+            element.style.borderRadius="10px"  */
+
+           //make all red
+          for(let i=0;i<=item?.options?.length-1;i++){
+           let el=document.getElementById(`${index}qe-${i}`)
+             if(!el) return;
+            el.style.border="red solid 1px"
+            el.style.borderRadius="10px"
+          }
+
           } 
           //whatever user-click always show correct anser
           //conver ans--into numbers so to find  element by id
@@ -20,7 +28,7 @@ const DisplayOption=({item,index})=>{
            const element=document.getElementById(`${index}qe-${correctAns}`)
            if(!element)return;
           element.style.border="green solid 1px"
-         element.style.borderRadius="10px"  
+         element.style.borderRadius="40px"  
           
     
         }

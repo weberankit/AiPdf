@@ -113,7 +113,24 @@ input[type="file"] {
   height: 100%;
 }
 
+.front-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+ 
+}
 
+.front-container iframe {
+  border-radius: 5%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+}
 
 .bgred {
   animation: pulse 2s infinite;
@@ -194,6 +211,11 @@ input[type="file"] {
     transform: rotate(-360deg);
   }
 } 
+
+
+
+
+
 
 @tailwind base;
 @tailwind components;
