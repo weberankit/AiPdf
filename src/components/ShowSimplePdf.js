@@ -172,12 +172,12 @@ location?.pathname==="/cart/pdfPages" && sessionStorage.setItem("pageNo",pageNo)
                 )
               }
             >
-              <span className=" text-red-500  bg-black bg-opacity-40">
-                {" "}
+              <span className=" text-red-500  bg-black bg-opacity-40 ">
+                
                 Ai-VIDEO
               </span>
             </button>
-          { pageTextload && <button onClick={handleQuestion} className="ml-2">Ai-Question</button>}
+          { pageTextload && <button className="relative" onClick={handleQuestion} ><span className= 'text-xs text-white absolute right-0 hidden sm:block top-[-6px] z-50 p-[1px] rounded-l-md bg-black'>Beta✨</span>  <span className=" text-xs sm:text-sm text-nowrap  py-2  m-1 ml-9 px-3 hover:bg-black bg-blue-500 font-bold text-white rounded-md">Generate-MCQ</span></button>}
          
           </span>
 

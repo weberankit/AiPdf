@@ -11,8 +11,8 @@ import { addToogleNav } from "../utils/useStoreDataSlice";
 import useSupportLang from "../utils/useSupportLang";
 import tourSteps from "../utils/tourSteps";
 import Joyride from 'react-joyride'; // Import Joyride
-import { useState,useEffect } from "react";
-
+import { useState,useEffect,useRef } from "react";
+import YouTube from "react-youtube";
 
 
 const InitialPage=()=>{
@@ -20,14 +20,15 @@ const InitialPage=()=>{
  //  console.log(lang,"languges",selectSupportLang)
     const {heading,headingPart,subheading,companyHeading,companyHeadingPart,subcompanyHeading,DemoBtn,UplodBtn,Faqs,FaqPart,log2,upload,newB} = langugesConstant[useSupportLang()];
 
-  
+   
     const selectDarkToogle=useSelector((store)=>store.userInformation.darkModes)
 
     const selector=useSelector((store)=>store.userInformation.value)
     const [onBoardStep , setOnBoardSteps]= useState(false)
-
+    const [showYt , setShowYt] = useState(false)
     const navigate =useNavigate()
     const dispatch= useDispatch()
+    const videoLoadRef=useRef(null)
     function handleCheck(){
     if(selector){
     navigate("/upload")
@@ -49,6 +50,22 @@ useEffect(()=>{
          }
         // callToCheck()
 
+  const Intersected =  new IntersectionObserver(([entry])=>{
+  
+    if(entry.isIntersecting){
+     
+      setShowYt(true)
+     
+      Intersected.disconnect()
+    }
+  },{threshold:0.7})
+
+    
+    if(videoLoadRef.current){
+      Intersected.observe(videoLoadRef.current)
+    }
+
+   return()=>Intersected.disconnect()
 },[])
 
 
@@ -76,8 +93,26 @@ const handleTourComplete = () => {
    };
 
 
+   const onEnd = (event) => {
+    event.target.seekTo(0); // Seek to the beginning of the video
+    
+  };
+  const opts = {
+    height: "100%",
+    width: "100%",
+
+    playerVars: {
+      // Hide video title and related video info
+      modestbranding: 1, // Reduces YouTube branding
+      autoPlay: 0,
+      mute: 0,
+      rel: 0,
+      controls: 1,
+    },
+  };
+
     return(
-        <div className={`overflow-hidden  ${selectDarkToogle ? " darkMode text-white" : "bg-white text-black" }`}>
+        <div className={`overflow-hidden  [& > *]:elemntAnimate  ${selectDarkToogle ? " darkMode text-white" : "bg-white text-black" }`}>
  
  {onBoardStep  && <Joyride 
           steps={tourSteps} 
@@ -92,9 +127,9 @@ const handleTourComplete = () => {
 
 
             <Heading />
-     
+   
 
-         <div className='pt-48 '>
+         <div className='pt-48    '>
             <div className='flex flex-row justify-between '>
             <div className='m-4  text-6xl leading-10'>
      <h1 className=' xs:text-3xl text-4xl sm:text-6xl  font-bold whitespace-nowrap mb-4 font-serif step-1'>{heading}</h1>
@@ -126,7 +161,14 @@ const handleTourComplete = () => {
          </div>
 
 
-       
+
+
+
+
+
+
+
+
 
 
 <div className='p-6'>
@@ -150,13 +192,55 @@ const handleTourComplete = () => {
  <div className=" w-full sm:w-[40%] m-auto"><button onClick={()=>handleCheck()} className='  bg-[#202020] text-white p-4 text-center rounded-md w-full  mt-1 sm:hover:bg-gray-200 sm:hover:text-black transition-all duration-500'>{UplodBtn}</button></div>
 </div>
 </div>
-<div className='mt-14 pt-14 bg-[#202020] border border-gray-300 m-auto pb-10'>
-    <div className='w-[95%]  sm:w-4/5 m-auto'><img src={"https://ucarecdn.com/591612ec-bdd0-41bf-ac70-31228fe4dfd9/gif.gif"} loading='lazy' alt="GIF"></img></div>
+<div className='mt-14 pt-14 bg-[#202020] border border-gray-300 m-auto pb-10' ref={videoLoadRef} >
+   
+ { showYt ? 
+ <div className=" w-[100%] lg:w-[60%] m-auto "> <YouTube
+                    className="front-container  "
+                    videoId={"OGKFAhukS_Q"}
+                    loading="loading...."
+                    title="AIPDF"
+                    opts={opts}
+                    onReady={(event) => {
+                     // setShowYt(true);
+                    }}
+                    onEnd={onEnd}
+                    />
+</div> 
+ 
+ :
+ <div className='w-[95%]  sm:w-[80%] m-auto'>
+    <img src={"https://ucarecdn.com/591612ec-bdd0-41bf-ac70-31228fe4dfd9/gif.gif"} loading='lazy' alt="GIF"></img>
+    </div>
+    }
+  
+
+
 </div>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div className='mt-16'>
-{/* p-2 w-full sm:w-4/5 sm:m-auto*/}
+{//// p-2 w-full sm:w-4/5 sm:m-auto
+}
 <div className='p-2 w-full sm:w-4/5 sm:m-auto'>
 <div className="flex flex-col lg:flex-row justify-between w-[95%]">
 <div><h1 className='whitespace-nowrap text-4xl font-serif font-bold'> {Faqs} </h1><h2 className=' text-2xl font-semibold'> {FaqPart} </h2> </div>
@@ -181,5 +265,13 @@ const handleTourComplete = () => {
 
         </div> 
     )
+
+
+
+
+
+
+
+
 }
 export default InitialPage
