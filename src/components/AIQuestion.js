@@ -57,7 +57,7 @@ const dispatch=useDispatch()
 
    if(!selectGeneratedData){
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-indigo-600">
+      <div className=" fixed z-[4000] w-full flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-indigo-600">
         <div className="text-center">
           <div className="flex justify-center">
           <span class="loaderquestionFallback"></span>

@@ -44,7 +44,7 @@ Text:${textGrab}`;
         }
       }
  catch (error) {
-      // console.log(error)
+       console.log(error)
 
         try{
          
@@ -61,10 +61,11 @@ Text:${textGrab}`;
                  }
           }
         catch(error){
+          console.log("error-2",error)
           //if fail use constant data
          let defaultData=[
           {
-              "question": "Sorry, this message is from AiPdf. We are currently unable to provide questions. Can you guess why?",
+              "question": "Sorry,try on next page this message is from AiPdf. We are currently unable to provide questions. Can you guess why?",
               "options": [
                   "API expired",
                   "It never worked",
