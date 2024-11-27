@@ -6,7 +6,7 @@ import ShowSimplePdf from "./ShowSimplePdf";
 import AiComponents from "./AiComponents";
 import SelectionWord from "../utils/selectionWord";
 import useStatusCheck from "../utils/useStatusCheck";
-import { Link } from "react-router-dom";
+import { Link,Outlet } from "react-router-dom";
 //import { useDispatch} from "react-redux";
 import {onAuthStateChanged ,getAuth} from "firebase/auth"
 //import { infoUser } from "../utils/userSlice";
@@ -18,7 +18,9 @@ import { useSelector } from "react-redux";
 
 const WithoutUpload = () => {
    const { upPage1, upPage2, upPage3, upPage4 ,nav1,showPdf6,fileOpen} = langugesConstant[useSupportLang()];
-   const [fileCustom, setFileCustom] = useState(null);
+   const getUrlFromLocal=null
+   
+   const [fileCustom, setFileCustom] = useState(getUrlFromLocal);
 //-   const [sideBarShow, setSideBarShow] = useState(null);
    const [message, setMessage] = useState(false);
    let countFreeTrial = localStorage.getItem("check") || null;
@@ -86,12 +88,15 @@ useKeyUpdate(userId,readDataToggle)
  
      const url = URL.createObjectURL(file);
      setFileCustom(url);
+     //console.log(url,url["blob"])
+     
    };
  //console.log(sideBarShow)
 
 
    return (
      <div className="">
+      <Outlet/>
        {!fileCustom && (
          <Link to="/">
            <button className="text-center bg-black text-white p-2 rounded-md absolute">

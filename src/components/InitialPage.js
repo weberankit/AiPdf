@@ -28,17 +28,17 @@ const InitialPage=()=>{
 
     const navigate =useNavigate()
     const dispatch= useDispatch()
-function handleCheck(){
-if(selector){
+    function handleCheck(){
+    if(selector){
     navigate("/upload")
-}else{
+    }else{
     alert(log2)
     window.scrollTo({ top:0,behavior:"smooth"})
-}
-}
+   }
+   }
 
 
-dispatch(addToogleNav(false))
+    dispatch(addToogleNav(false))
 
 useEffect(()=>{
     const tourCompleted = localStorage.getItem('tourCompleted');
@@ -77,7 +77,7 @@ const handleTourComplete = () => {
 
 
     return(
-        <div className={`overflow-hidden  ${selectDarkToogle && " darkMode text-white" }`}>
+        <div className={`overflow-hidden  ${selectDarkToogle ? " darkMode text-white" : "bg-white text-black" }`}>
  
  {onBoardStep  && <Joyride 
           steps={tourSteps} 

@@ -4,33 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 //import { pdfjs } from "react-pdf";
-
+import { disableReactDevTools } from '@fvilers/disable-react-devtools';
 // pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-function toDisableInspect(){
-document.addEventListener('contextmenu', (e) => e.preventDefault());
-/*keyCode.charCodeAt(0) converts the first character of the keyCode string to its corresponding ASCII code.
-For example, if keyCode is 'I', then keyCode.charCodeAt(0) will return 73, which is the ASCII code for I
-*/
-function ctrlShiftKey(e, keyCode) {
-  return e.ctrlKey && e.shiftKey && e.keyCode === keyCode.charCodeAt(0);
+
+
+if (process.env.NODE_ENV === 'production') {
+  disableReactDevTools();
 }
-
-document.onkeydown = (e) => {
-  // Disable F12, Ctrl + Shift + I, Ctrl + Shift + J, Ctrl + U
-  if (
-    e.keyCode === 123 || // F12
-    ctrlShiftKey(e, 'I') ||  // Ctrl + Shift + I
-    ctrlShiftKey(e, 'J') ||  // Ctrl + Shift + J
-    ctrlShiftKey(e, 'C') ||  // Ctrl + Shift + C
-    (e.ctrlKey && e.keyCode === 'U'.charCodeAt(0)) // Ctrl + U
-  )
-    return false; // Prevent default action for these key combinations
-};
-}
-//toDisableInspect()
-
-
-
 
 
 

@@ -2,7 +2,7 @@ import {getStorage ,ref,listAll,getMetadata } from "firebase/storage"
 import {useEffect, useState} from "react"
 import {useDispatch, useSelector} from "react-redux"
 //import Header from "./Header"
-import { useNavigate ,useLocation} from "react-router-dom"
+import { useNavigate ,useLocation,Outlet} from "react-router-dom"
 //import {onAuthStateChanged ,getAuth} from "firebase/auth"
 import FileDisplay from "./FileDisplay"
 //import { UseDispatch } from "react-redux"
@@ -15,7 +15,7 @@ import useKeyUpdate from "../utils/useKeyUpdate"
 import useStatusCheck from "../utils/useStatusCheck"
 import { fireBaseErr } from "../utils/ErrorSlice"
 import Heading from "./Heading"
-import { addToogleNav } from "../utils/useStoreDataSlice"
+import { addToogleNav, addUrlPdf } from "../utils/useStoreDataSlice"
 import useBodybgDark from "../utils/useBodybgDark"
 const FileCart=()=>{
   const selectDarkToogle=useSelector((store)=>store.userInformation.darkModes)
@@ -43,6 +43,9 @@ useEffect(()=>{
 callUserInfoOnRefresh(navigate,selectUsrDetail,dispatch,infoUser,SetMsg,fireBaseErr)
 dispatch(addToogleNav(false))
 
+//when user move back from pdfpages 
+
+
 },[])
 //calling for updating api key fromfirebase
 useKeyUpdate(selectUsrDetail?.uid,readDataToggle)
@@ -66,14 +69,19 @@ useEffect(()=>{
 call(storage,directoryPath,dispatch,addFile , SetMsg,fireBaseErr)
 },[selectToggle])
 
-console.log(msg,"this is messaging")
+
 //using as won small scrren size body anfd file backround both visible so to hide it
 //made bg of body of smae colour of filecart box
 useBodybgDark()
 
     return(
         <>
-        <Heading/>
+        {/**for sisplay pdf--outlet */}
+        
+     <div className="absolute top-0"> 
+       <Heading/>
+       </div> 
+  
         <div className={`p-10 ${selectDarkToogle ? "darkMode " : "bg-white"}`}>
           <div>
 <div className="mt-12">
@@ -82,7 +90,8 @@ useBodybgDark()
       <div >  {msg && <div className="bg-black text-white p-3 text-center w-1/2 m-auto ">{msg }</div> }</div>
       <div >  {selectErrorFireBase  && <div className="bg-black text-white p-3 text-center w-1/2 m-auto ">{selectErrorFireBase}</div> }</div>
 </div>
-</div></div>
+</div>
+</div>
         </>
     ) 
 }

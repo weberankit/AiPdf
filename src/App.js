@@ -24,7 +24,15 @@ import { useState,useEffect,useCallback } from "react";
 //import { Lines } from 'react-preloaders';
 import { contextSpinLogin } from "./utils/helper";
 //import WithoutUpload from "./components/WithoutUpload";
-
+import AIQuestion from "./components/AIQuestion";
+//import Pages from "./components/Pages";
+import LayoutDemo from "./layoutPage/LayoutDemo";
+import Pages from "./components/Pages";
+import Heading from "./components/Heading";
+import LayoutMain from "./layoutPage/LayoutMain";
+import AdvPdfView from "./components/AdvPdfView";
+import PdfView from "./components/PdfView";
+//import LayoutDemoChild from "./layoutPage/LayoutDemoChid";
 
   const StepsAi=lazy(()=>import("./components/AiKeyCreateStep"))
  const StepDict=lazy(()=>import("./components/DicctKeyStep"))
@@ -63,10 +71,15 @@ document.getElementById("loading-overlay").style.display = "none";
 
 
 const appRouter=createBrowserRouter([
+
+
+
+
+
 {
   path:"/",
   element:<Body />,
-  errorElement:<Error/>
+ errorElement:<Error/>,
   
   
 },
@@ -83,7 +96,7 @@ const appRouter=createBrowserRouter([
   element:<UploadFiles />
 }
 ,
- {
+/* {
       path:"/cart",
       element:<FileCart/>,
       children:[{
@@ -91,11 +104,28 @@ const appRouter=createBrowserRouter([
         element:<Suspense fallback={<h1 className="text-center font-bold">loading....please wait</h1>}><VideoPlay/></Suspense>,
     }]
     }
+*/
 
-,{
+
+,
+{
   path:"/setting",
   element:<Setting/>
-},
+}
+
+
+
+
+
+,
+
+
+
+
+
+
+
+
 {path:"aiKey",
 
 element:(  <Suspense fallback={<div><h1  className="text-center font-bold animate-pulse">loading....please wait</h1></div>}><StepsAi/></Suspense>)
@@ -112,25 +142,140 @@ element:(  <Suspense fallback={<div><h1  className="text-center font-bold animat
   element:<ResetEmailPassword/> 
 },
 
-
+/*
 {
   path:"/showDemo",
   element:<Suspense fallback={<h1 className="text-center font-bold">loading....please wait</h1>}><DemoPage/></Suspense>,
   children:[{
     path:"videoplay/:id",
     element:<Suspense fallback={<h1 className="text-center font-bold">loading....please wait</h1>}><VideoPlay/></Suspense>,
-}]
+},
+{
+  path:"Questions",
+  element:<AIQuestion/>
 }
+
+]
+}
+
+*/
+
+
+
+
+{
+path:"/showDemo",
+element:<LayoutDemo/>,
+  children:[
+    {
+      path:"",
+      element:<Suspense fallback={<h1 className="text-center font-bold">loading....please wait</h1>}><DemoPage/></Suspense>
+    },
+
+    {
+      path:"pdfPages",
+      element:<Pages/>,
+      children:[
+       {
+         path:"videoplay/:id",
+         element:<Suspense fallback={<h1 className="text-center font-bold">loading....please wait</h1>}><VideoPlay/></Suspense>
+        },
+      ]
+    }
+    ,
+    {
+      path:"Questions",
+      element:<AIQuestion/>
+    }
+
+  ]
+}
+
 ,
 
 {
+path:"/cart",
+element:<LayoutMain/>,
+children:[
+{
+  path:"",
+  element:<FileCart/>
+},
+{
+  path:"pdf2",
+  element:<AdvPdfView/>
+},
+{
+  path:"pdfPages",
+  element:<Pages/>,
+  children:[
+   {
+     path:"videoplay/:id",
+     element:<Suspense fallback={<h1 className="text-center font-bold">loading....please wait</h1>}><VideoPlay/></Suspense>,
+    },
+  ]
+}
+,
+{
+  path:"textView",
+  element:<PdfView/>
+}
+,
+{
+  path:"Questions",
+  element:<AIQuestion/>
+}
+
+]
+}
+
+
+
+
+
+,
+
+
+{
+  path:"/withoutUpload",
+  element:<LayoutMain/>,
+  children:[
+    {
+      path:"",
+      element:<Suspense fallback={<h1 className="text-center font-bold">loading....please wait</h1>}><WithoutUploads/></Suspense>,
+      children:[
+         {
+      path:"videoplay/:id",
+      element:<Suspense fallback={<h1 className="text-center font-bold">loading....please wait</h1>}><VideoPlay/></Suspense>,
+         },
+
+          {
+      path:"Questions",
+      element:<AIQuestion/>
+         }
+      ]
+    },
+
+    
+   
+  ]
+}
+
+/*
+{
   path:"/withoutUpload",
   element:<Suspense fallback={<h1 className="text-center font-bold">loading....please wait</h1>}><WithoutUploads/></Suspense>,
-  children:[{
+  children:[
+    {
     path:"videoplay/:id",
     element:<Suspense fallback={<h1 className="text-center font-bold">loading....please wait</h1>}><VideoPlay/></Suspense>,
-}]
-}
+    },
+    {
+      path:"Questions",
+      element:<AIQuestion/>
+    }
+  ]
+}*/
 
 
 

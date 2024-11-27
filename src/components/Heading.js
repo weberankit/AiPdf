@@ -49,8 +49,11 @@ signOut(auth).then(() => {
      const selectPdfUrl=useSelector((store)=>store.useDataSlice.pdfUrl)
      //getting advurl pdf
      const selectAdvPdfUrl=useSelector((store)=>store.useDataSlice.advPdfUrl)
+
+
      if(selectPdfUrl || selectAdvPdfUrl){
-      refHide.current="hidden"
+      console.log(userPath,"this is s a")
+      ! userPath?.pathname==="/cart" ? refHide.current="hidden":refHide.current="null"
      }else{
      
       refHide.current="null"

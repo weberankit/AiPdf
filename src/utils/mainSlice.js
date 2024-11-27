@@ -8,6 +8,7 @@ import giminiResText from "./geminiResponseSlice"
 import ErrorSlicing from "./ErrorSlice"
 import useStoreDataSlice from "./useStoreDataSlice"
 import useYoutbeDataSlice from "./dataYoutubeSlice"
+import genarateQuestionSlice from "./genarateQuestionSlice"
 const appStore=configureStore({
 reducer:{
 userInformation:userSlice,
@@ -18,8 +19,10 @@ aiRespond:aiResPonse,
 giminiRes:giminiResText,
 ErrorSliced:ErrorSlicing,
 useDataSlice:useStoreDataSlice,
-useYtSlice:useYoutbeDataSlice
-}
+useYtSlice:useYoutbeDataSlice,
+useGenartedQues:genarateQuestionSlice
+},
+devTools:false
 
 })
 
