@@ -64,7 +64,7 @@ export    function call(storage,directoryPath,dispatch,addFile,SetMsg,fireBaseEr
             
             })
           
-       console.log(check,"checking")
+     //  console.log(check,"checking")
        //check.then((item)=>console.log(item))
           }
 
@@ -98,13 +98,13 @@ const checkingUpload = uploadBytes(storageRef, fileData);
 },)
 //console.log(checkingUpload )
 checkingUpload.then((item)=>{
-  console.log(item)
+  //console.log(item)
   navigate("/cart")
 }).catch((error)=>{
   console.log(error,"error")
   setError("their is some issue")
 })
-console.log(checkingUpload)
+//console.log(checkingUpload)
  return checkingUpload
   
   };

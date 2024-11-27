@@ -1,6 +1,6 @@
 import React from "react";
 import YouTube from "react-youtube";
-import { useParams ,Link,useLocation} from "react-router-dom";
+import { useParams ,Link,useLocation,useSearchParams} from "react-router-dom";
 import { useState } from "react";
 import { XSquare } from "react-bootstrap-icons";
 import { addShowLatestStatus } from "../utils/dataYoutubeSlice";
@@ -14,9 +14,19 @@ const VideoPlay = () => {
  const path=useLocation()
 
  const pathgrab=path?.pathname?.split("/")?.slice(0)
- console.log(pathgrab[1])
+ console.log(pathgrab)
+ 
+ let backPathDynamic=`${pathgrab[1]}/${pathgrab[2]}`
+ if(path?.pathname=== `/withoutUpload/videoplay/${id}`){
+   backPathDynamic ='withoutUpload'
+}
+ 
 
-
+ console.log(pathgrab[1],pathgrab,backPathDynamic,path) 
+//const [videoIdParms]=useSearchParams()
+//const videoIdYt=videoIdParms.get['videoId']
+//const [videoPlay,setVideoPlay]=useState(videoIdYt)
+//console.log(videoPlay,videoIdYt,"id0f videos")
  const dispatch=useDispatch()
  const status=useSelector((store)=>store.useYtSlice.ytStatus)
   const opts = {
@@ -38,7 +48,7 @@ const VideoPlay = () => {
  {videoPlay &&<div> 
  
     <div className=" fixed inset-0 flex flex-col  items-center justify-center bg-black   z-[1900] ">
-    <div className=" mb-1 sm:mt-1" >  <Link to={`/${pathgrab[1]}`}><div ><XSquare size={20} color="white"/></div></Link></div> 
+    <div className=" mb-1 sm:mt-1" >  <Link to={`/${backPathDynamic}`}><div ><XSquare size={20} color="white"/></div></Link></div> 
      <div className="w-[95%] sm:w-[75%] ">
       <div className="video-container">
          {status && <div className="text-white">loading the video...</div>}

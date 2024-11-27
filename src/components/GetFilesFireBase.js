@@ -4,18 +4,11 @@ import { getStorage, ref, getDownloadURL , deleteObject} from "firebase/storage"
 import { toggler } from "../utils/userFiles";
 import { useDispatch } from "react-redux";
 import { textFile } from "../utils/userSlice";
-//import { useSelector } from "react-redux"
-//import { PDFDownloadLink, Document, Page } from '@react-pdf/renderer';
-//import DisplaySimplePdf from "./DisplaySimplePdf"
-//import ShowSimplePdf from "./ShowSimplePdf"
 import {useState} from "react"
 import {addUrlAdvPdf, addUrlPdf} from "../utils/useStoreDataSlice"
-//import Joyride from 'react-joyride'; // Import Joyride
-//import tourSteps from "../utils/tourSteps"
-//import {SecondTourSteps} from "../utils/tourSteps"
 import { Trash } from "react-bootstrap-icons";
-//import fileSvg from "../images/img/filesvg.svg"
 import useSupportLang from "../utils/useSupportLang";
+import { Link } from "react-router-dom";
 
 
 
@@ -177,7 +170,7 @@ slectfileMeta && slectfileMeta.map((item)=>{
 
 
 
-  <div key={textFileidentify+Date.now()+9} className="mt-6 ">
+  <div key={textFileidentify+fileName} className="mt-6 ">
 <div className="max-w-[786px] m-auto">
 <div className="p-6 bg-gray-100 rounded-lg shadow-lg relative ">
 <button className="text-red-800 absolute right-0 top-0 p-1 text-base md:text-xl" onClick={()=>{handleDelete(item._location.path )}}><Trash/></button>
@@ -192,17 +185,21 @@ slectfileMeta && slectfileMeta.map((item)=>{
 <div className="flex flex-row  mt-8 w-full sm:w-52">
       <div className="text-center m-auto">
            { 
-                   textFileidentify==="txt"?<button className=" btn text-base m-auto p-2 md:px-6 bg-black rounded-lg text-white font-semibold font-serif sm:hover:bg-white sm:hover:text-black transition-all duration-500" onClick={()=>{handleText(item._location.path);dispatch(addUrlPdf(null));dispatch(addUrlAdvPdf(null));handleReachTop(0)}}>{file1}</button> :  
-                   <button className=" whitespace-nowrap btn text-base p-2 md:px-6 bg-black rounded-lg text-white font-semibold font-serif sm:hover:bg-white sm:hover:text-black transition-all duration-500 relative" onClick={()=>{handlePdf(item._location.path);   handleReachTop(0);dispatch(addUrlAdvPdf(null)) ;  dispatch(textFile(null))}}><span className="text-white absolute top-[-5px] right-0 text-xs bg-red-500 p-[1px] rounded-md">new</span>{file2}</button>
+                   textFileidentify==="txt"
+                   ?
+                   <Link to={'textView'}><button className=" btn text-base m-auto p-2 md:px-6 bg-black rounded-lg text-white font-semibold font-serif sm:hover:bg-white sm:hover:text-black transition-all duration-500" onClick={()=>{handleText(item._location.path);handleReachTop(0)}}>{file1}</button> </Link>
+                   :  
+              <     Link to={"pdfPages"}>   <button className=" whitespace-nowrap btn text-base p-2 md:px-6 bg-black rounded-lg text-white font-semibold font-serif sm:hover:bg-white sm:hover:text-black transition-all duration-500 relative" onClick={()=>{handlePdf(item._location.path);   handleReachTop(0);}}><span className="text-white absolute top-[-5px] right-0 text-xs bg-red-500 p-[1px] rounded-md">new</span>{file2}</button></Link>  
 
                   }
       </div>
 
       <div className="sm:ml-1">{
               //to open high level-pdf viewer
-              textFileidentify !== "txt" &&  <button className=" whitespace-nowrap btn ml-2 sm:ml-0 text-base p-2 md:px-6 bg-black rounded-lg text-white font-semibold font-serif sm:hover:bg-white sm:hover:text-black transition-all duration-500" onClick={()=>{MangeAlertMsgAdvPdf();handleAdvPdf(item._location.path) ;
-              handleReachTop(0);dispatch(addUrlPdf(null));  dispatch(textFile(null)) }}> {file3}</button>
-            }</div>
+              textFileidentify !== "txt" && <Link to={"pdf2"}> <button className=" whitespace-nowrap btn ml-2 sm:ml-0 text-base p-2 md:px-6 bg-black rounded-lg text-white font-semibold font-serif sm:hover:bg-white sm:hover:text-black transition-all duration-500" onClick={()=>{MangeAlertMsgAdvPdf();handleAdvPdf(item._location.path) ;
+              handleReachTop(0);  }}> {file3}</button></Link>
+            }
+      </div>
 
 </div>
       <div></div>

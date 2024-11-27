@@ -1,5 +1,5 @@
 import {langugesConstant} from "../utils/langugesConstant"
-import {Link,useLocation} from "react-router-dom"
+import {Link,useLocation,useNavigate} from "react-router-dom"
 import { useDispatch ,useSelector} from "react-redux"
 import { addToogleNav } from "../utils/useStoreDataSlice"
 import { XSquare ,House ,GearWideConnected,FileEarmark,CloudUploadFill ,PersonBadgeFill} from "react-bootstrap-icons"
@@ -66,7 +66,7 @@ const navLinks=[
         <div className={`p-2 text-center border border-gray-200 hover:bg-[#202020c9] hover:text-white ${selectDarkToogle ? "hover:bg-gray-400":"text-black"} `}>
 
 
-        <Link to={item.path}>
+        <Link  to={item.path}>
 <li className="py-2 px-4 border-b-gray-200 hover:text-white">{location === item.path?<div className="flex flex-row"><div  className=" p-1 font-bold font-serif">{item.icon}</div><div className="mt-1 px-8 text-[#8a60f6]  font-bold font-serif">{item.navName}</div></div>:<div className="flex flex-row hover:text-white"><div className=" p-1 font-bold font-serif">{item.icon}</div><div className={`mt-1 px-8  font-bold font-serif   ${    selectDarkToogle?"text-white":"text-black"}`}>{item.navName}</div></div>}</li>
 </Link>
 

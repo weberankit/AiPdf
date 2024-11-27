@@ -1,21 +1,3 @@
-/*
-import { useSelector } from "react-redux"
-import { useEffect } from "react"
-
-const VideoShow=()=>{
-const getVideoData=useSelector((store)=>store.useYtSlice.listYt)
-
-
-useEffect(()=>{
-console.log(getVideoData,"kk")
-},[getVideoData])
-    return(
-        <>
-        dd
-        </>
-    )
-}
-export default VideoShow*/
 
 
 import { useSelector,useDispatch } from "react-redux";
@@ -23,7 +5,7 @@ import { useEffect ,useState,useRef,memo} from "react";
 import { XSquare } from "react-bootstrap-icons";
  import { handleAiVideo } from "../utils/youtubeVideosFun";
  import { addListYt, addQueryInput, addShowMsgi } from "../utils/dataYoutubeSlice";
- import { Outlet,Link,useLocation} from "react-router-dom";
+ import { Outlet,Link,useLocation,useSearchParams} from "react-router-dom";
 const VideoShow = memo(({checkClick}) => {
   const getVideoData = useSelector((store) => store.useYtSlice.listYt);
   const selectTextYtVideo=useSelector((store)=>store.useYtSlice.queryInput)
@@ -34,7 +16,7 @@ const VideoShow = memo(({checkClick}) => {
   const divRef=useRef(null)
   const paraRef=useRef(null)
   const dispatch=useDispatch()
-  
+  //const [videoIdParms , setVideoIdParms] = useSearchParams()
   useEffect(() => {
     
   //only when user selected text in pdf
@@ -69,7 +51,12 @@ const path=useLocation()
 
 const pathgrab=path?.pathname?.split("/")?.slice(0)
 
-//bg-[#FFF8DC]text-[#494F55]    
+//bg-[#FFF8DC]text-[#494F55]  
+const handleParms=(id)=>{
+ /* console.log(id)
+  setVideoIdParms({videoId:id})*/
+}
+
   return (
     <> 
   {selectStatus && <div className="bg-black animate-pulse p-10 md:p-20 lg:p-44 z-[1800] fixed inset-0 flex items-center justify-center rounded-sm text-center text-white font-bold"
@@ -78,7 +65,7 @@ const pathgrab=path?.pathname?.split("/")?.slice(0)
       {data && (
         
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-[1600] select-none">
-          <Outlet/>
+         <Outlet/> 
           <div className=" absolute top-0 bg-black z-[1700]" onClick={()=>{setData(null);dispatch(addListYt(null))}}><XSquare size="30" color="orange"/></div>
 
           <div className=" bg-[#292929] text-[#ffffff]  w-full max-w-2xl max-h-[80vh] overflow-y-auto rounded-lg p-4  border border-black">
@@ -89,7 +76,7 @@ const pathgrab=path?.pathname?.split("/")?.slice(0)
 
             {getVideoData.map((video, index) => {
                 if(video?.id?.videoId){
-             return( <><Link key={index}  to={`/${pathgrab[1]}/videoplay/${video?.id?.videoId}`}><div  className=" sm:hover:shadow-md flex flex-row mb-4 sm:hover:cursor-pointer " >
+             return( <><Link key={index}   to={`videoplay/${video.id.videoId}`}><div  className=" sm:hover:shadow-md flex flex-row mb-4 sm:hover:cursor-pointer " >
                 
                 <img
                   src={video.snippet.thumbnails.medium.url}
