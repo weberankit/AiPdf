@@ -44,6 +44,10 @@ const useDictionary=(componValue,setData,sourceLang="en",targetLang="hi")=>{
      data= [{ Text: textWords[0] }];
  }
 
+
+
+
+
  async function callingApi() {
 
 
@@ -68,7 +72,7 @@ const useDictionary=(componValue,setData,sourceLang="en",targetLang="hi")=>{
    try {
      const response = await fetch(url, options);
      const result = await response.text();
-       console.log(result,"result")
+     //  console.log(result,"result")
       const data = JSON.parse(result);
       dispatch(addSearchMsg(null))
       setData(data)
@@ -84,6 +88,18 @@ const useDictionary=(componValue,setData,sourceLang="en",targetLang="hi")=>{
  
 
 
+
+
+
+
+
+
+
+
+
+
+
+
  async function callingFreeApi(item){
  
   const dataFetch= await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${item}`)
@@ -91,6 +107,10 @@ const useDictionary=(componValue,setData,sourceLang="en",targetLang="hi")=>{
  // console.log(data)
   return data
    }
+
+
+
+
   async function callingExampleApi(){
 const arrayResponse= textWords.map((item)=>callingFreeApi(item))
  const allPromise=await Promise.all(arrayResponse)
@@ -101,7 +121,7 @@ const arrayResponse= textWords.map((item)=>callingFreeApi(item))
   
  useEffect(()=>{
  if(selectKeyDict){
-     console.log("jj")
+    // console.log("jj")
    callingApi()
  callingExampleApi()
  }
