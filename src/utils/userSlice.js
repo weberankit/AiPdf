@@ -6,7 +6,7 @@ const userSlice =  createSlice({
         value:null,
         preLoading:null,
         textGrab:null,
-        darkModes:true
+        darkModes:false
         
     },
     reducers:{
