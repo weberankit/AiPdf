@@ -30,7 +30,7 @@ const Questions=[
 
     return(
         <>
-
+{/*
 {Questions.map((item,index)=>{
     return(
     <div key={index}>
@@ -45,7 +45,25 @@ const Questions=[
 
 
     )
+})}*/
+}
+{Questions.map((item, index) => {
+  return (
+    <div key={index} className='mt-3 rounded-lg shadow-lg bg-yellow-500 border border-yellow-600'>
+      <div className='flex flex-row justify-between cursor-pointer' onClick={() => setShow(index === show ? null : index)}>
+        <div className='p-2 text-xl font-bold fontFaq font-serif text-white'>{item.ques}</div>
+        <button className={`bg-orange-600 h-8 p-2 mt-2 mr-1 mb-4  text-center rounded-2xl ${index === show ? 'rotate-180' : ''}`}>
+          {index === show ? <CaretLeft className='text-white ' /> : <CaretDown className='text-white ' />}
+        </button>
+      </div>
+
+      {index === show && (
+        <div className='p-1 pl-2 text-base font-sans font-extralight text-white'>{item.ans}</div>
+      )}
+    </div>
+  );
 })}
+
 
 
         </>
