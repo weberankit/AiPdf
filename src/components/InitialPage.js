@@ -1,9 +1,6 @@
 
 import { langugesConstant } from "../utils/langugesConstant";
-
-
 import Faq from './Faq';
-
 import Heading from "./Heading";
 import { Link ,useNavigate} from "react-router-dom";
 import { useSelector,useDispatch } from "react-redux";
@@ -16,13 +13,9 @@ import YouTube from "react-youtube";
 
 
 const InitialPage=()=>{
-  
- //  console.log(lang,"languges",selectSupportLang)
+ 
     const {heading,headingPart,subheading,companyHeading,companyHeadingPart,subcompanyHeading,DemoBtn,UplodBtn,Faqs,FaqPart,log2,upload,newB} = langugesConstant[useSupportLang()];
-
-   
     const selectDarkToogle=useSelector((store)=>store.userInformation.darkModes)
-
     const selector=useSelector((store)=>store.userInformation.value)
     const [onBoardStep , setOnBoardSteps]= useState(false)
     const [showYt , setShowYt] = useState(false)
@@ -39,31 +32,27 @@ const InitialPage=()=>{
    }
 
 
-    dispatch(addToogleNav(false))
+  dispatch(addToogleNav(false))
 
 useEffect(()=>{
     const tourCompleted = localStorage.getItem('tourCompleted');
     if (!tourCompleted) {
        // If the tour hasn't been completed before, show the tour
        setOnBoardSteps(true)
-     
-         }
-        // callToCheck()
+     }
+      // callToCheck()
 
-  const Intersected =  new IntersectionObserver(([entry])=>{
-  
-    if(entry.isIntersecting){
-     
-      setShowYt(true)
-     
-      Intersected.disconnect()
+const Intersected = new IntersectionObserver(([entry])=>{
+  if(entry.isIntersecting){
+     setShowYt(true)
+     Intersected.disconnect()
     }
-  },{threshold:0.7})
+  },
+  {threshold:0.7})
 
-    
-    if(videoLoadRef.current){
+  if(videoLoadRef.current){
       Intersected.observe(videoLoadRef.current)
-    }
+  }
 
    return()=>Intersected.disconnect()
 },[])
@@ -72,8 +61,7 @@ useEffect(()=>{
 const handleTourComplete = () => {
     // Set a flag in local storage indicating that the tour has been completed
     localStorage.setItem('tourCompleted', 'true');
-  //  alert("j")
-  window.scrollTo({top:0,behavior:"smooth"})
+    window.scrollTo({top:0,behavior:"smooth"})
   };
   
   
@@ -93,9 +81,8 @@ const handleTourComplete = () => {
    };
 
 
-   const onEnd = (event) => {
-    event.target.seekTo(0); // Seek to the beginning of the video
-    
+  const onEnd = (event) => {
+   event.target.seekTo(0); // Seek to the beginning of the video
   };
   const opts = {
     height: "100%",
@@ -112,91 +99,18 @@ const handleTourComplete = () => {
   };
 
     return(
-        <div className={`overflow-hidden  [& > *]:elemntAnimate  ${selectDarkToogle ? " darkMode text-white" : "bg-white text-black" }`}>
+  <div className={`overflow-hidden  [& > *]:elemntAnimate  ${selectDarkToogle ? " darkMode text-white" : "bg-white text-black" }`}>
  
- {onBoardStep  && <Joyride 
+  {onBoardStep  && <Joyride 
           steps={tourSteps} 
           continuous={true}
-         //  showProgress={true}
-            showSkipButton={true}
-             run={onBoardStep}
-             callback={handleTourComplete} // Set a callback to mark tour as completed
-             
-             />}
+          showSkipButton={true}
+          run={onBoardStep}
+          callback={handleTourComplete} // Set a callback to mark tour as completed
+         />}
 
-
-
-            <Heading />
+<Heading />
    
-{/*earlier design
-         <div className='pt-48    '>
-            <div className='flex flex-row justify-between '>
-            <div className='m-4  text-6xl leading-10'>
-     <h1 className=' xs:text-3xl text-4xl sm:text-6xl  font-bold whitespace-nowrap mb-4 font-serif step-1'>{heading}</h1>
-     
-     <b className=' xs:text-2xl text-3xl sm:text-4xl whitespace-nowrap  mt-12 font-extrabold font-serif'> {headingPart} <br ></br> {subheading}</b>
-    
-    
-    
-     <div className="text-sm mt-12 relative w-[320px] sm:w-1/2 ">
-  <span className=" mr-1 pr-2  mt-1 p-[2px] rounded-l-md rounded-r-md text-xs bg-red-500 text-white neon right-0 absolute animate-spin-outline ">
-    {newB}
-  </span>
-  <Link to={"/withoutUpload"}>
-    <button className=' font-bold bg-[#202020] text-white p-4 text-center rounded-md w-full  mt-1 sm:hover:bg-gray-200 sm:hover:text-black transition-all duration-500 neon-button'>
-     {upload}
-    </button>
-  </Link>
-</div>
-
-
-
-</div>
-<div className='mr-0 sm:mr-24 hidden sm:block lg:block'>
-<div className=' sm:w-48 md:w-64 lg:w-96 joyClass3'><img src={"https://ucarecdn.com/8d533a74-1817-4ae8-82ab-3653e2106f30/mainPage.svg"} alt="logoImg"  loading="lazy" ></img></div> 
-
-</div>
-</div>
-
-         </div>
-
-*/
-}
-
-
-
-
-{/*earlier---design
-
-<div className='p-6'>
-<h2 className='text-base font-semibold'>
-<h3 className='whitespace-nowrap'>{companyHeading} </h3>
-<b className='whitespace-nowrap'>{companyHeadingPart}</b> 
-    {subcompanyHeading}
-</h2>
-
-</div>
-
-
-
-
-
-
-<div className='p-3 pt-16'>
-<div className=' flex flex-col sm:flex-row  w-full m-auto'>
-    <div className=" w-full sm:w-[40%] m-auto"><Link to={"/showDemo"}><button className='bg-[#202020] text-white p-4 text-center rounded-md  w-full mt-1  sm:hover:bg-gray-200 sm:hover:text-black transition-all duration-500'>{DemoBtn}</button></Link></div>
-
- <div className=" w-full sm:w-[40%] m-auto"><button onClick={()=>handleCheck()} className='  bg-[#202020] text-white p-4 text-center rounded-md w-full  mt-1 sm:hover:bg-gray-200 sm:hover:text-black transition-all duration-500'>{UplodBtn}</button></div>
-</div>
-</div>
-*/}
-
-
-
-
-
-
-
 <div className='pt-24 bg-yellow-500'>
   <div className='flex flex-col lg:flex-row justify-between items-center p-6 container mx-auto'>
     {/* Left Section */}
@@ -276,13 +190,6 @@ const handleTourComplete = () => {
 
 
 
-
-
-
-
-
-
-
 <div className='mt-14 pt-14 bg-[#202020] border border-gray-300 m-auto pb-10' ref={videoLoadRef} >
    
  { showYt ? 
@@ -312,47 +219,6 @@ const handleTourComplete = () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{/*ealier design
-<div className='mt-16'>
-{//// p-2 w-full sm:w-4/5 sm:m-auto
-}
-<div className='p-2 w-full sm:w-4/5 sm:m-auto'>
-<div className="flex flex-col lg:flex-row justify-between w-[95%]">
-<div><h1 className='whitespace-nowrap text-4xl font-serif font-bold'> {Faqs} </h1><h2 className=' text-2xl font-semibold'> {FaqPart} </h2> </div>
-
-<div>
-
-    <div className='mt-12'>
-        <Faq/>
-    </div>
-</div>
-</div>
-
-</div>
-
-
-
-
-</div>
-*/}
-
-
 {/* FAQs Section */}
 <div className='mt-16 bg-purple-700 rounded-xl shadow-lg p-6'>
   <div className='flex flex-col lg:flex-row justify-between items-center w-[95%]'>
@@ -368,12 +234,6 @@ const handleTourComplete = () => {
     </div>
   </div>
 </div>
-
-
-
-
-
-
 
 
 

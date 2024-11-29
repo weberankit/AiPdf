@@ -1,68 +1,50 @@
 
 import Body from "./components/Body";
-
 import {Provider} from "react-redux"
 import appStore from "./utils/mainSlice";
 import { createBrowserRouter,RouterProvider } from "react-router-dom";
 import UploadFiles from "./components/UploadFiles";
 import FileCart from "./components/FileCart";
 import Setting from "./components/Setting";
-//import AiKeyCreateStep from "./components/AiKeyCreateStep";
-import {createContext, lazy,Suspense, useContext} from "react"
-//import DicctKeyStep from "./components/DicctKeyStep";
+import { lazy,Suspense} from "react"
 import Error from "./components/Error";
 import useCheckOnline from "./utils/useCheckOnline";
 import ResetEmailPassword from "./components/ResetEmailPassword";
-//import Demo from "./components/Demo";
-//import ShowDemo from "./components/ShowDemo";
-//import Joyride from 'react-joyride'; // Import Joyride
-//import ShowDemo from "./components/ShowDemo";
-//import {useState ,useEffect} from "react"
-//import tourSteps from "./utils/tourSteps"
  import Sign from "./components/Sign"; 
 import { useState,useEffect,useCallback } from "react";
-//import { Lines } from 'react-preloaders';
 import { contextSpinLogin } from "./utils/helper";
-//import WithoutUpload from "./components/WithoutUpload";
 import AIQuestion from "./components/AIQuestion";
-//import Pages from "./components/Pages";
 import LayoutDemo from "./layoutPage/LayoutDemo";
 import Pages from "./components/Pages";
-import Heading from "./components/Heading";
 import LayoutMain from "./layoutPage/LayoutMain";
 import AdvPdfView from "./components/AdvPdfView";
 import PdfView from "./components/PdfView";
-//import LayoutDemoChild from "./layoutPage/LayoutDemoChid";
 
-  const StepsAi=lazy(()=>import("./components/AiKeyCreateStep"))
- const StepDict=lazy(()=>import("./components/DicctKeyStep"))
- const DemoPage=lazy(()=>import("./components/ShowDemo"))
- const WithoutUploads=lazy(()=>import("./components/WithoutUpload"))
- //const FileLazy=lazy(()=>import("./components/FileCart"))
-const VideoPlay=lazy(()=>import("./components/VideoPlay"))
+
+const StepsAi=lazy(()=>import("./components/AiKeyCreateStep"))
+const StepDict=lazy(()=>import("./components/DicctKeyStep"))
+const DemoPage=lazy(()=>import("./components/ShowDemo"))
+const WithoutUploads=lazy(()=>import("./components/WithoutUpload"))
+ const VideoPlay=lazy(()=>import("./components/VideoPlay"))
+
+
+
 const App = () => {
-  const modeNetwork=useCheckOnline()
- 
-  const callBackToUnLoad=useCallback(toLoad,[])
-  function toLoad() {
-    document.getElementById("loading-overlay").style.display = "none";
-  }
-  // Hide the loading indicator when the page has fully loaded
+const modeNetwork=useCheckOnline()
+const callBackToUnLoad=useCallback(toLoad,[])
+
+function toLoad() {
+document.getElementById("loading-overlay").style.display = "none";
+}
+// Hide the loading indicator when the page has fully loaded
  window.addEventListener("load", callBackToUnLoad);
  
- useEffect(()=>{
- 
- // Hide the loading indicator when the page has fully loaded
- //to ensure 100% 
+useEffect(()=>{
+// Hide the loading indicator when the page has fully loaded
+//to ensure 100% 
 document.getElementById("loading-overlay").style.display = "none";
-
-
-
-
- //removing it when unmounted --
-
-
-  return(()=>window.removeEventListener("load",callBackToUnLoad))
+//removing it when unmounted --
+return(()=>window.removeEventListener("load",callBackToUnLoad))
  },[])
 
 
@@ -71,97 +53,41 @@ document.getElementById("loading-overlay").style.display = "none";
 
 
 const appRouter=createBrowserRouter([
-
-
-
-
-
 {
-  path:"/",
-  element:<Body />,
- errorElement:<Error/>,
-  
-  
+path:"/",
+element:<Body />,
+errorElement:<Error/>,
 },
 
 {
   path:"/sign",
   element:<Sign/>
-}
-
-,
+},
 
 {
   path:"/upload",
   element:<UploadFiles />
-}
-,
-/* {
-      path:"/cart",
-      element:<FileCart/>,
-      children:[{
-        path:"videoplay/:id",
-        element:<Suspense fallback={<h1 className="text-center font-bold">loading....please wait</h1>}><VideoPlay/></Suspense>,
-    }]
-    }
-*/
+},
 
-
-,
 {
   path:"/setting",
   element:<Setting/>
-}
+},
 
-
-
-
-
-,
-
-
-
-
-
-
-
-
-{path:"aiKey",
-
+{
+path:"aiKey",
 element:(  <Suspense fallback={<div><h1  className="text-center font-bold animate-pulse">loading....please wait</h1></div>}><StepsAi/></Suspense>)
-}
-,
+},
 
 {
   path:"dictKey",
   element:(<Suspense fallback={<h1  className="text-center font-bold">loading....please wait</h1>}><StepDict/></Suspense>)
 },
 
-,{
+{
   path:"/reset",
   element:<ResetEmailPassword/> 
 },
-
-/*
-{
-  path:"/showDemo",
-  element:<Suspense fallback={<h1 className="text-center font-bold">loading....please wait</h1>}><DemoPage/></Suspense>,
-  children:[{
-    path:"videoplay/:id",
-    element:<Suspense fallback={<h1 className="text-center font-bold">loading....please wait</h1>}><VideoPlay/></Suspense>,
-},
-{
-  path:"Questions",
-  element:<AIQuestion/>
-}
-
-]
-}
-
-*/
-
-
-
 
 {
 path:"/showDemo",
@@ -176,7 +102,7 @@ element:<LayoutDemo/>,
       path:"pdfPages",
       element:<Pages/>,
       children:[
-       {
+        {
          path:"videoplay/:id",
          element:<Suspense fallback={<h1 className="text-center font-bold">loading....please wait</h1>}><VideoPlay/></Suspense>
         },
@@ -189,9 +115,7 @@ element:<LayoutDemo/>,
     }
 
   ]
-}
-
-,
+},
 
 {
 path:"/cart",
@@ -214,8 +138,7 @@ children:[
      element:<Suspense fallback={<h1 className="text-center font-bold">loading....please wait</h1>}><VideoPlay/></Suspense>,
     },
   ]
-}
-,
+},
 {
   path:"textView",
   element:<PdfView/>
@@ -227,14 +150,7 @@ children:[
 }
 
 ]
-}
-
-
-
-
-
-,
-
+},
 
 {
   path:"/withoutUpload",
@@ -261,25 +177,6 @@ children:[
   ]
 }
 
-/*
-{
-  path:"/withoutUpload",
-  element:<Suspense fallback={<h1 className="text-center font-bold">loading....please wait</h1>}><WithoutUploads/></Suspense>,
-  children:[
-    {
-    path:"videoplay/:id",
-    element:<Suspense fallback={<h1 className="text-center font-bold">loading....please wait</h1>}><VideoPlay/></Suspense>,
-    },
-    {
-      path:"Questions",
-      element:<AIQuestion/>
-    }
-  ]
-}*/
-
-
-
-
 ])
 
 
@@ -291,16 +188,12 @@ const [spin,setSpin]=useState({spin:false})
       <>
       {!modeNetwork && <p className="bg-red-600 text-white p-1 m-1 ">please check your network</p>}
      < contextSpinLogin.Provider value={{spin,setSpin}}>
-          <Provider store={appStore}>
- <RouterProvider router={appRouter}>
+      <Provider store={appStore}>
+      <RouterProvider router={appRouter}>
 
- </RouterProvider>
-
-
-
-
- </Provider>
-</contextSpinLogin.Provider >
+     </RouterProvider>
+     </Provider>
+    </contextSpinLogin.Provider >
 
       </>
        
