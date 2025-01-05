@@ -51,7 +51,6 @@ return(()=>window.removeEventListener("load",callBackToUnLoad))
 
 
 
-
 const appRouter=createBrowserRouter([
 {
 path:"/",

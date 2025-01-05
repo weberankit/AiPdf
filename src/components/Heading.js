@@ -125,13 +125,13 @@ const useSpinContext=useContext(contextSpinLogin)
 
 
     return(
-        <>
+        <>  
 
-{showSupport && <div className="fixed w-full z-[200]"><LangSupport close={setShowSupport}/></div>}
+{showSupport && <div className="fixed w-full z-[200] control-largeScreen"><LangSupport close={setShowSupport}/></div>}
 
 
 
-        <div className={`fixed w-full border-b border-gray-400 z-[850]  ${refHide.current}  ${selectDarkToogle ? " darkMode text-white " : "bg-white" }`}>
+        <div className={`fixed w-full border-b border-gray-400 z-[850] control-largeScreen  ${refHide.current}  ${selectDarkToogle ? " darkMode text-white " : "bg-white" }`}>
             <div className='flex flex-row justify-between p-4'>
                 <div className='w-1/3 select-none'>
        <div className='mt-4 flex flex-row '> <Link to={"/"} className="flex flex-row"> <FilePdfFill size={28} /><span className={`hidden md:block text-2xl font-extrabold  `}>{sign1}</span></Link></div>

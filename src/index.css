@@ -211,9 +211,10 @@ input[type="file"] {
     transform: rotate(-360deg);
   }
 } 
-
-
-
+.control-largeScreen{
+max-width: 1900px; 
+margin: 0 auto;  
+}
 
 
 
