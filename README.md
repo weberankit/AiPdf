@@ -1,4 +1,4 @@
-🤖 AiPdf with custom API Key😊: Your Daily-Life PDF/Text Problem Solver AiSummarization, Dictionary, Translate 📑.
+🤖 AiPdf with custom API Key😊: Generate MCQ for any pdf and its Your Daily-Life PDF/Text Problem Solver AiSummarization, Dictionary, Translate 📑.
 When I was in my 2nd year of college🏫, I had the idea 💡 to build this, but at that time, I didn't have enough knowledge📖.finally my dreams comes true.
 
 Struggling with a PDF? No more! With our web app, whenever you get stuck, simply select the text and ask AI for help, look it up in the dictionary, or translate it instantly."
